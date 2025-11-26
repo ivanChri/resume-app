@@ -1,3 +1,5 @@
+export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'awards' | 'volunteering'
+
 export interface finalizationComponentData {
   id:string
   key:string

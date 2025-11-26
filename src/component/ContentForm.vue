@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref,computed } from 'vue';
+  import type { ParentType } from '../utils/component.interface';
   import MonthPicker from './MonthPicker.vue';
-  type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'awards' | 'volunteering'
   type MonthPickerConfig = {
     disable:boolean,
     methods:(data:string) => void
@@ -84,14 +84,14 @@
       <div v-if="parent !== 'awards'" class="flex flex-col gap-2">
        <div class="option-container w-full flex gap-3 p-1 text-center">
         <button @click="toggleMonthPicker(0)" class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none cursor-pointer transition-all duration-200" :class="{'ring-2 ring-blue-500 border-blue-500' : activeIndex == 0}">
-          <span class="font-thin text-md">{{ startDateModel || 'MMYYY' }}</span>
+          <span class="font-thin text-md">{{ startDateModel || 'MM/YYYY' }}</span>
         </button>
         <button @click="toggleMonthPicker(1)" class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none cursor-pointer transition-all duration-200" :class="{'ring-2 ring-blue-500 border-blue-500' : activeIndex == 1}">
-          <span class="font-thin text-md">{{ endDateModel || 'MMYYY' }}</span>
+          <span class="font-thin text-md">{{ endDateModel || 'MM/YYYY' }}</span>
         </button>
        </div>
        <div v-if="showMonthPicker" class= "z-10 absolute mt-15 p-1 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-70 overflow-auto">
-         <month-picker :disabled-button="monthPickerOptions[activeIndex!].disable" @on-update="monthPickerOptions[activeIndex!].methods"></month-picker>
+         <MonthPicker :disabled-button="monthPickerOptions[activeIndex!].disable" @on-update="monthPickerOptions[activeIndex!].methods"></MonthPicker>
        </div>
        <div v-if="hideInput" class="status-button-container">
          <label class="relative flex justify-between items-center group p-1">

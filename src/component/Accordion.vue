@@ -17,16 +17,14 @@
     <div class="border w-full border-gray-200 rounded-lg overflow-hidden">
       <button
         class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 cursor-pointer"
-        @click="$emit('onToggle',itemIndex)"
-      >
+        @click="$emit('onToggle',itemIndex)">
         <span>{{ title || 'not specified' }}</span>
         <svg 
           class="w-5 h-5 transition-transform duration-300" 
           :class="{ 'rotate-180': active }"
           fill="none" 
           viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
+          stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>

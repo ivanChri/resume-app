@@ -84,8 +84,8 @@
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Portofolio / Personal Project','portofolio')"
        :disabled="optionalComponentStatus.portofolio">Personal Project</button>
-      <button class="p-1 border-1 rounded-md cursor-pointer">Course</button>
-      <button class="p-1 border-1 rounded-md cursor-pointer disabled:text-gray-200 disabled:cursor-not-allowed"
+      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed">Course</button>
+      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Language','language')"
        :disabled="optionalComponentStatus.language">Language</button>
       <button class="p-1 border-1 rounded-md cursor-pointer">Comunity volunteering</button>

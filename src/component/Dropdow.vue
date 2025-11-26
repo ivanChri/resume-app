@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['onUpdate'])
 const isOpen = ref<boolean>(false)
-const toggleDropdown = () => {
+function toggleDropdown():void{
   isOpen.value = !isOpen.value
 }
 function onUpdate(optionValue:string):void{

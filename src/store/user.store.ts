@@ -25,7 +25,9 @@ export const useUserStore = defineStore('user',() => {
     placeOfBirth:'',
     city:'',
     country:'',
-    postalCode:0,
+    postalCode:'',
+    drivingLicense:'',
+    nationality:''
   })
   const socialMedia = ref<socialMedia[]>([])
   const experience = ref<workExperice[]>([])

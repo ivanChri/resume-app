@@ -2,6 +2,7 @@
   import { reactive,watch,onMounted } from 'vue';
   import { useUserStore } from '../store/user.store';
   import ImageUploader from '../component/ImageUploader.vue';
+  import AddtionalBiodata from '../component/AdditionalBiodataForm.vue';
   const store = useUserStore()
   const tempEmail = reactive<{email:string,errorMessage:string,valid:boolean | null}>({
     email:'',
@@ -105,17 +106,6 @@
       <label for="country">Country</label>
       <input type="text" v-model="store.biodata.country" id="country" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
     </div>
-    <div class="flex flex-col p-1 gap-2">
-      <label for="dateOfBirth">Date Of Birth</label>
-      <input type="date" v-model="store.biodata.dateOfBirth" id="dateOfBirth" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
-    </div>
-    <div class="flex flex-col p-1 gap-2">
-      <label for="placeOfBirth">Place Of Birth</label>
-      <input type="text" v-model="store.biodata.placeOfBirth" id="placeOfBirth" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
-    </div>
-    <div class="flex flex-col p-1 gap-2">
-      <label for="postal-code">Postal Code</label>
-      <input type="number" v-model="store.biodata.postalCode" id="postal-code" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
-    </div>
   </section>
+  <AddtionalBiodata></AddtionalBiodata>
 </template>

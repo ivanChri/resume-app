@@ -10,7 +10,9 @@ export interface biodata{
   placeOfBirth:string,
   city:string,
   country:string,
-  postalCode:number,
+  postalCode:string,
+  drivingLicense:string,
+  nationality:string
 }
 
 export interface workExperice {
