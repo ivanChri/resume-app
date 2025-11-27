@@ -78,7 +78,7 @@ export interface awards {
   id:string,
   awardsName:string,
   institution:string,
-  year:number | null,
+  year:string,
   description:string,
 }
 

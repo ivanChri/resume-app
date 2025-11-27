@@ -55,8 +55,7 @@
     return props.parent === 'experience' ? 'Currently Working Here' : 'Currently Study Here'
   })
   const hideInput = computed(() => {
-   return props.parent !== 'course' && 
-    props.parent !== 'awards' && props.parent !== 'portofolio'
+   return props.parent !== 'course' && props.parent !== 'awards' && props.parent !== 'portofolio'
   })
   function toggleMonthPicker(index:number):void{
     activeIndex.value = activeIndex.value === index ? null : index
@@ -65,7 +64,7 @@
   function updateEndDateModel(event:Event):void{
    const target = event.target as HTMLInputElement
    endDateModel.value = target.checked ? 'Present' : ''
-   monthPickerOptions.value[1].disable = target.checked 
+   monthPickerOptions.value[1].disable = !monthPickerOptions.value[1].disable
   }
 </script>
 

@@ -2,11 +2,11 @@
  import { ref,defineAsyncComponent } from 'vue';
  import type { optionalFinalizationComponentStatus } from '../utils/component.interface';
  import { useComponentStore } from '../store/component.store';
+ import { genericConfigProps } from '../utils/genericConfig';
  import { useUserValidationStore } from '../store/userValidation.store';
  import BiodataForm from './BiodataForm.vue';
+ import GenericList from './GenericList.vue';
  import SummaryForm from './SummaryForm.vue';
- import WorkExperienceForm from './WorkExperienceForm.vue';
- import EducationForm from './EducationForm.vue';
  import SkillsForm from './SkillsForm.vue';
  import SocialMediaForm from './SocialMediaForm.vue';
  import Accordion from '../component/Accordion.vue';
@@ -21,20 +21,56 @@
   volunteering:false,
   additionalInformation:false
  })
- const components:{ [key: string]: any } = {
-  biodata:BiodataForm,
-  experience:WorkExperienceForm,
-  summary:SummaryForm,
-  education:EducationForm,
-  socialMedia:SocialMediaForm,
-  skills:SkillsForm,
-  awards:defineAsyncComponent(() => import('./AwardsForm.vue')),
-  portofolio:defineAsyncComponent(() => import('./PortofolioForm.vue')),
-  language:defineAsyncComponent(() => import('./LanguageForm.vue')),
-  volunteering:defineAsyncComponent(() => import('./VolunteeringForm.vue')),
-  course:defineAsyncComponent(() => import('./CourseForm.vue')),
-  additionalInformation:defineAsyncComponent(() => import('./AdditionalInformation.vue'))
- }
+const components:{[key:string]:any} = {
+  biodata:{
+   component:BiodataForm,
+   props:{}
+  },
+  experience:{
+   component:GenericList,
+   props:genericConfigProps['experience']
+  },
+  education:{
+   component:GenericList,
+   props:genericConfigProps['education']
+  },
+  summary:{
+   component:SummaryForm,
+   props:{}
+  },
+  socialMedia:{
+   component:SocialMediaForm,
+   props:{}
+  },
+  skills:{
+   component:SkillsForm,
+   props:{}
+  },
+  awards:{
+   component:GenericList,
+   props:genericConfigProps['awards']
+  },
+  portofolio:{
+    component:GenericList,
+    props:genericConfigProps['portofolio']
+  },
+  language:{
+   component:defineAsyncComponent(() => import('./LanguageForm.vue')),
+   props:{}
+  },
+  volunteering:{
+   component:GenericList,
+   props:genericConfigProps['volunteering']
+  },
+  course:{
+   component:GenericList,
+   props:genericConfigProps['course'] 
+  },
+  additionalInformation:{
+   component:defineAsyncComponent(() => import('./AdditionalInformation.vue')),
+   props:{}
+  }
+}
  function addOptionalComponent(key:string,componentName:string):void{
   const length = store.finalizationComponent.length + 1
   store.finalizationComponent.push({
@@ -72,7 +108,7 @@
       :showToolbar="!item.isRequired"
       @on-toggle="toggle"
       @on-delete="deleteAdditionalComponent">
-       <component :is="components[item.componentName]"></component>
+       <component :is="components[item.componentName].component" v-bind="components[item.componentName].props"></component>
      </Accordion>
     </div>
     <div class="footer p-1">
