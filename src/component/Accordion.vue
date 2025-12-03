@@ -1,11 +1,14 @@
 <script setup lang="ts">
-  defineProps<{
+  import { computed } from 'vue';
+  const props = defineProps<{
     title:string
+    sub?:string
     itemId:string
     itemIndex:number
     active:boolean
     showToolbar:boolean
   }>()
+  const currentTitle = computed(() => props.sub ? `${props.title} at ${props.sub}` : props.title)
   defineEmits<{
     (e:'onToggle',index:number):void
     (e:'onDelete',itemId:string):void
@@ -18,7 +21,7 @@
       <button
         class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 cursor-pointer"
         @click="$emit('onToggle',itemIndex)">
-        <span>{{ title || 'not specified' }}</span>
+        <span>{{ currentTitle || '( Not Specified )' }}</span>
         <svg 
           class="w-5 h-5 transition-transform duration-300" 
           :class="{ 'rotate-180': active }"

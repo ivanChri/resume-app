@@ -74,7 +74,10 @@
 <template>
    <div class="@container flex flex-col gap-2">
      <div class="component-container border rounded-md p-1">
-       <component :key="components[componentIndex].name" :is="components[componentIndex].component" v-bind="components[componentIndex].props"></component>
+       <component 
+        :key="components[componentIndex].name" 
+        :is="components[componentIndex].component"
+        v-bind="components[componentIndex].props"></component>
      </div>
      <div class="button-container bg-slate-700 rounded-md  p-2 flex items-center justify-between">
        <button v-if="componentIndex > 0" class="border-2 rounded-md p-1 text-center" @click="back">

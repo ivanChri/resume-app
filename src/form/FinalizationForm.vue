@@ -120,12 +120,17 @@ const components:{[key:string]:any} = {
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Portofolio / Personal Project','portofolio')"
        :disabled="optionalComponentStatus.portofolio">Personal Project</button>
-      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed">Course</button>
+      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+       @click="addOptionalComponent('Course','course')"
+       :disabled="optionalComponentStatus.course">Course</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Language','language')"
        :disabled="optionalComponentStatus.language">Language</button>
-      <button class="p-1 border-1 rounded-md cursor-pointer">Comunity volunteering</button>
-      <button class="p-1 border-1 rounded-md cursor-pointer">Additional Information</button>
+      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+       @click="addOptionalComponent('Comunity volunteering','volunteering')"
+       :disabled="optionalComponentStatus.volunteering">Comunity volunteering</button>
+      <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+      @click="addOptionalComponent('Additional Information','additionalInformation')">Additional Information</button>
      </div>
     </div>
   </section>

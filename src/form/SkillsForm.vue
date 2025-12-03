@@ -4,6 +4,28 @@
  import AccordionList from '../component/AccordionList.vue';
  import type { levelName } from '../utils/form.interface';
  const store = useUserStore()
+ const skillsButtonObj:{level:levelName,style:string,activeStyle:string}[] = [
+  {
+   level:'Beginner',
+   style:'border-green-400 bg-green-100 hover:bg-green-300',
+   activeStyle:'bg-green-600'
+  },
+  {
+   level:'Intermediate',
+   style:'border-yellow-400 bg-yellow-100 hover:bg-yellow-300',
+   activeStyle:'bg-yellow-600'
+  },
+  {
+   level:'Experienced',
+   style:'border-red-400 bg-red-100 hover:bg-red-300',
+   activeStyle:'bg-red-600'
+  },
+  {
+    level:'Expert',
+    style:'border-blue-400 bg-blue-100 hover:bg-blue-300',
+    activeStyle:'bg-blue-600'
+  }
+]
  function addSkills():void{
   store.skills.push({
    id:generateRandomId(),
@@ -44,18 +66,12 @@
          <span class="font-semibold">{{ item.level }}</span>
         </div>
         <div class="toolbar flex gap-1">
-          <button class="border-1 border-green-400 bg-green-100 rounded-md p-2 w-[50px] hover:bg-green-300" 
-           :class="{'bg-green-600':item.level === 'Beginner'}" 
-           @click="updateLevel(item.id,'Beginner')">h</button>
-          <button class="border-1 border-yellow-400 bg-yellow-100 rounded-md p-2 w-[50px] hover:bg-yellow-300"
-           :class="{'bg-yellow-600':item.level === 'Intermediate'}"
-           @click="updateLevel(item.id,'Intermediate')">h</button>
-          <button class="border-1 border-red-400 bg-red-100 rounded-md p-2 w-[50px] hover:bg-red-300" 
-           :class="{'bg-red-600':item.level === 'Experienced'}"
-           @click="updateLevel(item.id,'Experienced')">h</button>
-          <button class="border-1 border-blue-400 bg-blue-100 rounded-md p-2 w-[50px] hover:bg-blue-300" 
-           :class="{'bg-blue-600':item.level === 'Expert'}"
-           @click="updateLevel(item.id,'Expert')">h</button>
+          <button v-for="(value,index) in skillsButtonObj" :key="index" 
+           class="rounded-md p-2 w-[50px] border-1" 
+           :class="[value.style,{[value.activeStyle]:item.level === value.level}]"
+           @click="updateLevel(item.id,value.level)">
+            H
+          </button>
         </div>
       </div>
     </div>

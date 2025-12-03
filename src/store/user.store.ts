@@ -13,7 +13,7 @@ import type {
   volunteering
  } from "../utils/form.interface";
 export const useUserStore = defineStore('user',() => {
-  const biodata = ref<biodata>({
+  const biodata:{[key:string]:any} = ref<biodata>({
     jobTitle:'',
     photoPreview:'',
     firstName:'',

@@ -1,10 +1,15 @@
 <script setup lang="ts">
  import { ref,onMounted } from 'vue';
  import Accordion from './Accordion.vue';
+ interface items {
+  id: string
+  [key: string]: any
+}
  const activeIndex = ref<number | null>(null)
  const props = defineProps<{
-   items:any[],
+   items:items[]
    titleKey:string
+   subKey?:string
  }>()
  const emit = defineEmits<{
    (e:'add'):void,
@@ -30,6 +35,7 @@
     <Accordion v-for="(item,index) in props.items"
      :key="item.id"
      :title="item[titleKey]"
+     :sub="subKey ? item[subKey] : ''"
      :itemId="item.id"
      :itemIndex="index"
      :active="index === activeIndex"

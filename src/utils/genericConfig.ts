@@ -1,11 +1,12 @@
 import { createPinia } from "pinia";
 import { useUserStore } from "../store/user.store";
-import { generateRandomId } from "./utility";
 import type { workExperice,education,awards,portofolio,volunteering,course } from "./form.interface";
+import type { genericDataKeys,ParentType } from "./component.interface";
 interface genericData<T> {
-  parent:string,
+  parent:ParentType,
   data:T[],
-  initialData:T
+  initialData:T,
+  keys:genericDataKeys
 }
 type GenericListConfig<T extends Record<string,any>> = {
   [K in keyof T]: genericData<T[K]>
@@ -32,6 +33,15 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'',
       city:'',
       description:''
+    },
+    keys:{
+      id:'id',
+      title:'jobTitle',
+      sub:'employer',
+      startDate:'startDate',
+      endDate:'endDate',
+      city:'city',
+      description:'description'
     }
   },
   education:{
@@ -45,55 +55,98 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'',
       city:'',
       description:''
+    },
+    keys:{
+      id:'id',
+      title:'schoolName',
+      sub:'degree',
+      startDate:'startDate',
+      endDate:'endDate',
+      city:'city',
+      description:'description'
     }
   },
   awards:{
     parent:'awards',
     data:userStore['awards'],
     initialData:{
-     id:generateRandomId(),
+     id:'',
      awardsName:'',
      institution:'',
      year:'',
      description:'',
+    },
+    keys:{
+      id:'id',
+      title:'awardsName',
+      sub:'institution',
+      year:'year',
+      description:'description'
     }
   },
   portofolio:{
     parent:'portofolio',
     data:userStore['portofolio'],
     initialData:{
-      id:generateRandomId(),
+      id:'',
       projectName:'',
       projectType:'',
       projectLink:'',
       startDate:'',
       endDate:'',
       description:''
+    },
+    keys:{
+      id:'id',
+      title:'projectName',
+      sub:'projectType',
+      startDate:'startDate',
+      endDate:'endDate',
+      link:'projectLink',
+      description:'description'
     }
   },
   volunteering:{
     parent:'volunteering',
     data:userStore['volunteering'],
     initialData:{
-      id:generateRandomId(),
+      id:'',
       role:'',
       institution:'',
       startDate:'',
       endDate:'',
       city:'',
       description:''
+    },
+    keys:{
+      id:'id',
+      title:'role',
+      sub:'institution',
+      startDate:'startDate',
+      endDate:'endDate',
+      city:'city',
+      description:'description'
     }
   },
   course:{
     parent:'course',
     data:userStore['course'],
     initialData:{
-      id:generateRandomId(),
+      id:'',
       courseName:'',
       institution:'',
       startDate:'',
       endDate:'',
       description:''
+    },
+    keys:{
+      id:'id',
+      title:'courseName',
+      sub:'institution',
+      startDate:'startDate',
+      endDate:'endDate',
+      city:'city',
+      description:'description'
     }
   }
 }

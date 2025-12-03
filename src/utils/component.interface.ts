@@ -16,3 +16,15 @@ export interface optionalFinalizationComponentStatus {
   volunteering:boolean,
   additionalInformation:boolean
 }
+
+export interface genericDataKeys {
+  id: string
+  title: string
+  sub: string
+  startDate?: string
+  endDate?: string
+  city?: string
+  description: string
+  link?:string
+  year?:string
+}

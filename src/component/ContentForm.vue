@@ -11,14 +11,14 @@
   }>()
   const titleModel = defineModel<string>('titleModel')
   const subModel = defineModel<string>('subModel')
-  const startDateModel = defineModel<string>('startDateModel')
-  const endDateModel = defineModel<string>('endDateModel')
-  const cityModel = defineModel<string>('cityModel')
-  const yearModel = defineModel<number>('yearModel')
-  const linkModel = defineModel<string>('linkModel')
+  const startDateModel = defineModel<string | null>('startDateModel',{default:null})
+  const endDateModel = defineModel<string | null>('endDateModel',{default:null})
+  const cityModel = defineModel<string | null>('cityModel',{default:null})
+  const yearModel = defineModel<number | null>('yearModel',{default:null})
+  const linkModel = defineModel<string | null>('linkModel',{default:null})
   const activeIndex = ref<number | null>(null)
   const showMonthPicker = ref<boolean>(false)
-  const monthPickerOptions = ref<MonthPickerConfig[]>([
+  const monthPickerOptions = computed<MonthPickerConfig[]>(() => [
     {
       disable:false,
       methods:(data:string) => {
@@ -29,7 +29,7 @@
       }
     },
     {
-     disable:false,
+     disable:endDateModel.value === 'Present',
      methods:(data:string) => {
       if(data){
        endDateModel.value = data
@@ -58,13 +58,13 @@
    return props.parent !== 'course' && props.parent !== 'awards' && props.parent !== 'portofolio'
   })
   function toggleMonthPicker(index:number):void{
+    if(props.parent === 'awards') return
     activeIndex.value = activeIndex.value === index ? null : index
     showMonthPicker.value = activeIndex.value === index
   }
   function updateEndDateModel(event:Event):void{
    const target = event.target as HTMLInputElement
    endDateModel.value = target.checked ? 'Present' : ''
-   monthPickerOptions.value[1].disable = !monthPickerOptions.value[1].disable
   }
 </script>
 
@@ -95,7 +95,7 @@
        <div v-if="hideInput" class="status-button-container">
          <label class="relative flex justify-between items-center group p-1">
            {{ statusLabel }}
-          <input type="checkbox" @change="updateEndDateModel" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
+          <input type="checkbox" @change="updateEndDateModel" :checked="endDateModel === 'Present'" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
           <span class="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 group-hover:after:translate-x-1"></span>
         </label>
        </div>

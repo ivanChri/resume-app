@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  const props = defineProps<{
+    wordLimit:number
+  }>()
   import { ref,onMounted,useTemplateRef } from 'vue';
   const descriptionEditor = useTemplateRef<HTMLDivElement | null>('descriptionEditor')
   const descriptionModel = defineModel<string>('descriptionModel')
@@ -8,7 +11,6 @@
     bold:false,
     italic:false,
     underline:false,
-    orderedList: false,
     unorderedList: false
   })
   let isInternalUpdate = false
@@ -23,21 +25,20 @@
   formats.value.bold = document.queryCommandState('bold')
   formats.value.italic = document.queryCommandState('italic')
   formats.value.underline = document.queryCommandState('underline')
-  formats.value.orderedList = document.queryCommandState('insertOrderedList')
   formats.value.unorderedList = document.queryCommandState('insertUnorderedList')
  }
  function onUpdate(event:Event):void{
   if (isInternalUpdate) return
   const target = event.target as HTMLDivElement
   const text = target.innerText.trim();
-  if(text.length <= 400){
+  if(text.length <= props.wordLimit){
     descriptionWordLength.value = text.length
     descriptionModel.value = target.innerHTML
     lastValidValue.value = target.innerHTML
   }else{
     isInternalUpdate = true
     target.innerHTML = lastValidValue.value
-    descriptionWordLength.value = 300
+    descriptionWordLength.value = props.wordLimit
     descriptionModel.value = lastValidValue.value
     placeCaretAtEnd(target)
     isInternalUpdate = false
@@ -75,13 +76,10 @@
       <button @click="formatText('insertUnorderedList')" :class="{ active: formats.unorderedList }">
         <span>.List</span>
       </button>
-      <button @click="formatText('insertOrderedList')" :class="{ active: formats.orderedList }">
-        <span>1. List</span>
-      </button>
     </div>
     <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 h-48" id="description" contenteditable="true"></div>
     <div class="wordLength  p-1 max-w-xs">
-       <span>{{ descriptionWordLength }} / 400</span>
+       <span>{{ descriptionWordLength }} / {{ props.wordLimit }}</span>
     </div>
   </div>
 </template>

@@ -1,14 +1,15 @@
 <script setup lang="ts" generic="T extends {id:string}">
  import { computed } from 'vue';
  import { generateRandomId } from '../utils/utility';
- import type { ParentType } from '../utils/component.interface';
+ import type { ParentType,genericDataKeys } from '../utils/component.interface';
  import AccordionList from '../component/AccordionList.vue';
  import ContentForm from '../component/ContentForm.vue';
  import DescriptionForm from '../component/DescriptionForm.vue';
  const props = defineProps<{
   parent:ParentType,
   data:T[],
-  initialData:T
+  initialData:T,
+  keys:genericDataKeys
  }>()
  const labelConfig = {
    experience:'Add Experience',
@@ -19,8 +20,6 @@
    volunteering:'Add Volunteering'
  } as const
  const currentButtonLabel = computed(() => labelConfig[props.parent])
- const keys = Object.keys(props.initialData)
- const [id,title,sub,startDate,endDate,city,description] = keys
  function addData():void{
   const newItem = JSON.parse(JSON.stringify(props.initialData))
   newItem.id = generateRandomId()
@@ -36,21 +35,24 @@
    <section class="generic-list-container p-1 w-full">
     <AccordionList
      :items="data"
-     :title-key="title"
+     :title-key="keys.title"
+     :sub-key="keys.sub"
      @add="addData"
      @delete="deleteData"
      >
       <template #default="{item}">
         <ContentForm
-          :key="item[id]"
-          :parent="parent"
-          v-model:title-model="item[title]"
-          v-model:sub-model="item[sub]"
-          v-model:start-date-model="item[startDate]"
-          v-model:end-date-model="item[endDate]"
-          v-model:city-model="item[city]">
-          <DescriptionForm v-model:description-model="item[description]"></DescriptionForm>
-        </ContentForm>
+          ref="contentForm"
+          :key="item[keys.id]"
+          :parent="props.parent"
+          v-model:title-model="item[keys.title]"
+          v-model:sub-model="item[keys.sub]"
+          v-model:start-date-model="item[keys.startDate!]"
+          v-model:end-date-model="item[keys.endDate!]"
+          v-model:link-model="item[keys.link!]"
+          v-model:year-model="item[keys.year!]">
+           <DescriptionForm :word-limit="300" v-model:description-model="item[keys.description]"></DescriptionForm>
+          </ContentForm>
       </template>
       <template #button-label>{{ currentButtonLabel }}</template>
     </AccordionList>
