@@ -1,13 +1,6 @@
-import { createPinia } from "pinia";
 import { useUserStore } from "../store/user.store";
 import type { workExperice,education,awards,portofolio,volunteering,course } from "./form.interface";
-import type { genericDataKeys,ParentType } from "./component.interface";
-interface genericData<T> {
-  parent:ParentType,
-  data:T[],
-  initialData:T,
-  keys:genericDataKeys
-}
+import type { genericData } from "./component.interface";
 type GenericListConfig<T extends Record<string,any>> = {
   [K in keyof T]: genericData<T[K]>
 }
@@ -19,10 +12,10 @@ type config = {
   volunteering:volunteering
   course:course
 }
-const pinia = createPinia()
-const userStore = useUserStore(pinia)
-export const genericConfigProps:GenericListConfig<config>= {
-  experience:{
+export function genericConfigGenerator():GenericListConfig<config>{
+  const userStore = useUserStore()
+  return {
+    experience:{
     parent:'experience',
     data:userStore['experience'],
     initialData:{
@@ -42,7 +35,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'endDate',
       city:'city',
       description:'description'
-    }
+    },
+    infoText:''
   },
   education:{
     parent:'education',
@@ -64,7 +58,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'endDate',
       city:'city',
       description:'description'
-    }
+    },
+    infoText:''
   },
   awards:{
     parent:'awards',
@@ -82,7 +77,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       sub:'institution',
       year:'year',
       description:'description'
-    }
+    },
+    infoText:''
   },
   portofolio:{
     parent:'portofolio',
@@ -104,7 +100,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'endDate',
       link:'projectLink',
       description:'description'
-    }
+    },
+    infoText:''
   },
   volunteering:{
     parent:'volunteering',
@@ -126,7 +123,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'endDate',
       city:'city',
       description:'description'
-    }
+    },
+    infoText:''
   },
   course:{
     parent:'course',
@@ -147,6 +145,8 @@ export const genericConfigProps:GenericListConfig<config>= {
       endDate:'endDate',
       city:'city',
       description:'description'
-    }
+    },
+    infoText:''
   }
+  } as const
 }

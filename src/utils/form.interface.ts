@@ -45,7 +45,7 @@ export type levelName = 'Beginner' | 'Intermediate' | 'Experienced' | 'Expert'
 export interface skills {
   id:string,
   name:string,
-  level:levelName,
+  level:levelName | null,
 }
 
 export type languageSpeakingLevel = 'Native Speaker' | 'Highly Proficient' | 'Very Good Command' 

@@ -30,7 +30,7 @@
   store.skills.push({
    id:generateRandomId(),
    name:'',
-   level:'Beginner'
+   level:null
   })
  }
  function findIndex(id:string):number{

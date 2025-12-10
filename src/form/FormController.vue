@@ -6,52 +6,53 @@
   import SummaryForm from './SummaryForm.vue';
   import FinalizationForm from './FinalizationForm.vue';
   import GenericList from './GenericList.vue';
-  import { genericConfigProps } from '../utils/genericConfig';
+  import { genericConfigGenerator } from '../utils/genericConfig';
   import { useUserValidationStore } from '../store/userValidation.store';
   const componentIndex = ref<number>(0)
   const validation = useUserValidationStore()
+  const genericConfig = genericConfigGenerator()
   const components = [
    {
     name:'Biodata',
     buttonName:'Personal Info',
     component:BiodataForm,
-    props:{}
+    props:{},
    },
    {
     name:'experience',
     buttonName:'Work Experience',
     component:GenericList,
-    props:genericConfigProps['experience']
+    props:genericConfig.experience
    },
    {
     name:'education',
     buttonName:'Education',
     component:GenericList,
-    props:genericConfigProps['education']
+    props:genericConfig.education,
    },
    {
     name:'socialMedia',
     buttonName:'Social Media',
     component:SocialMediaForm,
-    props:{}
+    props:{},
    },
    {
     name:'skills',
     buttonName:'Skills',
     component:SkillsForm,
-    props:{}
+    props:{},
    },
    {
     name:'summary',
     buttonName:'Profesional Summary',
     component:SummaryForm,
-    props:{}
+    props:{},
    },
    {
     name:'finalization',
     buttonName:'finish',
     component:FinalizationForm,
-    props:{}
+    props:{},
    }
  ]
   const nextButtonLabel = computed(() => {

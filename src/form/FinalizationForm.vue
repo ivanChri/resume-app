@@ -2,7 +2,7 @@
  import { ref,defineAsyncComponent } from 'vue';
  import type { optionalFinalizationComponentStatus } from '../utils/component.interface';
  import { useComponentStore } from '../store/component.store';
- import { genericConfigProps } from '../utils/genericConfig';
+ import { genericConfigGenerator } from '../utils/genericConfig';
  import { useUserValidationStore } from '../store/userValidation.store';
  import BiodataForm from './BiodataForm.vue';
  import GenericList from './GenericList.vue';
@@ -13,6 +13,7 @@
  const activeIndex = ref<number | null>(null)
  const store = useComponentStore()
  const componentValidation = useUserValidationStore()
+ const genericConfig = genericConfigGenerator()
  const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
   awards:false,
   portofolio:false,
@@ -28,11 +29,11 @@ const components:{[key:string]:any} = {
   },
   experience:{
    component:GenericList,
-   props:genericConfigProps['experience']
+   props:genericConfig['experience']
   },
   education:{
    component:GenericList,
-   props:genericConfigProps['education']
+   props:genericConfig['education']
   },
   summary:{
    component:SummaryForm,
@@ -48,11 +49,11 @@ const components:{[key:string]:any} = {
   },
   awards:{
    component:GenericList,
-   props:genericConfigProps['awards']
+   props:genericConfig['awards']
   },
   portofolio:{
     component:GenericList,
-    props:genericConfigProps['portofolio']
+    props:genericConfig['portofolio']
   },
   language:{
    component:defineAsyncComponent(() => import('./LanguageForm.vue')),
@@ -60,11 +61,11 @@ const components:{[key:string]:any} = {
   },
   volunteering:{
    component:GenericList,
-   props:genericConfigProps['volunteering']
+   props:genericConfig['volunteering']
   },
   course:{
    component:GenericList,
-   props:genericConfigProps['course'] 
+   props:genericConfig['course'] 
   },
   additionalInformation:{
    component:defineAsyncComponent(() => import('./AdditionalInformation.vue')),
@@ -109,7 +110,7 @@ const components:{[key:string]:any} = {
       @on-toggle="toggle"
       @on-delete="deleteAdditionalComponent">
        <component :is="components[item.componentName].component" v-bind="components[item.componentName].props"></component>
-     </Accordion>
+      </Accordion>
     </div>
     <div class="footer p-1">
      <h2 class="text-lg my-2">Additional Section</h2>
@@ -124,8 +125,8 @@ const components:{[key:string]:any} = {
        @click="addOptionalComponent('Course','course')"
        :disabled="optionalComponentStatus.course">Course</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
-       @click="addOptionalComponent('Language','language')"
-       :disabled="optionalComponentStatus.language">Language</button>
+       @click="addOptionalComponent('Languages','language')"
+       :disabled="optionalComponentStatus.language">Languages</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Comunity volunteering','volunteering')"
        :disabled="optionalComponentStatus.volunteering">Comunity volunteering</button>

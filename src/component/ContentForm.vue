@@ -39,24 +39,75 @@
     }
   ])
   const fieldConfig = {
-   experience: { title: 'JobTitle', sub: 'Employer' },
-   education: { title: 'SchoolName', sub: 'Degree' },
-   portofolio: { title: 'ProjectName', sub: 'ProjectType' },
-   course: { title: 'Course', sub: 'Institution' },
-   awards: { title: 'Awards Name', sub: 'Institution' },
-   volunteering : { title:'Role', sub:'Institution' }
-  } as const
-  const currentTitle = computed(() => fieldConfig[props.parent]?.title || 'Title')
-  const currentSub = computed(() => fieldConfig[props.parent]?.sub || 'Subtitle')
-  const labelName = computed(() => {
-    return props.parent === 'awards' ? 'Recived Year' : 'Start & End Date'
-  })
-  const statusLabel = computed(() => {
-    return props.parent === 'experience' ? 'Currently Working Here' : 'Currently Study Here'
-  })
-  const hideInput = computed(() => {
-   return props.parent !== 'course' && props.parent !== 'awards' && props.parent !== 'portofolio'
-  })
+   experience: {
+    title:'JobTitle',
+    sub:'Employer',
+    showCity:true,
+    showLink:false,
+    labelName:'Start & End Date',
+    statusLabel:'Currently Working Here',
+    useMonthPicker:true,
+    useMonthPickerStatus:true
+  },
+   education:{
+    title:'SchoolName',
+    sub: 'Degree',
+    showCity: true,
+    showLink: false,
+    labelName: "Start & End Date",
+    statusLabel: "Currently Study Here",
+    useMonthPicker: true,
+    useMonthPickerStatus:true
+  },
+   portofolio:{
+    title:'ProjectName',
+    sub:'ProjectType',
+    showCity: false,
+    showLink: true,
+    labelName: "Start & End Date",
+    statusLabel: null,
+    useMonthPicker: true,
+    useMonthPickerStatus:false
+  },
+   course:{
+    title:'Course',
+    sub:'Institution',
+    showCity: false,
+    showLink: false,
+    labelName: "Start & End Date",
+    statusLabel: null,
+    useMonthPicker: true,
+    useMonthPickerStatus:false
+  },
+   awards:{
+    title:'Awards Name',
+    sub:'Institution',
+    showCity: false,
+    showLink: false,
+    labelName: "Received Year",
+    statusLabel: null,
+    useMonthPicker: false,
+    useMonthPickerStatus:false
+  },
+  volunteering:{
+    title:'Role',
+    sub:'Institution',
+    showCity: true,
+    showLink: false,
+    labelName: "Start & End Date",
+    statusLabel: "Currently Volunteering Here",
+    useMonthPicker: true,
+    useMonthPickerStatus:true
+  }
+ } as const
+  const currentTitle = computed(() => fieldConfig[props.parent].title || 'Title')
+  const currentSub = computed(() => fieldConfig[props.parent].sub || 'Subtitle')
+  const labelName = computed(() => fieldConfig[props.parent].labelName)
+  const useMonthPicker = computed(() => fieldConfig[props.parent].useMonthPicker)
+  const useMonthPickerStatus = computed(() => fieldConfig[props.parent].useMonthPickerStatus)
+  const statusLabel = computed(() => fieldConfig[props.parent].statusLabel)
+  const showCityInput = computed(() => fieldConfig[props.parent].showCity)
+  const showLinkInput = computed(() => fieldConfig[props.parent].showLink)
   function toggleMonthPicker(index:number):void{
     if(props.parent === 'awards') return
     activeIndex.value = activeIndex.value === index ? null : index
@@ -64,23 +115,29 @@
   }
   function updateEndDateModel(event:Event):void{
    const target = event.target as HTMLInputElement
-   endDateModel.value = target.checked ? 'Present' : ''
+   if (target.checked) {
+    endDateModel.value = 'Present'
+    activeIndex.value = null
+    showMonthPicker.value = false
+  } else {
+    endDateModel.value = ''
+  }
   }
 </script>
 
 <template>
   <div class="accordion-content grid grid-cols-2 gap-2">
-    <div class="flex flex-col p-1 gap-3">
+    <div class="flex title-container flex-col p-1 gap-3">
       <label for="title">{{ currentTitle }}</label>
       <input type="text" v-model="titleModel" id="title" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
     </div>
-    <div class="flex flex-col p-1 gap-3">
+    <div class="flex sub-container flex-col p-1 gap-3">
       <label for="sub">{{ currentSub }}</label>
       <input type="text" v-model="subModel" id="sub" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
     </div>
-    <div class="flex flex-col p-1 gap-2 relative">
+    <div class="flex date-container flex-col p-1 gap-2 relative">
       <span>{{ labelName }}</span>
-      <div v-if="parent !== 'awards'" class="flex flex-col gap-2">
+      <div v-if="useMonthPicker" class="flex flex-col gap-2">
        <div class="option-container w-full flex gap-3 p-1 text-center">
         <button @click="toggleMonthPicker(0)" class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none cursor-pointer transition-all duration-200" :class="{'ring-2 ring-blue-500 border-blue-500' : activeIndex == 0}">
           <span class="font-thin text-md">{{ startDateModel || 'MM/YYYY' }}</span>
@@ -90,9 +147,9 @@
         </button>
        </div>
        <div v-if="showMonthPicker" class= "z-10 absolute mt-15 p-1 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-70 overflow-auto">
-         <MonthPicker :disabled-button="monthPickerOptions[activeIndex!].disable" @on-update="monthPickerOptions[activeIndex!].methods"></MonthPicker>
+         <MonthPicker v-if="activeIndex !== null" :disabled-button="monthPickerOptions[activeIndex].disable" @on-update="monthPickerOptions[activeIndex].methods"></MonthPicker>
        </div>
-       <div v-if="hideInput" class="status-button-container">
+       <div v-if="useMonthPickerStatus" class="status-button-container">
          <label class="relative flex justify-between items-center group p-1">
            {{ statusLabel }}
           <input type="checkbox" @change="updateEndDateModel" :checked="endDateModel === 'Present'" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
@@ -104,15 +161,13 @@
         <input type="number" v-model="yearModel" placeholder="YYYY" min="1900" max="2099" class="p-2 w-35 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
       </div>
     </div>
-    <div class="dynamic-input-container">
-     <div v-if="hideInput" class="flex flex-col p-1 gap-2">
-       <label for="city">City</label>
-       <input type="text" v-model="cityModel" id="city" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
-     </div>
-      <div v-else-if="parent === 'portofolio'" class="flex flex-col p-1 gap-2">
-       <label for="link">Link</label>
-       <input type="url" v-model="linkModel" id="link" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
-     </div>
+    <div v-if="showCityInput" class="flex flex-col p-1 gap-2 city-container">
+      <label for="city">City</label>
+      <input type="text" v-model="cityModel" id="city" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
+    </div>
+    <div v-if="showLinkInput" class="flex flex-col p-1 gap-2 link-container">
+      <label for="link">Link</label>
+      <input type="url" v-model="linkModel" id="link" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
     </div>
     <div class="descriptionEditor-container col-span-2">
       <label for="description">Description</label>

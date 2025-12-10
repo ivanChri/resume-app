@@ -1,16 +1,11 @@
 <script setup lang="ts" generic="T extends {id:string}">
  import { computed } from 'vue';
  import { generateRandomId } from '../utils/utility';
- import type { ParentType,genericDataKeys } from '../utils/component.interface';
+ import type { genericData } from '../utils/component.interface';
  import AccordionList from '../component/AccordionList.vue';
  import ContentForm from '../component/ContentForm.vue';
  import DescriptionForm from '../component/DescriptionForm.vue';
- const props = defineProps<{
-  parent:ParentType,
-  data:T[],
-  initialData:T,
-  keys:genericDataKeys
- }>()
+ const props = defineProps<genericData<T>>()
  const labelConfig = {
    experience:'Add Experience',
    education:'Add Education',
@@ -28,11 +23,14 @@
  function deleteData(itemId:string):void{
    const index = props.data.findIndex((item) => item.id === itemId)
    if(index !== -1) props.data.splice(index,1)
-  }
+ }
 </script>
 
 <template>
-   <section class="generic-list-container p-1 w-full">
+   <section class="generic-list-container flex flex-col gap-2 p-1 w-full">
+    <div class="info p-1">
+      <p>{{ infoText }}</p>
+    </div>
     <AccordionList
      :items="data"
      :title-key="keys.title"
@@ -42,11 +40,11 @@
      >
       <template #default="{item}">
         <ContentForm
-          ref="contentForm"
           :key="item[keys.id]"
           :parent="props.parent"
           v-model:title-model="item[keys.title]"
           v-model:sub-model="item[keys.sub]"
+          v-model:city-model="item[keys.city!]"
           v-model:start-date-model="item[keys.startDate!]"
           v-model:end-date-model="item[keys.endDate!]"
           v-model:link-model="item[keys.link!]"

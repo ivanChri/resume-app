@@ -30,7 +30,16 @@ export const useUserValidationStore = defineStore(('userValidation'), () => {
    return key.every((value) => !!userStore.biodata[value])
  }),
   summary:validateStringTypeData(() => userStore.summary),
-  education:validateArrayTypeData(() => userStore.education)
+  education:validateArrayTypeData(() => userStore.education),
+  experience:validateArrayTypeData(() => userStore.experience),
+  socialMedia:validateArrayTypeData(() => userStore.socialMedia),
+  skills:validateArrayTypeData(() => userStore.skills),
+  awards:validateArrayTypeData(() => userStore.awards),
+  portofolio:validateArrayTypeData(() => userStore.portofolio),
+  language:validateArrayTypeData(() => userStore.language),
+  volunteering:validateArrayTypeData(() => userStore.volunteering),
+  course:validateArrayTypeData(() => userStore.course),
+  additionalInformation:validateStringTypeData(() => userStore.additionalInformation)
  }
  const validateAllData = computed<boolean>(() => {
    const data = Object.values(validation)
