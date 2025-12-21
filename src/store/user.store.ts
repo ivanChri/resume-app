@@ -8,7 +8,6 @@ import type {
   skills,
   portofolio,
   course,
-  awards,
   language,
   volunteering
  } from "../utils/form.interface";
@@ -37,7 +36,6 @@ export const useUserStore = defineStore('user',() => {
   const skills = ref<skills[]>([])
   const portofolio = ref<portofolio[]>([])
   const course = ref<course[]>([])
-  const awards = ref<awards[]>([])
   const language = ref<language[]>([])
   const volunteering = ref<volunteering[]>([])
   const setPhotoPreview = (file:File):void => {
@@ -53,7 +51,6 @@ export const useUserStore = defineStore('user',() => {
     summary,
     portofolio,
     course,
-    awards,
     language,
     volunteering,
     additionalInformation

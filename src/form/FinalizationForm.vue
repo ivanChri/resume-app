@@ -17,7 +17,7 @@
  const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
   awards:false,
   portofolio:false,
-  course:false,
+  courses:false,
   language:false,
   volunteering:false,
   additionalInformation:false
@@ -47,10 +47,6 @@ const components:{[key:string]:any} = {
    component:SkillsForm,
    props:{}
   },
-  awards:{
-   component:GenericList,
-   props:genericConfig['awards']
-  },
   portofolio:{
     component:GenericList,
     props:genericConfig['portofolio']
@@ -63,7 +59,7 @@ const components:{[key:string]:any} = {
    component:GenericList,
    props:genericConfig['volunteering']
   },
-  course:{
+  courses:{
    component:GenericList,
    props:genericConfig['course'] 
   },
@@ -115,15 +111,12 @@ const components:{[key:string]:any} = {
     <div class="footer p-1">
      <h2 class="text-lg my-2">Additional Section</h2>
      <div class="button-container grid grid-cols-2 gap-3 my-3">
-      <button class="p-2 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed" 
-       @click="addOptionalComponent('Awards','awards')"
-       :disabled="optionalComponentStatus.awards">Awards</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Portofolio / Personal Project','portofolio')"
        :disabled="optionalComponentStatus.portofolio">Personal Project</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
-       @click="addOptionalComponent('Course','course')"
-       :disabled="optionalComponentStatus.course">Course</button>
+       @click="addOptionalComponent('Courses','courses')"
+       :disabled="optionalComponentStatus.courses">Courses</button>
       <button class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
        @click="addOptionalComponent('Languages','language')"
        :disabled="optionalComponentStatus.language">Languages</button>

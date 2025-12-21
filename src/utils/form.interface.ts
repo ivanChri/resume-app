@@ -15,6 +15,7 @@ export interface biodata{
   nationality:string
 }
 
+export type employmentTypes = 'Full-time' | 'Part-time' | 'Internship' | 'Contract' | 'Freelance'
 export interface workExperice {
   id:string,
   jobTitle:string,
@@ -22,6 +23,7 @@ export interface workExperice {
   startDate:string,
   endDate:string,
   city:string,
+  employmentTypes:employmentTypes | null
   description:string,
 }
 
@@ -71,14 +73,6 @@ export interface course {
   institution:string,
   startDate:string,
   endDate:string,
-  description:string,
-}
-
-export interface awards {
-  id:string,
-  awardsName:string,
-  institution:string,
-  year:string,
   description:string,
 }
 

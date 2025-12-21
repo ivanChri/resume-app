@@ -7,15 +7,35 @@
  import DescriptionForm from '../component/DescriptionForm.vue';
  const props = defineProps<genericData<T>>()
  const labelConfig = {
-   experience:'Add Experience',
-   education:'Add Education',
-   portofolio:'Add Portofolio',
-   course:'Add Course',
-   awards:'Add Awards',
-   volunteering:'Add Volunteering'
+   experience:{
+    title:'Employment History',
+    buttonLabel:'Add Experience'
+   },
+   education:{
+    title:'Education',
+    buttonLabel:'Add Education'
+   },
+   portofolio:{
+    title:'Portofolio/Personal Project',
+    buttonLabel:'Add Portofolio'
+   },
+   course:{
+    title:null,
+    buttonLabel:'Add Course'
+   },
+   awards:{
+    title:null,
+    buttonLabel:'Add Awards'
+   },
+   volunteering:{
+    title:null,
+    buttonLabel:'Add Volunteering'
+   }
  } as const
- const currentButtonLabel = computed(() => labelConfig[props.parent])
- function addData():void{
+ const currentTitle = computed(() => labelConfig[props.parent].title || '')
+ const currentButtonLabel = computed(() => labelConfig[props.parent].buttonLabel)
+ const showInfo = computed(() => currentTitle && props.infoText)
+ function addData():void{ 
   const newItem = JSON.parse(JSON.stringify(props.initialData))
   newItem.id = generateRandomId()
   props.data.push(newItem)
@@ -28,8 +48,9 @@
 
 <template>
    <section class="generic-list-container flex flex-col gap-2 p-1 w-full">
-    <div class="info p-1">
-      <p>{{ infoText }}</p>
+    <div v-if="showInfo" class="info p-1 flex flex-col gap-2">
+      <h1 class="text-xl font-semibold">{{ currentTitle }}</h1>
+      <p class="text-md leading-relaxed">{{ infoText }}</p>
     </div>
     <AccordionList
      :items="data"
@@ -48,7 +69,7 @@
           v-model:start-date-model="item[keys.startDate!]"
           v-model:end-date-model="item[keys.endDate!]"
           v-model:link-model="item[keys.link!]"
-          v-model:year-model="item[keys.year!]">
+          v-model:employment-types-model="item[keys.employmentTypes!]">
            <DescriptionForm :word-limit="300" v-model:description-model="item[keys.description]"></DescriptionForm>
           </ContentForm>
       </template>

@@ -1,4 +1,4 @@
-export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'awards' | 'volunteering'
+export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'volunteering'
 
 export interface finalizationComponentData {
   id:string,
@@ -11,7 +11,7 @@ export interface finalizationComponentData {
 export interface optionalFinalizationComponentStatus {
   awards:boolean,
   portofolio:boolean,
-  course:boolean,
+  courses:boolean,
   language:boolean,
   volunteering:boolean,
   additionalInformation:boolean
@@ -27,6 +27,7 @@ export interface genericDataKeys {
   description: string,
   link?:string,
   year?:string,
+  employmentTypes?:string
 }
 
 export interface genericData<T> {
@@ -34,5 +35,5 @@ export interface genericData<T> {
   data:T[],
   initialData:T,
   keys:genericDataKeys,
-  infoText:string
+  infoText:string | null
 }

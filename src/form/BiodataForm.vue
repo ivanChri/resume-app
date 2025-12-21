@@ -66,7 +66,9 @@
 </script>
 
 <template>
-  <section class="biodata-form w-full grid grid-cols-2">
+  <section class="biodata p-1">
+  <h1 class="p-1 text-xl my-1 font-semibold">Personal Details</h1>
+  <div class="biodata-form w-full grid grid-cols-2">
     <div class="flex flex-col p-1 gap-2">
       <label for="jobTitle">JobTitle</label>
       <input type="text" v-model="store.biodata.jobTitle" id="jobTitle" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.jobTitle}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
@@ -106,6 +108,7 @@
       <label for="country">Country</label>
       <input type="text" v-model="store.biodata.country" id="country" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
     </div>
-  </section>
+  </div>
   <AddtionalBiodata></AddtionalBiodata>
+  </section>
 </template>

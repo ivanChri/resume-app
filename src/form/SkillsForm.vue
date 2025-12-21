@@ -48,6 +48,10 @@
 
 <template>
   <section class="skills-container p-1 w-full">
+    <div class="info mb-1 p-1">
+     <h1 class="p-1 text-xl my-1 font-semibold">Skills</h1>
+     <p class="text-md leading-relaxed">Choose 5 important skills that show you fit the position.Make sure they match the key skills mentioned in the job listing (especially when applying via a online system)</p>
+    </div>
     <AccordionList
      :items="store.skills"
      title-key="name"

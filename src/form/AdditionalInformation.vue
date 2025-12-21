@@ -7,7 +7,7 @@
 <template>
   <div class="summary-container p-2 flex flex-col gap-2">
     <h1 class="title text-xl font-semibold">Additional Information</h1>
-    <p class="info">Add anything else you want employers to know.</p>  
+    <p class="info text-md leading-relaxed">Add anything else you want employers to know.</p>  
     <DescriptionForm :word-limit="400" v-model:description-model="store.additionalInformation"></DescriptionForm>
   </div>
 </template>

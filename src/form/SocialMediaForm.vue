@@ -18,6 +18,10 @@
 
 <template>
   <section class="skills-container p-1 w-full">
+  <div class="info mb-1 p-1">
+    <h1 class="p-1 text-xl my-1 font-semibold">Website & Social Links</h1>
+    <p class="text-md leading-relaxed">You can add links to website you want hiring manager to see,perhaps it will be a link to your social media,LinkedIn profile,github profile or personal website.</p>
+  </div>
   <AccordionList 
    :items="store.socialMedia" 
    title-key="label"

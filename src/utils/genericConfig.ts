@@ -1,5 +1,5 @@
 import { useUserStore } from "../store/user.store";
-import type { workExperice,education,awards,portofolio,volunteering,course } from "./form.interface";
+import type { workExperice,education,portofolio,volunteering,course } from "./form.interface";
 import type { genericData } from "./component.interface";
 type GenericListConfig<T extends Record<string,any>> = {
   [K in keyof T]: genericData<T[K]>
@@ -7,7 +7,6 @@ type GenericListConfig<T extends Record<string,any>> = {
 type config = {
   experience:workExperice
   education:education
-  awards:awards
   portofolio:portofolio
   volunteering:volunteering
   course:course
@@ -25,6 +24,7 @@ export function genericConfigGenerator():GenericListConfig<config>{
       startDate:'',
       endDate:'',
       city:'',
+      employmentTypes:null,
       description:''
     },
     keys:{
@@ -34,9 +34,10 @@ export function genericConfigGenerator():GenericListConfig<config>{
       startDate:'startDate',
       endDate:'endDate',
       city:'city',
+      employmentTypes:'employmentTypes',
       description:'description'
     },
-    infoText:''
+    infoText:'Use this section to show what you achieved in each role. Recruiters notice results more than duties.'
   },
   education:{
     parent:'education',
@@ -59,26 +60,7 @@ export function genericConfigGenerator():GenericListConfig<config>{
       city:'city',
       description:'description'
     },
-    infoText:''
-  },
-  awards:{
-    parent:'awards',
-    data:userStore['awards'],
-    initialData:{
-     id:'',
-     awardsName:'',
-     institution:'',
-     year:'',
-     description:'',
-    },
-    keys:{
-      id:'id',
-      title:'awardsName',
-      sub:'institution',
-      year:'year',
-      description:'description'
-    },
-    infoText:''
+    infoText:'Show where you studied and what you learned so employers can see your expertise.'
   },
   portofolio:{
     parent:'portofolio',
@@ -101,7 +83,7 @@ export function genericConfigGenerator():GenericListConfig<config>{
       link:'projectLink',
       description:'description'
     },
-    infoText:''
+    infoText:null
   },
   volunteering:{
     parent:'volunteering',
@@ -124,7 +106,7 @@ export function genericConfigGenerator():GenericListConfig<config>{
       city:'city',
       description:'description'
     },
-    infoText:''
+    infoText:null
   },
   course:{
     parent:'course',
@@ -146,7 +128,7 @@ export function genericConfigGenerator():GenericListConfig<config>{
       city:'city',
       description:'description'
     },
-    infoText:''
+    infoText:null
   }
   } as const
 }

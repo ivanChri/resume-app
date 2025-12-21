@@ -33,7 +33,7 @@ export const useComponentStore = defineStore('component',() => {
     },
     {
      id:'component-5',
-     key:'Website & Social Link',
+     key:'Website & Social Links',
      componentName:'socialMedia',
      isRequired:true,
      order:5

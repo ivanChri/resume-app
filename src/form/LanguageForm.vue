@@ -40,7 +40,7 @@
          <input type="text" v-model="item.languageName" id="languageName" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
         </div>
         <div class="dropdown-container mt-8">
-          <Dropdow :itemId="item.id" :selected-option="item.languageLevel" :options="language" @on-update="updateLanguageLevel"></Dropdow>   
+          <Dropdow :options="language" @on-update="({value}) => updateLanguageLevel(item.id,value as languageSpeakingLevel)"></Dropdow>   
         </div>
       </div>
      </template>

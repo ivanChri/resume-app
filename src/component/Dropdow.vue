@@ -2,17 +2,19 @@
 import { ref } from 'vue'
 const props = defineProps<{
   options:string[],
-  selectedOption:string,
-  itemId:string
 }>()
-const emit = defineEmits(['onUpdate'])
+const emit = defineEmits<{
+  (e: 'onUpdate',payload:{ value: string}):void
+}>()
+const selectedOption = ref<string>('')
 const isOpen = ref<boolean>(false)
 function toggleDropdown():void{
   isOpen.value = !isOpen.value
 }
 function onUpdate(optionValue:string):void{
-  emit('onUpdate',props.itemId,optionValue)
-  toggleDropdown()
+  selectedOption.value = optionValue
+  emit('onUpdate',{ value : selectedOption.value})
+  isOpen.value = false
 }
 </script>
 
@@ -45,7 +47,7 @@ function onUpdate(optionValue:string):void{
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-95"
     >
-      <div v-show="isOpen" class="absolute right-6 z-10 mt-2 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
+      <div v-show="isOpen" class="absolute right-1 z-10 mt-2 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
         <div v-for="(option, index) in options"
          :key="index"
          @click="onUpdate(option)"
