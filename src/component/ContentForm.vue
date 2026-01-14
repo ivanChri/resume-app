@@ -121,9 +121,6 @@
     endDateModel.value = ''
    }
   }
- function updateEmploymentTypesModel(value:employmentTypes){
-   employmentTypesModel.value = value
- }
 </script>
 
 <template>
@@ -166,7 +163,7 @@
       </div>
       <div v-if="showEmploymentType" class="dropdown container p-1 relative flex flex-col gap-2">
         <span class="font-semibold text-md">Employment Types</span>
-        <Dropdow :options="types" @on-update="({value}) => updateEmploymentTypesModel(value as employmentTypes)"></Dropdow>
+        <Dropdow v-model:selected-option="employmentTypesModel" :options="types"></Dropdow>
       </div>
       <div v-if="showLinkInput" class="flex flex-col p-1 gap-2 link-container">
        <label class="font-semibold text-md" for="link">Link</label>

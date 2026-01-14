@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { computed,type ComputedRef } from "vue";
 import { useUserStore } from "./user.store";
+import type { biodata } from "../utils/form.interface";
 export const useUserValidationStore = defineStore(('userValidation'), () => {
  const regex = /<br\s*\/?>/i
  const userStore = useUserStore()
@@ -26,15 +27,14 @@ export const useUserValidationStore = defineStore(('userValidation'), () => {
  }
  const validation:{[key:string]:ComputedRef<boolean>} = {
   biodata:computed(() => {
-   const key = ['jobTitle','firstName','lastName','email','phone']
-   return key.every((value) => !!userStore.biodata[value])
+   const keys = ['jobTitle','firstName','lastName','email','phone'] as const satisfies readonly (keyof biodata)[]
+   return keys.every((value) => !!userStore.biodata[value])
  }),
   summary:validateStringTypeData(() => userStore.summary),
   education:validateArrayTypeData(() => userStore.education),
   experience:validateArrayTypeData(() => userStore.experience),
   socialMedia:validateArrayTypeData(() => userStore.socialMedia),
   skills:validateArrayTypeData(() => userStore.skills),
-  awards:validateArrayTypeData(() => userStore.awards),
   portofolio:validateArrayTypeData(() => userStore.portofolio),
   language:validateArrayTypeData(() => userStore.language),
   volunteering:validateArrayTypeData(() => userStore.volunteering),

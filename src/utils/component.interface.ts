@@ -1,3 +1,13 @@
+import type { 
+  workExperice,
+  education,
+  skills,
+  socialMedia,
+  portofolio,
+  course,
+  volunteering,
+  language } from "./form.interface"
+ import { type ComputedRef } from "vue"
 export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'volunteering'
 
 export interface finalizationComponentData {
@@ -36,4 +46,26 @@ export interface genericData<T> {
   initialData:T,
   keys:genericDataKeys,
   infoText:string | null
+}
+
+export interface themesProps {
+  header:ComputedRef<{firstName:string,lastName:string,jobTitle:string,photoPreview:string}>,
+  addtionalDetails:ComputedRef<{name:string,value:string}[]>,
+  summary:string,
+  experience:workExperice[],
+  education:education[],
+  skills:skills[],
+  socialMedia:socialMedia[],
+  portofolio:portofolio[],
+  course:course[],
+  volunteering:volunteering[],
+  language:language[],
+  addtionalInformation:string
+}
+
+export interface themesData {
+  name:string,
+  supportedUserPhoto:boolean,
+  supportedColorSchemeChanges:boolean,
+  themesImgUrl:string
 }

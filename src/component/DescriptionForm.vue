@@ -11,7 +11,8 @@
     bold:false,
     italic:false,
     underline:false,
-    unorderedList: false
+    unorderedList: false,
+    orderedList:false
   })
   let isInternalUpdate = false
   function formatText (command:string):void{
@@ -26,6 +27,7 @@
   formats.value.italic = document.queryCommandState('italic')
   formats.value.underline = document.queryCommandState('underline')
   formats.value.unorderedList = document.queryCommandState('insertUnorderedList')
+  formats.value.orderedList = document.queryCommandState('insertOrderedList')
  }
  function onUpdate(event:Event):void{
   if (isInternalUpdate) return
@@ -76,8 +78,11 @@
       <button @click="formatText('insertUnorderedList')" :class="{ active: formats.unorderedList }">
         <span>.List</span>
       </button>
+      <button @click="formatText('insertOrderedList')" :class="{ active: formats.orderedList }">
+        <span>1List</span>
+      </button>
     </div>
-    <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 h-48" id="description" contenteditable="true"></div>
+    <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 h-52" id="description" contenteditable="true"></div>
     <div class="wordLength  p-1 max-w-xs">
        <span>{{ descriptionWordLength }} / {{ props.wordLimit }}</span>
     </div>

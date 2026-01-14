@@ -16,10 +16,6 @@
  function findIndex(id:string):number{
    return store.language.findIndex((item) => item.id == id)
  }
- function updateLanguageLevel(itemId:string,level:languageSpeakingLevel):void{
-   const index = findIndex(itemId)
-   if(index !== -1) store.language[index].languageLevel = level
- }
  function deleteLanguage(itemId:string):void{
   const index = findIndex(itemId)
   if(index !== -1) store.language.splice(index,1)
@@ -40,7 +36,7 @@
          <input type="text" v-model="item.languageName" id="languageName" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
         </div>
         <div class="dropdown-container mt-8">
-          <Dropdow :options="language" @on-update="({value}) => updateLanguageLevel(item.id,value as languageSpeakingLevel)"></Dropdow>   
+          <Dropdow v-model:selected-option="item.languageLevel" :options="language"></Dropdow>   
         </div>
       </div>
      </template>

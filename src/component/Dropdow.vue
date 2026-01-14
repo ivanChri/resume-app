@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 const props = defineProps<{
   options:string[],
 }>()
-const emit = defineEmits<{
-  (e: 'onUpdate',payload:{ value: string}):void
-}>()
-const selectedOption = ref<string>('')
+const selectedOptionModel = defineModel('selectedOption')
+const selectedValue = computed(() => selectedOptionModel.value)
 const isOpen = ref<boolean>(false)
 function toggleDropdown():void{
   isOpen.value = !isOpen.value
 }
 function onUpdate(optionValue:string):void{
-  selectedOption.value = optionValue
-  emit('onUpdate',{ value : selectedOption.value})
-  isOpen.value = false
+  selectedOptionModel.value = optionValue
+  toggleDropdown()
 }
 </script>
 
@@ -28,7 +25,7 @@ function onUpdate(optionValue:string):void{
         'hover:border-gray-400': !isOpen
       }"
     >
-      <span class="truncate mr-1">{{ selectedOption || 'Select Option' }}</span>
+      <span class="truncate mr-1">{{ selectedValue || 'Select Option' }}</span>
       <svg
         class="w-4 h-4 transition-transform duration-200"
         :class="{ 'rotate-180': isOpen }"
@@ -52,7 +49,7 @@ function onUpdate(optionValue:string):void{
          :key="index"
          @click="onUpdate(option)"
          class="p-3 cursor-pointer transition-colors duration-150 hover:bg-blue-50 hover:text-blue-700"
-         :class="{'bg-blue-50 text-blue-700': selectedOption === option,'border-b border-gray-200': index !== options.length - 1}">
+         :class="{'bg-blue-50 text-blue-700': selectedValue === option,'border-b border-gray-200': index !== options.length - 1}">
           {{ option }}
         </div>
       </div>

@@ -70,7 +70,7 @@
           v-model:end-date-model="item[keys.endDate!]"
           v-model:link-model="item[keys.link!]"
           v-model:employment-types-model="item[keys.employmentTypes!]">
-           <DescriptionForm :word-limit="300" v-model:description-model="item[keys.description]"></DescriptionForm>
+           <DescriptionForm :word-limit="200" v-model:description-model="item[keys.description]"></DescriptionForm>
           </ContentForm>
       </template>
       <template #button-label>{{ currentButtonLabel }}</template>

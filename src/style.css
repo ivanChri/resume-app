@@ -1,8 +1,7 @@
 @import "tailwindcss";
-:root{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
 }
 @layer base {
   ul {
@@ -11,6 +10,11 @@
   ol {
     @apply list-decimal list-inside;
   }
+}
+:root{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 input[type="file"] {
   display: none;
