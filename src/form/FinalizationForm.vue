@@ -14,6 +14,7 @@
  const store = useComponentStore()
  const componentValidation = useUserValidationStore()
  const genericConfig = genericConfigGenerator()
+ const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
  const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
   awards:false,
   portofolio:false,
@@ -28,7 +29,7 @@ const components:{[key:string]:any} = {
    props:{}
   },
   experience:{
-   component:GenericList,
+   component:asyncGenericComponent,
    props:genericConfig['experience']
   },
   education:{
@@ -48,7 +49,7 @@ const components:{[key:string]:any} = {
    props:{}
   },
   portofolio:{
-    component:GenericList,
+    component:asyncGenericComponent,
     props:genericConfig['portofolio']
   },
   language:{
@@ -56,11 +57,11 @@ const components:{[key:string]:any} = {
    props:{}
   },
   volunteering:{
-   component:GenericList,
+   component:asyncGenericComponent,
    props:genericConfig['volunteering']
   },
   courses:{
-   component:GenericList,
+   component:asyncGenericComponent,
    props:genericConfig['course'] 
   },
   additionalInformation:{

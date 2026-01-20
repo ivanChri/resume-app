@@ -9,7 +9,7 @@
  const labelConfig = {
    experience:{
     title:'Employment History',
-    buttonLabel:'Add Experience'
+    buttonLabel:'Add Experience',
    },
    education:{
     title:'Education',
@@ -34,6 +34,7 @@
  } as const
  const currentTitle = computed(() => labelConfig[props.parent].title || '')
  const currentButtonLabel = computed(() => labelConfig[props.parent].buttonLabel)
+ const currentTitleKeys = computed(() => props.parent === 'education' ?  props.keys.sub : props.keys.title)
  const showInfo = computed(() => currentTitle && props.infoText)
  function addData():void{ 
   const newItem = JSON.parse(JSON.stringify(props.initialData))
@@ -54,8 +55,7 @@
     </div>
     <AccordionList
      :items="data"
-     :title-key="keys.title"
-     :sub-key="keys.sub"
+     :title-key="currentTitleKeys"
      @add="addData"
      @delete="deleteData"
      >

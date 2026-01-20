@@ -63,6 +63,13 @@ export interface themesProps {
   addtionalInformation:string
 }
 
+export interface themesConfig {
+  primaryFontFamily:string,
+  secondaryFontFamily:string,
+  fontSize:number,
+  lineHeight:number
+}
+
 export interface themesData {
   name:string,
   supportedUserPhoto:boolean,

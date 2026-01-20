@@ -22,7 +22,6 @@
    updateFormatStates()
   }
  function updateFormatStates():void {
-  if (!descriptionEditor.value) return
   formats.value.bold = document.queryCommandState('bold')
   formats.value.italic = document.queryCommandState('italic')
   formats.value.underline = document.queryCommandState('underline')

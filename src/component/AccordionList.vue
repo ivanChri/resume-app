@@ -1,26 +1,33 @@
 <script setup lang="ts">
- import { ref,onMounted } from 'vue';
+ import { ref,onMounted,useTemplateRef,defineAsyncComponent } from 'vue';
  import Accordion from './Accordion.vue';
  interface items {
-  id: string
+  id: string,
   [key: string]: any
 }
- const activeIndex = ref<number | null>(null)
  const props = defineProps<{
    items:items[]
    titleKey:string
-   subKey?:string
  }>()
  const emit = defineEmits<{
    (e:'add'):void,
    (e:'delete',itemId:string):void
  }>()
+ const asyncAlert = defineAsyncComponent(() => import('./Alert.vue'))
+ const activeIndex = ref<number | null>(null)
+ const currentId = ref<string | null>(null)
+ const alertRef = useTemplateRef('alertRef')
  function addItem():void{
    emit('add')
    activeIndex.value = props.items.length - 1
  }
- function deleteItem(itemId:string):void{
-   emit('delete',itemId)
+ function openAlert(itemId:string):void{
+   alertRef.value?.open()
+   currentId.value = itemId
+ }
+ function confirmDelete(){
+   emit('delete',currentId.value!)
+   currentId.value = null
  }
  function toggle (index:number):void {
    activeIndex.value = activeIndex.value === index ? null : index
@@ -32,16 +39,16 @@
 
 <template>
   <section class="accrodion-list w-full flex flex-col gap-1">
+    <asyncAlert ref="alertRef" @confirm="confirmDelete"></asyncAlert>
     <Accordion v-for="(item,index) in props.items"
      :key="item.id"
      :title="item[titleKey]"
-     :sub="subKey ? item[subKey] : ''"
      :itemId="item.id"
      :itemIndex="index"
      :active="index === activeIndex"
      :showToolbar="true"
      @onToggle="toggle"
-     @onDelete="deleteItem"
+     @openAlert="openAlert"
     >
      <slot :item="item" :index="index"></slot>
     </Accordion>

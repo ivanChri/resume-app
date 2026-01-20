@@ -1,17 +1,14 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
   const props = defineProps<{
     title:string
-    sub?:string
     itemId:string
     itemIndex:number
     active:boolean
     showToolbar:boolean
   }>()
-  const currentTitle = computed(() => props.sub ? `${props.title} at ${props.sub}` : props.title)
   defineEmits<{
     (e:'onToggle',index:number):void
-    (e:'onDelete',itemId:string):void
+    (e:'openAlert',itemId:string):void
   }>()
 </script>
 
@@ -21,7 +18,7 @@
       <button
         class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 cursor-pointer"
         @click="$emit('onToggle',itemIndex)">
-        <span>{{ currentTitle || '( Not Specified )' }}</span>
+        <span>{{ title || '( Not Specified )' }}</span>
         <svg 
           class="w-5 h-5 transition-transform duration-300" 
           :class="{ 'rotate-180': active }"
@@ -38,7 +35,7 @@
       </Transition>
     </div>
     <div v-if="showToolbar" class="button-container p-1">
-      <button @click="$emit('onDelete',itemId)" class="delete-button p-1 text-center rounded-md border border-red-400 bg-red-300">Delete</button>
+      <button @click="$emit('openAlert',itemId)" class="delete-button p-1 text-center rounded-md border border-red-400 bg-red-300">Delete</button>
     </div>
   </div>
 </template>

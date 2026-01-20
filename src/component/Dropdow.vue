@@ -44,7 +44,7 @@ function onUpdate(optionValue:string):void{
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-95"
     >
-      <div v-show="isOpen" class="absolute right-1 z-10 mt-2 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
+      <div v-show="isOpen" class="absolute z-10 mt-2 max-w-sm w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
         <div v-for="(option, index) in options"
          :key="index"
          @click="onUpdate(option)"

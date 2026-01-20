@@ -3,25 +3,29 @@
  import { useUserStore } from '../store/user.store';
  import { computed } from 'vue';
  import { useThemesStore } from '../store/themes.store';
- import Slider from '../component/Slider.vue';
- import Dropdow from '../component/Dropdow.vue';
  import test from './test.vue';
+ import ThemesCustomize from './ThemesCustomize.vue';
  const userStore = useUserStore()
  const themesStore = useThemesStore()
- const fontSizeLabel = ['Small','Normal','Large']
- const primaryFontFamily = ['Sans','Mono']
- const lineHeightSteps = [
-  { label: 'Compact', value: 1.3 },
-  { label: 'Normal', value: 1.5 },
-  { label: 'Relaxed', value: 1.7 },
-  { label: 'Spacious', value: 1.9 },
-]
  const selectedFontsSize = computed(() => {
-  return themesStore.themesConfig.fontSize === 0 ? 'text-sm' : 
-   themesStore.themesConfig.fontSize === 1 ? 'text-base' : 'text-lg'
+  const fontSizeValue = ['text-sm','text-base','text-lg']
+  return fontSizeValue[themesStore.themesConfig.fontSize] ?? fontSizeValue[1]
  })
  const selectedFontFamily = computed(() => {
-  return themesStore.themesConfig.fontFamily === 'Sans' ? 'var(--font-sans)' : 'var(--font-mono)'
+   switch(themesStore.themesConfig.primaryFontFamily){
+    case 'Monospace':
+     return 'var(--font-mono)'
+    case 'Roboto':
+     return 'var(--font-roboto)'
+    case 'Montserrat':
+     return 'var(--font-montserrat)'
+    default :
+     return 'var(--font-opensans)'
+   }
+ })
+ const selectedLineHeight = computed(() => {
+   const lineHeightValue = ['leading-[1.3]','leading-[1.5]','leading-[1.7]','leading-[1.9]']
+   return lineHeightValue[themesStore.themesConfig.lineHeight] ?? lineHeightValue[1]
  })
  const computedHeader = computed(() => {
    return {
@@ -44,7 +48,7 @@
     {name:'nationality',value:userStore.biodata.nationality}
    ].filter((item) => item.value)
  })
- const config = computed<themesProps>(() => {
+ const data = computed<themesProps>(() => {
   return {
    header:computedHeader,
    addtionalDetails:computedAddtionalDetails,
@@ -64,10 +68,7 @@
 
 <template>
   <div class="topbar p-1 boder-1 flex flex-col gap-2">
-    <Slider v-model:selected-range-model="themesStore.themesConfig.fontSize" :labels="fontSizeLabel"></Slider>
-    <div class="relative">
-      <Dropdow v-model:selected-option="themesStore.themesConfig.fontFamily" :options="primaryFontFamily"></Dropdow>
-    </div>
+    <ThemesCustomize></ThemesCustomize>
   </div>
-  <test :props-config="config" :fonts="selectedFontFamily" :fonts-size="selectedFontsSize"></test>
+  <test :props-data="data" :fonts="selectedFontFamily" :fonts-size="selectedFontsSize" :line-height="selectedLineHeight"></test>
 </template>

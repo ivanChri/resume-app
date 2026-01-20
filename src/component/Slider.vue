@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="w-full max-w-md mx-auto">
+  <div class="w-full max-w-md">
    <input type="range" min="0" :max="labels.length - 1" step="1" v-model.number="selectedRangeModel" class="w-full"/>
    <div class="flex justify-between mt-2">
       <button v-for="(label, index) in labels" :key="index" @click="update(index)"
