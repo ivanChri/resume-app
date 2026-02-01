@@ -7,7 +7,7 @@
  const store = useUserStore()
  const language:languageSpeakingLevel[] = ['Native Speaker','Highly Proficient','Very Good Command']
  function addLanguage():void{
-   store.language.push({
+    store.language.push({
      id:generateRandomId(),
      languageName:'',
      languageLevel:null

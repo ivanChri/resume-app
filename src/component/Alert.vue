@@ -3,15 +3,17 @@
  const isOpen = ref(false)
  const emit = defineEmits<{
   (e:'confirm'):void
+  (e:'closeEvent'):void
  }>()
- const open = () => {
+ const open = ():void => {
   isOpen.value = true
  }
- const confirmStatus = () => {
+ const confirmStatus = ():void => {
   emit('confirm')
   close()
  }
- const close = () => {
+ const close = ():void => {
+  emit('closeEvent')
   isOpen.value = false
  }
  defineExpose({open})
@@ -30,12 +32,13 @@
         <div class="flex items-center gap-3 mb-4">
           <div class="text-3xl text-yellow-500">⚠️</div>
           <h2 class="text-lg font-semibold text-gray-800">
-            Konfirmasi Penghapusan
+           <slot name="header">Konfirmasi Penghapusan</slot>
           </h2>
         </div>
         <p class="text-sm text-gray-600 mb-6">
-          Apakah Anda yakin ingin menghapus item ini?
-          Tindakan ini tidak dapat dibatalkan.
+          <slot name="body">
+            Apakah Anda yakin ingin menghapus item ini? Tindakan ini tidak dapat dibatalkan.
+          </slot>
         </p>
         <div class="flex justify-end gap-3">
           <button @click="close" class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition">

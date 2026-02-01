@@ -9,7 +9,7 @@ import type {
   portofolio,
   course,
   language,
-  volunteering
+  volunteering,
  } from "../utils/form.interface";
 export const useUserStore = defineStore('user',() => {
   const biodata = ref<biodata>({
@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user',() => {
   const additionalInformation = ref<string>('')
   const skills = ref<skills[]>([])
   const portofolio = ref<portofolio[]>([])
-  const course = ref<course[]>([])
+  const courses = ref<course[]>([])
   const language = ref<language[]>([])
   const volunteering = ref<volunteering[]>([])
   const setPhotoPreview = (file:File):void => {
@@ -50,7 +50,7 @@ export const useUserStore = defineStore('user',() => {
     skills,
     summary,
     portofolio,
-    course,
+    courses,
     language,
     volunteering,
     additionalInformation

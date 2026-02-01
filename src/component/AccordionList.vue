@@ -25,9 +25,8 @@
    alertRef.value?.open()
    currentId.value = itemId
  }
- function confirmDelete(){
-   emit('delete',currentId.value!)
-   currentId.value = null
+ function confirmDelete():void{
+  if(currentId.value) emit('delete',currentId.value)
  }
  function toggle (index:number):void {
    activeIndex.value = activeIndex.value === index ? null : index
@@ -39,7 +38,7 @@
 
 <template>
   <section class="accrodion-list w-full flex flex-col gap-1">
-    <asyncAlert ref="alertRef" @confirm="confirmDelete"></asyncAlert>
+    <asyncAlert ref="alertRef" @confirm="confirmDelete" @closeEvent="() => currentId = null"></asyncAlert>
     <Accordion v-for="(item,index) in props.items"
      :key="item.id"
      :title="item[titleKey]"

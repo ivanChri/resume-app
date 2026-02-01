@@ -1,10 +1,10 @@
 <script setup lang="ts">
  import { ref } from 'vue';
  const isOpen = ref(false)
- const open = () => {
+ const open = ():void => {
   isOpen.value = true
  }
- const close = () => {
+ const close = ():void => {
   isOpen.value = false
  }
 defineExpose({open})

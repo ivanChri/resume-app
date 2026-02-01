@@ -1,11 +1,15 @@
 <script setup lang="ts" generic="T extends {id:string}">
  import { computed } from 'vue';
  import { generateRandomId } from '../utils/utility';
- import type { genericData } from '../utils/component.interface';
+ import type { genericProps } from '../utils/component.interface';
  import AccordionList from '../component/AccordionList.vue';
  import ContentForm from '../component/ContentForm.vue';
  import DescriptionForm from '../component/DescriptionForm.vue';
- const props = defineProps<genericData<T>>()
+ const props = defineProps<genericProps<T>>()
+ const emit = defineEmits<{
+   (e:'add',data:T):void,
+   (e:'delete',index:number):void
+ }>()
  const labelConfig = {
    experience:{
     title:'Employment History',
@@ -39,11 +43,11 @@
  function addData():void{ 
   const newItem = JSON.parse(JSON.stringify(props.initialData))
   newItem.id = generateRandomId()
-  props.data.push(newItem)
+  emit('add',newItem)
  }
  function deleteData(itemId:string):void{
    const index = props.data.findIndex((item) => item.id === itemId)
-   if(index !== -1) props.data.splice(index,1)
+   emit('delete',index)
  }
 </script>
 

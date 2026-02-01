@@ -40,12 +40,22 @@ export interface genericDataKeys {
   employmentTypes?:string
 }
 
-export interface genericData<T> {
+export interface genericProps<T> {
   parent:ParentType,
   data:T[],
   initialData:T,
   keys:genericDataKeys,
-  infoText:string | null
+  infoText:string | null,
+}
+
+interface genericEmitter<T>{
+  addData:(data:T) => void,
+  deleteData:(index:number) => void
+}
+
+export interface genericData<T> {
+  props:genericProps<T>
+  emit:genericEmitter<T>
 }
 
 export interface themesProps {

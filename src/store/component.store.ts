@@ -46,6 +46,5 @@ export const useComponentStore = defineStore('component',() => {
      order:6
     }
   ].sort((a,b) => a.order - b.order))
-
   return {finalizationComponent}
 })

@@ -38,7 +38,7 @@ export const useUserValidationStore = defineStore(('userValidation'), () => {
   portofolio:validateArrayTypeData(() => userStore.portofolio),
   language:validateArrayTypeData(() => userStore.language),
   volunteering:validateArrayTypeData(() => userStore.volunteering),
-  course:validateArrayTypeData(() => userStore.course),
+  course:validateArrayTypeData(() => userStore.courses),
   additionalInformation:validateStringTypeData(() => userStore.additionalInformation)
  }
  const validateAllData = computed<boolean>(() => {
