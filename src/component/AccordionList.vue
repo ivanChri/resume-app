@@ -10,7 +10,7 @@
    titleKey:string
  }>()
  const emit = defineEmits<{
-   (e:'add'):void,
+   (e:'add'):void
    (e:'delete',itemId:string):void
  }>()
  const asyncAlert = defineAsyncComponent(() => import('./Alert.vue'))
@@ -51,9 +51,9 @@
     >
      <slot :item="item" :index="index"></slot>
     </Accordion>
-     <div class="button-container mt-2">
+     <div class="button-container p-1 mt-2">
       <button @click="addItem" class="add-btn border p-1 rounded-md text-center ml-3">
-        <slot name="button-label">Add Item</slot>
+        <slot name="buttonName"></slot>
       </button>
     </div>
   </section>

@@ -77,7 +77,7 @@
            <DescriptionForm :word-limit="200" v-model:description-model="item[keys.description]"></DescriptionForm>
           </ContentForm>
       </template>
-      <template #button-label>{{ currentButtonLabel }}</template>
+      <template #buttonName>{{ currentButtonLabel }}</template>
     </AccordionList>
   </section>
 </template>

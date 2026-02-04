@@ -41,9 +41,14 @@ export const useUserStore = defineStore('user',() => {
   const setPhotoPreview = (file:File):void => {
     biodata.value.photoPreview = URL.createObjectURL(file)
   }
+  const resetAdditionalInformationData = () => additionalInformation.value = ''
+  const resetSkillsData = () => skills.value.length = 0
+  const resetPortofolioData = () => portofolio.value.length = 0
+  const resetCourseData = () => courses.value.length = 0
+  const resetLanguageData = () => language.value.length = 0
+  const  resetVolunteeringData = () => volunteering.value.length = 0
   return {
     biodata,
-    setPhotoPreview,
     experience,
     education,
     socialMedia,
@@ -53,6 +58,13 @@ export const useUserStore = defineStore('user',() => {
     courses,
     language,
     volunteering,
-    additionalInformation
+    additionalInformation,
+    setPhotoPreview,
+    resetAdditionalInformationData,
+    resetSkillsData,
+    resetPortofolioData,
+    resetCourseData,
+    resetLanguageData,
+    resetVolunteeringData
   }
 })

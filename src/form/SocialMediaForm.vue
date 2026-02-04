@@ -39,7 +39,7 @@
       </div>
      </div>
     </template>
-    <template #button-label>Add Link</template>
+    <template #buttonName>Add Social Links</template>
   </AccordionList>
   </section>
 </template>

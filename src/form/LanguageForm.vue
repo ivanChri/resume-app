@@ -40,6 +40,7 @@
         </div>
       </div>
      </template>
+     <template #buttonName>Add Language</template>
     </AccordionList>
   </section>
 </template>

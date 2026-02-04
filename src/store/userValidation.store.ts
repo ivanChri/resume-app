@@ -45,5 +45,5 @@ export const useUserValidationStore = defineStore(('userValidation'), () => {
    const data = Object.values(validation)
    return data.every((el) => el.value)
  })
- return { validation,validateAllData }
+ return { validateAllData }
 })

@@ -80,7 +80,7 @@
       </div>
     </div>
     </template>
-    <template #button-label>Add Skills</template>
+    <template #buttonName>Add Skills</template>
     </AccordionList>
   </section>
 </template>

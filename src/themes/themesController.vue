@@ -58,7 +58,7 @@
    socialMedia:userStore.socialMedia,
    skills:userStore.skills,
    portofolio:userStore.portofolio,
-   course:userStore.course,
+   course:userStore.courses,
    volunteering:userStore.volunteering,
    language:userStore.language,
    addtionalInformation:userStore.additionalInformation

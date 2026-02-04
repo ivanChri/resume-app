@@ -3,13 +3,12 @@
  import type { optionalFinalizationComponentStatus } from '../utils/component.interface';
  import { useComponentStore } from '../store/component.store';
  import { genericConfigGenerator } from '../utils/genericConfig';
- import { useUserValidationStore } from '../store/userValidation.store';
  import Accordion from '../component/Accordion.vue';
+ import { getOptionalDataResetHandler } from '../utils/utility';
  const activeIndex = ref<number | null>(null)
  const currentId = ref<string | null>(null)
  const alertRef = useTemplateRef('alertRef')
  const store = useComponentStore()
- const componentValidation = useUserValidationStore()
  const genericConfig = genericConfigGenerator()
  const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
  const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
@@ -116,8 +115,10 @@ const components:{[key:string]:any} = {
  }
  function deleteAdditionalComponent(itemId:string):void{
    const index = store.finalizationComponent.findIndex((item) => item.id == itemId)
+   const currentComponentName = store.finalizationComponent[index].componentName
    if(index !== -1){
-    toggleOptionalComponentStatus(store.finalizationComponent[index].componentName)
+    getOptionalDataResetHandler(currentComponentName)
+    toggleOptionalComponentStatus(currentComponentName)
     store.finalizationComponent.splice(index,1)
    }
  }
@@ -133,7 +134,8 @@ const components:{[key:string]:any} = {
 <template>
   <section class="finalization-container p-1 w-full flex flex-col gap-2 relative">
     <asyncAlert ref="alertRef" @confirm="confirmDelete" @close-event="() => currentId = null"></asyncAlert>
-    <div v-for="(item,index) in store.finalizationComponent" class="border-1 rounded-md p-[3.5px] border-green-500" :class="{'border-2 border-orange-400 focus:outline-red-500':!componentValidation.validation[item.componentName]}">
+    <div class="content-container">
+    <div v-for="(item,index) in store.finalizationComponent" class="p-1">
      <Accordion 
       :key="item.key"
       :title="item.key"
@@ -149,6 +151,7 @@ const components:{[key:string]:any} = {
         @add="components[item.componentName].add"
         @delete="components[item.componentName].delete"></component>
       </Accordion>
+    </div>
     </div>
     <div class="footer p-1">
      <h2 class="text-lg my-2">Additional Section</h2>
