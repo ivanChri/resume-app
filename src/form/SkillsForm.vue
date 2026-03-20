@@ -47,7 +47,11 @@
 </script>
 
 <template>
+<<<<<<< HEAD
   <section class="skills-container p-1 w-full flex flex-col gap-2">
+=======
+  <section class="skills-container p-1 w-full">
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
     <div class="info mb-1 p-1">
      <h1 class="p-1 text-xl my-1 font-semibold">Skills</h1>
      <p class="text-md leading-relaxed">Choose 5 important skills that show you fit the position.Make sure they match the key skills mentioned in the job listing (especially when applying via a online system)</p>
@@ -59,12 +63,21 @@
      @delete="deleteSkills"
     >
     <template #default="{ item }">
+<<<<<<< HEAD
     <div class="content p-1 grid grid-cols-1 md:grid-cols-2 gap-2">
       <div class="flex flex-col p-1 gap-3 w-[100%] md:w-[80%]">
        <label for="skillName">Skill</label>
        <input type="text" v-model="item.name" id="skillName" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
       </div>
       <div class="p-1 flex flex-col gap-3">
+=======
+    <div class="content p-1 flex justify-between">
+      <div class="flex flex-col p-1 gap-3 w-[50%]">
+       <label for="skillName">Skill</label>
+       <input type="text" v-model="item.name" id="skillName" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+      </div>
+      <div class="p-1 flex flex-col gap-2">
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
         <div class="level-title p-1">
          <span class="font-light">Level - </span>
          <span class="font-semibold">{{ item.level }}</span>

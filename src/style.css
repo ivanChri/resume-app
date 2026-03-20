@@ -14,6 +14,7 @@
     @apply list-decimal list-inside;
   }
 }
+<<<<<<< HEAD
 @layer utilities {
   .break-before-page {
     break-before: page;
@@ -25,6 +26,8 @@
   }
 }
 
+=======
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 :root{
   margin: 0;
   padding: 0;
@@ -40,8 +43,11 @@ input::-webkit-inner-spin-button {
 }
 input[type="number"] {
   -moz-appearance: textfield;
+<<<<<<< HEAD
 }
 @media print {
   body { margin: 0; }
   #test { box-shadow: none !important; margin: 0 !important; }
+=======
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 }

@@ -155,9 +155,15 @@ const components:{[key:string]:any} = {
     </div>
     <div class="footer p-1">
      <h2 class="text-lg my-2">Additional Section</h2>
+<<<<<<< HEAD
      <div class="button-container grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
       <button v-for="(item,index) in additionalButonLabel" 
        class="p-2 border-1 rounded-md cursor-pointer text-left lg:text-center disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+=======
+     <div class="button-container grid grid-cols-2 gap-3 my-3">
+      <button v-for="(item,index) in additionalButonLabel" 
+       class="p-1 border-1 rounded-md cursor-pointer disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
        :key="index"
        @click="addOptionalComponent(item.key,item.componentName)"
        :disabled="optionalComponentStatus[item.componentName as keyof optionalFinalizationComponentStatus]">

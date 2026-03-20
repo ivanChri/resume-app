@@ -28,7 +28,11 @@
    @add="addSocialMedia"
    @delete="deleteSocialMedia">
     <template #default="{ item }">
+<<<<<<< HEAD
      <div class="content flex grid grid-cols-1 md:grid-cols-2 gap-y-1">
+=======
+     <div class="content flex gap-6">
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
       <div class="flex flex-col p-1 gap-2">
        <label for="label">Label</label>
        <input type="text" v-model="item.label" id="label" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>

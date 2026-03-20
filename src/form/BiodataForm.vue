@@ -66,6 +66,7 @@
 </script>
 
 <template>
+<<<<<<< HEAD
   <section class="biodata p-1 md:p-3">
     <h1 class="p-1 text-xl my-1 font-semibold">Personal Details</h1>
     <div class="biodata-form w-full grid grid-cols-1 md:grid-cols-2 gap-y-1">
@@ -112,6 +113,51 @@
         <input type="text" v-model="store.biodata.country" id="country" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 w-full" />
       </div>
     </div>
+=======
+  <section class="biodata p-1">
+  <h1 class="p-1 text-xl my-1 font-semibold">Personal Details</h1>
+  <div class="biodata-form w-full grid grid-cols-2">
+    <div class="flex flex-col p-1 gap-2">
+      <label for="jobTitle">JobTitle</label>
+      <input type="text" v-model="store.biodata.jobTitle" id="jobTitle" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.jobTitle}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"/>
+    </div>
+    <ImageUploader 
+     :maxSize="1 * 1024 * 1024" 
+     :allowedTypes="['image/jpeg', 'image/png']"
+     :storedPreviewImage="store.biodata.photoPreview || null"
+     @onSubmit="setUserPhotoPreview"></ImageUploader>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="firstName">FirstName</label>
+      <input type="text" v-model="store.biodata.firstName" id="firstName" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.firstName}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+    </div>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="lastName">LastName</label>
+      <input type="text" v-model="store.biodata.lastName" id="lastName" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.lastName}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+    </div>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="email">Email</label>
+      <input type="email" v-model="tempEmail.email" id="email" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.email}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+      <span v-if="!tempEmail.valid" class="text-md p-1 font-semibold font-danger-200">{{ tempEmail.errorMessage }}</span>
+    </div>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="phone">Phone</label>
+      <input type="tel" v-model="tempPhoneNumber.phoneNumber" id="phone" :class="{'border-2 border-orange-400 focus:outline-red-500':!store.biodata.phone}" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+      <span v-if="!tempPhoneNumber.valid" class="text-md p-1 font-semibold font-danger-200">{{ tempPhoneNumber.errorMessage }}</span>
+    </div>
+    <div class="flex flex-col p-1 gap-2 col-span-2">
+      <label for="address">Address</label>
+      <input type="text" v-model="store.biodata.address" id="address" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+    </div>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="city">City/State</label>
+      <input type="text" v-model="store.biodata.city" id="city" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+    </div>
+    <div class="flex flex-col p-1 gap-2">
+      <label for="country">Country</label>
+      <input type="text" v-model="store.biodata.country" id="country" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
+    </div>
+  </div>
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
   <AddtionalBiodata 
    v-model:dateOfBirthModel="store.biodata.dateOfBirth"
    v-model:placeOfBirthModel="store.biodata.placeOfBirth"

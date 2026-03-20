@@ -1,5 +1,6 @@
 <script setup lang="ts">
  import FormController from './form/FormController.vue';
+<<<<<<< HEAD
  import ThemesPreview from './themes/ThemesPreview.vue';
  import ThemesCustomize from './themes/ThemesCustomize.vue';
  import { print } from './utils/utility';
@@ -23,6 +24,16 @@
         <ThemesPreview></ThemesPreview>
       </div>
 
+=======
+ import themesController from './themes/themesController.vue';
+</script>
+
+<template>
+  <div class="@container p-1 grid grid-cols-2 gap-1 w-ful">
+    <FormController></FormController>
+    <div class="p-2 border-2">
+      <themesController></themesController>
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
     </div>
   </div>
 </template>

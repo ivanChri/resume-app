@@ -2,7 +2,10 @@
  import { computed } from 'vue';
  import { generateRandomId } from '../utils/utility';
  import type { genericProps } from '../utils/component.interface';
+<<<<<<< HEAD
  import { labelConfig } from '../utils/fieldConfig';
+=======
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
  import AccordionList from '../component/AccordionList.vue';
  import ContentForm from '../component/ContentForm.vue';
  import DescriptionForm from '../component/DescriptionForm.vue';
@@ -11,6 +14,35 @@
    (e:'add',data:T):void,
    (e:'delete',index:number):void
  }>()
+<<<<<<< HEAD
+=======
+ const labelConfig = {
+   experience:{
+    title:'Employment History',
+    buttonLabel:'Add Experience',
+   },
+   education:{
+    title:'Education',
+    buttonLabel:'Add Education'
+   },
+   portofolio:{
+    title:'Portofolio/Personal Project',
+    buttonLabel:'Add Portofolio'
+   },
+   course:{
+    title:null,
+    buttonLabel:'Add Course'
+   },
+   awards:{
+    title:null,
+    buttonLabel:'Add Awards'
+   },
+   volunteering:{
+    title:null,
+    buttonLabel:'Add Volunteering'
+   }
+ } as const
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
  const currentTitle = computed(() => labelConfig[props.parent].title || '')
  const currentButtonLabel = computed(() => labelConfig[props.parent].buttonLabel)
  const currentTitleKeys = computed(() => props.parent === 'education' ?  props.keys.sub : props.keys.title)
@@ -23,7 +55,11 @@
  function deleteData(itemId:string):void{
    const index = props.data.findIndex((item) => item.id === itemId)
    emit('delete',index)
+<<<<<<< HEAD
   }
+=======
+ }
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 </script>
 
 <template>

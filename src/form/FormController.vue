@@ -1,5 +1,9 @@
 <script setup lang="ts">
+<<<<<<< HEAD
   import { ref,computed,defineAsyncComponent,useTemplateRef,onUpdated } from 'vue';
+=======
+  import { ref,computed,defineAsyncComponent,useTemplateRef } from 'vue';
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
   import BiodataForm from './BiodataForm.vue';
   import SocialMediaForm from './SocialMediaForm.vue';
   import SkillsForm from './SkillsForm.vue';
@@ -9,9 +13,12 @@
   import { genericConfigGenerator } from '../utils/genericConfig';
   import { useUserValidationStore } from '../store/userValidation.store';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
+<<<<<<< HEAD
   const emit = defineEmits<{
     (e:'printPdf'):void
   }>()
+=======
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
   const alertRef = useTemplateRef('alertRef')
   const componentIndex = ref<number>(0)
   const validation = useUserValidationStore()
@@ -81,7 +88,11 @@
     if(componentIndex.value < components.length - 1){
       componentIndex.value++
     }else{
+<<<<<<< HEAD
       checkData()
+=======
+      printPdf()
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
     }
   }
   function back():void{
@@ -89,6 +100,7 @@
       componentIndex.value--
     }
   }
+<<<<<<< HEAD
   function checkData():void{
    if(!validation.validateAllData){
     alertRef.value?.open()
@@ -115,6 +127,24 @@
        <template #confirmButtonName>Download</template>
       </asyncAlert>
      <div class="component-container min-h-[300px] md:min-h-[400px] lg:min-h-[300px] rounded-md p-1">
+=======
+  function printPdf():void{
+   if(!validation.validateAllData){
+    alertRef.value?.open()
+   }else{
+    alert('printed') 
+   }
+  }
+</script>
+
+<template>
+   <div class="@container flex flex-col gap-2">
+     <asyncAlert ref="alertRef">
+       <template #header>Konfirmasi Pengunduhan</template>
+       <template #body>Data Belum Lengkap Apakah Anda Yakin Untuk Mendownloadnya ?</template>
+     </asyncAlert>
+     <div class="component-container border rounded-md p-1">
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
        <component 
         :key="components[componentIndex].name" 
         :is="components[componentIndex].component"
@@ -126,8 +156,13 @@
        <button v-if="componentIndex > 0" class="border-2 rounded-md p-1 text-center" @click="back">
         Back
        </button>
+<<<<<<< HEAD
        <div class="info-container p-1 hidden lg:block">
          <span v-for="(value,index) in components" :key="value.name" :class="{'border-blue-500':index == componentIndex}" class="border-1 inline-block mx-1 p-2 rounded-full transition-all duration-200"></span>
+=======
+       <div class="info-container p-1 flex gap-5">
+         <span v-for="(value,index) in components" :key="value.name" :class="{'border-blue-500':index == componentIndex}" class="border-1 p-2 rounded-full transition-all duration-200"></span>
+>>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
        </div>
        <button class="border-2 rounded-md p-1 text-center" @click="next">
         Next : {{ nextButtonLabel }}
