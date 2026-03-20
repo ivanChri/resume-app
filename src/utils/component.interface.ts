@@ -6,12 +6,7 @@ import type {
   portofolio,
   course,
   volunteering,
-<<<<<<< HEAD
   language } from "./form.interface";
-=======
-  language } from "./form.interface"
- import { type ComputedRef } from "vue"
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'volunteering'
 
 export interface finalizationComponentData {
@@ -63,7 +58,6 @@ export interface genericData<T> {
 }
 
 export interface themesProps {
-<<<<<<< HEAD
   header:{
     firstName:string,
     lastName:string,
@@ -76,10 +70,6 @@ export interface themesProps {
     id:string,
     name:string,
     value:string}[],
-=======
-  header:ComputedRef<{firstName:string,lastName:string,jobTitle:string,photoPreview:string}>,
-  addtionalDetails:ComputedRef<{name:string,value:string}[]>,
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
   summary:string,
   experience:workExperice[],
   education:education[],
@@ -102,12 +92,7 @@ export interface themesConfig {
 export interface themesData {
   name:string,
   supportedUserPhoto:boolean,
-<<<<<<< HEAD
   themesImgUrl:string,
   supportedIcon:boolean,
   iconColorAccents:string
-=======
-  supportedColorSchemeChanges:boolean,
-  themesImgUrl:string
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 }

@@ -1,8 +1,5 @@
 import { useUserStore } from "../store/user.store";
-<<<<<<< HEAD
 import html2pdf from "html2pdf.js";
-=======
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 export function generateRandomId(length: number = 10): string {
   const randomPart = Math.random().toString(36).substring(2);
   if (randomPart.length < length) {
@@ -32,7 +29,6 @@ export function getOptionalDataResetHandler(name:string):void{
      userStore.resetAdditionalInformationData()
      return
   }
-<<<<<<< HEAD
 }
 export function print(){
   const container = document.getElementById('test') as HTMLDivElement
@@ -57,6 +53,4 @@ export function print(){
   }
  } as any;
   html2pdf().set(opt).from(container).save();
-=======
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 }

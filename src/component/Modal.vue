@@ -1,5 +1,4 @@
 <script setup lang="ts">
-<<<<<<< HEAD
 import { ref, watch } from 'vue';
 const isOpen = ref(false)
 const open = (): void => {
@@ -16,23 +15,11 @@ watch(isOpen, (val) => {
   }
 })
 defineExpose({ open, close })
-=======
- import { ref } from 'vue';
- const isOpen = ref(false)
- const open = ():void => {
-  isOpen.value = true
- }
- const close = ():void => {
-  isOpen.value = false
- }
-defineExpose({open})
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 </script>
 
 <template>
   <Teleport to="body">
     <Transition
-<<<<<<< HEAD
       enter-active-class="transition duration-300 ease-out"
       enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       enter-to-class="opacity-100 translate-y-0 sm:scale-100"
@@ -71,27 +58,6 @@ defineExpose({open})
                 class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gray-200 hover:bg-gray-300 font-medium transition-colors"
               >
                 Tutup
-=======
-      enter-active-class="transition ease-out duration-300"
-      enter-from-class="opacity-0 scale-95"
-      enter-to-class="opacity-100 scale-100"
-      leave-active-class="transition ease-in duration-200"
-      leave-from-class="opacity-100 scale-100"
-      leave-to-class="opacity-0 scale-95">
-      <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center">
-        <div class="absolute inset-0 bg-black/50" @click="close"></div>
-        <div class="relative bg-white shadow-lg flex flex-col w-full h-full sm:w-[90%] sm:max-w-4xl sm:h-[85vh] sm:rounded-xl">
-          <div class="flex items-center gap-3 border-b border-blue-600 px-6 py-4">
-            <slot name="header"></slot>
-          </div>
-          <div class="px-6 py-4 flex-1 overflow-y-auto">
-            <slot></slot>
-          </div>
-          <div class="px-6 py-4 flex justify-end gap-2">
-            <slot name="footer">
-              <button @click="close" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200">
-                Close
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
               </button>
             </slot>
           </div>
@@ -99,7 +65,6 @@ defineExpose({open})
       </div>
     </Transition>
   </Teleport>
-<<<<<<< HEAD
 </template>
 
 <style scoped>
@@ -112,6 +77,3 @@ defineExpose({open})
   border-radius: 10px;
 }
 </style>
-=======
-</template>
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d

@@ -15,15 +15,9 @@
 </script>
 
 <template>
-<<<<<<< HEAD
   <section class="addtional-biodata-container w-full">
    <Transition name="additionalForm">
    <div v-if="active" class="addtional-biodata-form grid grid-cols-1 md:grid-cols-2 gap-y-1">
-=======
-  <section class="addtional-biodata-container w-full p-1 flex flex-col gap-3">
-   <Transition name="additionalForm">
-   <div v-if="active" class="addtional-biodata-form grid grid-cols-2">
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
     <div class="flex flex-col p-1 gap-2">
       <label for="dateOfBirth">Date Of Birth</label>
       <input type="date" v-model="dateOfBirthModel" id="dateOfBirth" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />

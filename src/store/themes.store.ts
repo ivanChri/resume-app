@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-<<<<<<< HEAD
 import { ref,computed } from "vue";
 import { themesStyleConfig } from "../utils/themesStyleConfig";
 import { dataThemes } from "../utils/themes";
@@ -58,18 +57,4 @@ export const useThemesStore = defineStore('themes',() => {
     selectedPrimaryFontFamily,
     selectedSecondaryFontFamily
   }
-=======
-import { ref } from "vue";
-import type { themesData } from "../utils/component.interface";
-import type { themesConfig } from "../utils/component.interface";
-export const useThemesStore = defineStore('themes',() => {
-  const selectedThemes = ref<themesData | null>(null)
-  const themesConfig = ref<themesConfig>({
-    primaryFontFamily:'',
-    secondaryFontFamily:'',
-    fontSize:1,
-    lineHeight:1
-  })
-  return { themesConfig,selectedThemes }
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
 })

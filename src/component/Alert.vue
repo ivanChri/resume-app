@@ -45,13 +45,9 @@
             Batal
           </button>
           <button @click="confirmStatus" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
-<<<<<<< HEAD
             <slot name="confirmButtonName">
               Hapus
             </slot>
-=======
-            Hapus
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
           </button>
         </div>
       </div>

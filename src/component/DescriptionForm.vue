@@ -81,13 +81,8 @@
         <span>1List</span>
       </button>
     </div>
-<<<<<<< HEAD
     <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 min-h-[220px]"  id="description" contenteditable="true"></div>
     <div class="wordLength p-1 max-w-md">
-=======
-    <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 h-52" id="description" contenteditable="true"></div>
-    <div class="wordLength  p-1 max-w-xs">
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
        <span>{{ descriptionWordLength }} / {{ props.wordLimit }}</span>
     </div>
   </div>
