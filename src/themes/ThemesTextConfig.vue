@@ -5,7 +5,7 @@
  const themesStore = useThemesStore()
  const fontSizeLabel = ['Small','Normal','Large']
  const lineHeightStepsLabel = ['Compact','Normal','Relaxed','Spacious']
- const primaryFontFamilyLabel = ['Open Sans','Monospace','Roboto','Montserrat']
+ const primaryFontFamilyLabel = ['Open-Sans','Monospace','Roboto','Montserrat']
 </script>
 
 <template>

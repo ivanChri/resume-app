@@ -1,32 +1,18 @@
 <script setup lang="ts">
  import { ref,defineAsyncComponent,useTemplateRef } from 'vue';
- import type { optionalFinalizationComponentStatus } from '../utils/component.interface';
  import { useComponentStore } from '../store/component.store';
  import { genericConfigGenerator } from '../utils/genericConfig';
  import Accordion from '../component/Accordion.vue';
+ import AdditionalSection from '../component/AdditionalSection.vue';
  import { getOptionalDataResetHandler } from '../utils/utility';
  const activeIndex = ref<number | null>(null)
  const currentId = ref<string | null>(null)
  const alertRef = useTemplateRef('alertRef')
+ const additionalSectionRef = useTemplateRef('additionalSectionRef')
  const store = useComponentStore()
  const genericConfig = genericConfigGenerator()
  const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
  const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
- const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
-  awards:false,
-  portofolio:false,
-  courses:false,
-  language:false,
-  volunteering:false,
-  additionalInformation:false
- })
- const additionalButonLabel = [
-  {key:'Portofolio / Personal Project',componentName:'portofolio'},
-  {key:'Courses',componentName:'courses'},
-  {key:'Languages',componentName:'language'},
-  {key:'Comunity volunteering',componentName:'volunteering'},
-  {key:'Additional Information',componentName:'additionalInformation'}
- ]
 const components:{[key:string]:any} = {
   biodata:{
    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
@@ -104,7 +90,7 @@ const components:{[key:string]:any} = {
     isRequired:false,
     order:length,
   })
-  toggleOptionalComponentStatus(componentName)
+   additionalSectionRef.value?.toggleOptionalComponentStatus(componentName)
  }
  function openAlert(itemId:string):void{
    alertRef.value?.open()
@@ -118,16 +104,12 @@ const components:{[key:string]:any} = {
    const currentComponentName = store.finalizationComponent[index].componentName
    if(index !== -1){
     getOptionalDataResetHandler(currentComponentName)
-    toggleOptionalComponentStatus(currentComponentName)
+    additionalSectionRef.value?.toggleOptionalComponentStatus(currentComponentName)
     store.finalizationComponent.splice(index,1)
    }
  }
  function toggle(index:number):void {
   activeIndex.value = activeIndex.value === index ? null : index;
- }
- function toggleOptionalComponentStatus(key:string):void{
-  const itemKey = key as keyof optionalFinalizationComponentStatus
-  optionalComponentStatus.value[itemKey] = !optionalComponentStatus.value[itemKey]
  }
 </script>
 
@@ -153,17 +135,8 @@ const components:{[key:string]:any} = {
       </Accordion>
     </div>
     </div>
-    <div class="footer p-1">
-     <h2 class="text-lg my-2">Additional Section</h2>
-     <div class="button-container grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
-      <button v-for="(item,index) in additionalButonLabel" 
-       class="p-2 border-1 rounded-md cursor-pointer text-left lg:text-center disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
-       :key="index"
-       @click="addOptionalComponent(item.key,item.componentName)"
-       :disabled="optionalComponentStatus[item.componentName as keyof optionalFinalizationComponentStatus]">
-        {{ item.key }}
-      </button>
-     </div>
+    <div class="footer">
+      <AdditionalSection ref="additionalSectionRef" @add="addOptionalComponent"></AdditionalSection>
     </div>
   </section>
 </template>

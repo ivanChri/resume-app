@@ -1,19 +1,15 @@
 <script setup lang="ts">
- import type { themesProps } from '../utils/component.interface';
+ import type { themesProps,themesConfigProps } from '../utils/component.interface';
  import IconRendered from '../component/IconRendered.vue';
- const props = defineProps<{
+ defineProps<{
   data:themesProps,
-  fonts:string,
-  fontsSize:string,
-  lineHeight:string,
-  supportedIcons:boolean,
-  iconColorAccents:string,
+  themesData:themesConfigProps
   style:any
   }>()
 </script>
 
 <template>
-  <div :class="[fontsSize,lineHeight,style.base]" :style="{fontFamily:fonts}" id="test">
+  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" :style="{fontFamily:themesData.primaryFonts}" id="test">
     <header :class="style.header">
       <div :class="style.infoHeader">
         <div class="main-title">
@@ -22,15 +18,15 @@
         </div>
         <div :class="style.contact">
           <div class="flex gap-2">
-            <IconRendered v-if="supportedIcons" name="phone" :icon-color-accents="iconColorAccents" size="20"></IconRendered>
+            <IconRendered v-if="themesData.supportedIcons && data.header.phone" name="phone" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
             <span>{{ data.header.phone }}</span>
           </div>
           <div class="flex gap-2">
-            <IconRendered v-if="supportedIcons" name="email" :icon-color-accents="iconColorAccents" size="20"></IconRendered>
+            <IconRendered v-if="themesData.supportedIcons && data.header.email" name="email" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
             <span>{{ data.header.email }}</span>
           </div>
           <div v-for="item in data.socialMedia" :key="item.id" class="flex gap-2">
-            <IconRendered v-if="supportedIcons" :name="item.label" size="20" :icon-color-accents="iconColorAccents"></IconRendered>
+            <IconRendered v-if="themesData.supportedIcons" :name="item.label" size="20" :icon-color-accents="themesData.iconColorAccents"></IconRendered>
             <a rel="noopener" target="_blank" :href="item.link" class="no-underline">
               {{ item.label }}
             </a>
@@ -47,6 +43,10 @@
       <div v-if="data.summary.length" :class="[style.summary,style.summaryContent]">
         <h3 :class="style.sectionTitle">Profile</h3>
         <p v-html="data.summary"></p>
+      </div>
+      <div v-if="data.addtionalInformation.length" :class="[style.summary,style.summaryContent]">
+        <h3 :class="style.sectionTitle">Addtional Details</h3>
+        <p v-html="data.addtionalInformation"></p>
       </div>
       <!-- experience section -->
       <div class="experience" v-if="data.experience.length > 0">
@@ -121,6 +121,30 @@
          </div>
        </div>
       <!-- end portofolio section -->
+      <!-- start volunteering section -->
+      <div class="volunteering" v-if="data.volunteering.length">
+        <h3 :class="style.sectionTitle">Volunteering</h3>
+        <div v-for="item in data.volunteering" :class="style.sectionItem" :key="item.id ">
+          <div :class="style.sectionHeader">
+            <h4 :class="style.sectionHeaderTitle">{{ item.role }} at {{ item.institution }}</h4>
+            <h5 :class="style.sectionHeaderInfo">{{ item.city }} {{ item.startDate }} - {{ item.endDate }}</h5>
+          </div>
+          <div :class="style.sectionDesc">
+            <p v-html="item.description"></p>
+          </div>
+        </div>
+      </div>
+      <!-- end volunteering section -->
+      <!-- start language section -->
+      <div class="language" v-if="data.language.length">
+        <h3 :class="style.sectionTitle">Language</h3>
+        <div v-for="item in data.language" :class="style.testSectionItem" :key="item.id">
+          <div :class="style.testSectionHeader">
+            <h4 :class="style.testSectionInfo">{{ item.languageName }} - {{ item.languageLevel }} </h4>
+          </div>
+        </div>
+      </div>
+      <!-- end language section -->
     </main>
   </div>
 </template>

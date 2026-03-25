@@ -82,6 +82,14 @@ export interface themesProps {
   addtionalInformation:string
 }
 
+export interface themesConfigProps {
+  primaryFonts:string,
+  fontsSize:string,
+  lineHeight:string,
+  supportedIcons:boolean,
+  iconColorAccents:string,
+}
+
 export interface themesConfig {
   primaryFontFamily:string,
   secondaryFontFamily:string,

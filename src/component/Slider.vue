@@ -1,6 +1,6 @@
 <script setup lang="ts">
  const selectedRangeModel = defineModel<number>('selectedRangeModel')
- const props = defineProps<{
+  defineProps<{
    labels:string[],
  }>()
  function update(range:number):void{

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+ import { defineAsyncComponent } from 'vue';
  import FormController from './form/FormController.vue';
- import ThemesPreview from './themes/ThemesPreview.vue';
  import ThemesCustomize from './themes/ThemesCustomize.vue';
  import { print } from './utils/utility';
+import SkeletonLoading from './component/SkeletonLoading.vue';
+ const asyncThemesPreview = defineAsyncComponent(() => import('./themes/ThemesPreview.vue'))
 </script>
 
 <template>
@@ -20,7 +22,14 @@
         <div class="top-bar p-1 mb-1 flex flex-wrap gap-4 items-center">
           <ThemesCustomize device-type="desktop"></ThemesCustomize>
         </div>
-        <ThemesPreview></ThemesPreview>
+        <Suspense>
+          <template #default>
+            <asyncThemesPreview></asyncThemesPreview>
+          </template>
+          <template #fallback>
+            <SkeletonLoading :rows="30" min-height="700px"></SkeletonLoading>
+          </template>
+        </Suspense>
       </div>
 
     </div>

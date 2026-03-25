@@ -1,11 +1,21 @@
 <script setup lang="ts">
+ import { computed,defineAsyncComponent } from 'vue';
+ import SkeletonLoading from '../component/SkeletonLoading.vue';
  import type { themesProps } from '../utils/component.interface';
  import { useUserStore } from '../store/user.store';
- import { computed,onMounted } from 'vue';
  import { useThemesStore } from '../store/themes.store';
- import test from './test.vue';
+ const asyncTest = defineAsyncComponent(() => import('./test.vue'))
  const userStore = useUserStore()
  const themesStore = useThemesStore()
+ const computedThemesConfig = computed(() => {
+   return {
+    primaryFonts:themesStore.selectedPrimaryFontFamily,
+    fontsSize:themesStore.selectedFontsSize,
+    lineHeight:themesStore.selectedLineHeight,
+    supportedIcons:themesStore.themes.supportedIcon,
+    iconColorAccents:themesStore.themes.iconColorAccents
+   }
+ })
  const computedHeader = computed(() => {
    return {
     firstName:userStore.biodata.firstName,
@@ -44,24 +54,24 @@
    addtionalInformation:userStore.additionalInformation
   }
  })
- onMounted(() => {
-  console.log('mounted')
- })
 </script>
 
 <template>
   <div class="@container preview-container w-full">
   <div class="bg-gray-300 rounded-md min-h-full p-4 lg:p-8 flex justify-center overflow-y-auto">
     <div class="resume-container w-full md:w-[1000px] min-h-[800px] bg-white shadow-lg p-5">
-      <test
-       :data="data"
-       :fonts-size="themesStore.selectedFontsSize"
-       :fonts="themesStore.selectedPrimaryFontFamily"
-       :line-height="themesStore.selectedLineHeight"
-       :supported-icons="themesStore.themes?.supportedIcon!"
-       :icon-color-accents="themesStore.themes?.iconColorAccents!"
-       :style="themesStore.selectedThemes">
-      </test>
+     <suspense>
+       <template #default>
+        <asyncTest
+         :data="data"
+         :themes-data="computedThemesConfig"
+         :style="themesStore.selectedThemes">
+        </asyncTest>
+       </template>
+       <template #fallback>
+         <skeleton-loading :rows="20" min-height="400px"></skeleton-loading>
+       </template>
+     </suspense>
     </div>
   </div>
   </div>

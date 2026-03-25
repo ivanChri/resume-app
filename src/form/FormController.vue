@@ -1,14 +1,10 @@
 <script setup lang="ts">
-  import { ref,computed,defineAsyncComponent,useTemplateRef,onUpdated } from 'vue';
-  import BiodataForm from './BiodataForm.vue';
-  import SocialMediaForm from './SocialMediaForm.vue';
-  import SkillsForm from './SkillsForm.vue';
-  import SummaryForm from './SummaryForm.vue';
-  import FinalizationForm from './FinalizationForm.vue';
-  import GenericList from './GenericList.vue';
+  import { ref,computed,defineAsyncComponent,useTemplateRef} from 'vue';
+  import SkeletonLoading from '../component/SkeletonLoading.vue';
   import { genericConfigGenerator } from '../utils/genericConfig';
   import { useUserValidationStore } from '../store/userValidation.store';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
+  const asyncGenericList = defineAsyncComponent(() => import('./GenericList.vue'))
   const emit = defineEmits<{
     (e:'printPdf'):void
   }>()
@@ -20,7 +16,7 @@
    {
     name:'Biodata',
     buttonName:'Personal Info',
-    component:BiodataForm,
+    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
     props:{},
     add:() => {},
     delete:() => {}
@@ -28,7 +24,7 @@
    {
     name:'experience',
     buttonName:'Work Experience',
-    component:GenericList,
+    component:asyncGenericList,
     props:genericConfig['experience'].props,
     add:genericConfig['experience'].emit.addData,
     delete:genericConfig['experience'].emit.deleteData
@@ -36,7 +32,7 @@
    {
     name:'education',
     buttonName:'Education',
-    component:GenericList,
+    component:asyncGenericList,
     props:genericConfig['education'].props,
     add:genericConfig['education'].emit.addData,
     delete:genericConfig['education'].emit.deleteData
@@ -44,7 +40,7 @@
    {
     name:'socialMedia',
     buttonName:'Social Media',
-    component:SocialMediaForm,
+    component:defineAsyncComponent(() => import('./SocialMediaForm.vue')),
     props:{},
     add:() => {},
     delete:() => {}
@@ -52,7 +48,7 @@
    {
     name:'skills',
     buttonName:'Skills',
-    component:SkillsForm,
+    component:defineAsyncComponent(() => import('./SkillsForm.vue')),
     props:{},
     add:() => {},
     delete:() => {}
@@ -60,7 +56,7 @@
    {
     name:'summary',
     buttonName:'Profesional Summary',
-    component:SummaryForm,
+    component:defineAsyncComponent(() => import('./SummaryForm.vue')),
     props:{},
     add:() => {},
     delete:() => {}
@@ -68,7 +64,7 @@
    {
     name:'finalization',
     buttonName:'finish',
-    component:FinalizationForm,
+    component:defineAsyncComponent(() => import('./FinalizationForm.vue')),
     props:{},
     add:() => {},
     delete:() => {}
@@ -96,15 +92,14 @@
     printPdf()
    }
   }
-  function printPdf(){
+  function printPdf():void{
     emit('printPdf')
   }
-  onUpdated(() => {
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-  })
+  function scrollToTop():void{
+    if (window.scrollY > 0) {
+     window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 </script>
 
 <template>
@@ -115,21 +110,29 @@
        <template #confirmButtonName>Download</template>
       </asyncAlert>
      <div class="component-container min-h-[300px] md:min-h-[400px] lg:min-h-[300px] rounded-md p-1">
-       <component 
-        :key="components[componentIndex].name" 
-        :is="components[componentIndex].component"
-        v-bind="components[componentIndex].props"
-        @add="components[componentIndex].add"
-        @delete="components[componentIndex].delete"></component>
+       <Suspense @resolve="scrollToTop">
+        <template #default>
+         <component 
+          :key="components[componentIndex].name" 
+          :is="components[componentIndex].component"
+          v-bind="components[componentIndex].props"
+          @add="components[componentIndex].add"
+          @delete="components[componentIndex].delete">
+         </component>
+       </template>
+       <template #fallback>
+         <SkeletonLoading :rows="10" minHeight="400px"></SkeletonLoading>   
+       </template>
+      </Suspense>
      </div>
      <div class="button-container bg-slate-700 rounded-md  p-2 flex items-center justify-between">
-       <button v-if="componentIndex > 0" class="border-2 rounded-md p-1 text-center" @click="back">
+       <button v-if="componentIndex > 0" class="border-2 rounded-md p-1 cursor-pointer text-center text-white bg-blue-600" @click="back">
         Back
        </button>
        <div class="info-container p-1 hidden lg:block">
-         <span v-for="(value,index) in components" :key="value.name" :class="{'border-blue-500':index == componentIndex}" class="border-1 inline-block mx-1 p-2 rounded-full transition-all duration-200"></span>
+         <span v-for="(value,index) in components" :key="value.name" :class="{'border-blue-800 bg-blue-300':index == componentIndex}" class="border-1 text-white inline-block mx-1  p-2 rounded-full transition-all duration-200"></span>
        </div>
-       <button class="border-2 rounded-md p-1 text-center" @click="next">
+       <button class="border-2 rounded-md p-1 cursor-pointer text-center text-white bg-blue-600" @click="next">
         Next : {{ nextButtonLabel }}
       </button>
      </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref,computed } from 'vue'
-const props = defineProps<{
+defineProps<{
   options:string[],
 }>()
 const selectedOptionModel = defineModel('selectedOption')
