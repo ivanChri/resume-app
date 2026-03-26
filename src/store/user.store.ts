@@ -67,4 +67,8 @@ export const useUserStore = defineStore('user',() => {
     resetLanguageData,
     resetVolunteeringData
   }
+},{ 
+  persist:{
+    key:'user-store'
+  } 
 })

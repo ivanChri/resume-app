@@ -12,8 +12,8 @@
     primaryFonts:themesStore.selectedPrimaryFontFamily,
     fontsSize:themesStore.selectedFontsSize,
     lineHeight:themesStore.selectedLineHeight,
-    supportedIcons:themesStore.themes.supportedIcon,
-    iconColorAccents:themesStore.themes.iconColorAccents
+    supportedIcons:themesStore.themes?.supportedIcon!,
+    iconColorAccents:themesStore.themes?.iconColorAccents!
    }
  })
  const computedHeader = computed(() => {

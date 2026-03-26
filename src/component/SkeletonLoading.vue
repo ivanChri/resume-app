@@ -1,3 +1,30 @@
+<script setup lang="ts">
+const props = defineProps({
+  rows: {
+    type: Number,
+    default: 2
+  },
+  rowHeight: {
+    type: String,
+    default: '20px'
+  },
+  gap: {
+    type: String,
+    default: '16px' 
+  },
+  minHeight: {
+    type: String,
+    default: 'auto'
+  }
+})
+const rowStyle = (index:number) => {
+  return {
+    height: props.rowHeight,
+    marginBottom: index < props.rows ? props.gap : '0px'
+  }
+}
+</script>
+
 <template>
   <div 
     class="w-full flex flex-col" 
@@ -14,37 +41,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const props = defineProps({
-  rows: {
-    type: Number,
-    default: 2
-  },
-  rowHeight: {
-    type: String,
-    default: '20px'
-  },
-  // Gap dalam satuan pixel atau rem
-  gap: {
-    type: String,
-    default: '16px' 
-  },
-  minHeight: {
-    type: String,
-    default: 'auto'
-  }
-});
-
-// Fungsi untuk mengatur style setiap baris secara presisi
-const rowStyle = (index:number) => {
-  return {
-    height: props.rowHeight,
-    // Tambahkan margin bottom pada semua baris kecuali yang terakhir
-    marginBottom: index < props.rows ? props.gap : '0px'
-  };
-};
-</script>
 
 <style scoped>
 .shimmer-effect {

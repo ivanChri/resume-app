@@ -47,4 +47,8 @@ export const useComponentStore = defineStore('component',() => {
     }
   ].sort((a,b) => a.order - b.order))
   return {finalizationComponent}
+},{
+  persist:{
+    key:'component-store'
+  }
 })

@@ -68,7 +68,6 @@ defineExpose({ open, close })
 </template>
 
 <style scoped>
-/* Opsional: Memperhalus scrollbar untuk desktop */
 .overflow-y-auto::-webkit-scrollbar {
   width: 6px;
 }

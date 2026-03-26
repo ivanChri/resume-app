@@ -39,7 +39,8 @@ export function print(){
   html2canvas:{ 
     scale: 2,
     useCORS: true,
-    logging: false
+    logging: false,
+    windowWidth:1024,
   },
   jsPDF:{ 
     unit: 'mm', 

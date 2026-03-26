@@ -82,3 +82,11 @@ export const labelConfig = {
     buttonLabel:'Add Volunteering'
    }
  } as const
+export const fontSizeValue = ['text-xs','text-base','text-lg'] as const
+export const lineHeightValue = ['leading-[1.3]','leading-[1.5]','leading-[1.7]','leading-[1.9]'] as const
+export const fontsFamilyValue:{[key:string]:string} = {
+  Monospace:'var(--font-mono)',
+  Roboto:'var(--font-roboto)',
+  Montserrat:'var(--font-montserrat)',
+  'Open-sans':'var(--font-opensans)'
+} as const

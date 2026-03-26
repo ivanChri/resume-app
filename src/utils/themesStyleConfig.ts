@@ -1,6 +1,5 @@
-export const themesStyleConfig = [
-  {
-  themesName:"professional-corporate-minimalist",
+export const themesStyleConfig:{[key:string]:any} = {
+  "professional-corporate-minimalist":{
   base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:p-0",
   header: "border-b-2 border-slate-900 pb-4 mb-6",
   infoHeader: "flex flex-col md:flex-row justify-between items-start gap-4",
@@ -21,47 +20,46 @@ export const themesStyleConfig = [
   testSectionHeader:"flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1 gap-1",
   testSectionInfo:"text-slate-500 sm:text-right uppercase"
   },
-  {
-  themesName:"twoColumn-professional",
-  base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col md:flex-row print:shadow-none print:flex-row",
-  header: "w-full md:w-[42%] bg-slate-900 text-slate-200 p-8 md:p-10 flex flex-col gap-5 break-words print:w-[42%]", 
+  "twoColumn-professional":{
+  base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:h-[297mm] print:shadow-none",
+  header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
   infoHeader: "flex flex-col gap-2",
   jobTitle: "text-xs font-bold tracking-[0.25em] text-indigo-400 uppercase",
-  name: "text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none break-words",
+  name: "text-2xl sm:text-3xl md:text-4xl print:text-3xl font-black uppercase tracking-tighter leading-none break-words",
   contact: "flex flex-col gap-2",
   additionalInfo: "grid grid-cols-1 gap-2 mt-4 pt-5 border-t border-slate-700/50 uppercase",
-  main: "w-full md:w-[58%] p-8 md:p-12 bg-white flex flex-col gap-10 print:w-[58%]",
+  main: "w-full sm:w-[58%] print:w-[58%] p-8 md:p-12 print:p-10 bg-white flex flex-col gap-10",
   sectionTitle: "text-lg font-extrabold border-b-2 border-slate-900 mb-6 pb-2 text-slate-900 uppercase tracking-tighter",
   sectionItem: "mb-8 last:mb-0 break-inside-avoid",
   sectionHeader: "mb-2",
   sectionHeaderTitle: "font-bold text-slate-800 uppercase",
   sectionHeaderInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2",
-  sectionDesc: "text-slate-600 mt-2 max-w-[700px] break-all prose-p:m-0",
+  sectionDesc: "text-slate-600 mt-2 break-all prose-p:m-0 max-w-full md:max-w-[700px]",
   summary: "bg-slate-50 p-5 border-l-4 border-indigo-500 rounded-r-sm",
-  summaryContent: "text-slate-700 text-justify max-w-[700px] break-all break-inside-avoid",
-  testSectionItem:"mb-8 last:mb-0 break-inside-avoid",
-  testSectionHeader:"mb-2",
-  testSectionInfo:"font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
-  },
-  {
-  themesName:"creative",
-  base: "w-full max-w-[210mm] mx-auto my-10 p-12 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-6 before:right-6 before:w-12 before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-6 after:left-6 after:w-12 after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500",
-  header: "relative mb-12 border-b border-slate-800 pb-8",
+  summaryContent: "text-slate-700 text-justify max-w-full break-all md:max-w-[700px] break-inside-avoid",
+  testSectionItem: "mb-8 last:mb-0 break-inside-avoid",
+  testSectionHeader: "mb-2",
+  testSectionInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
+ },
+ "creative": {
+  base: "w-full max-w-[210mm] mx-auto my-0 md:my-10 p-6 sm:p-10 md:p-12 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-12 print:my-0",
+  header: "relative mb-8 md:mb-12 border-b border-slate-800 pb-8",
   infoHeader: "flex flex-col gap-1",
-  jobTitle: "text-sm font-black tracking-[0.5em] uppercase text-orange-500",
-  name: "text-6xl font-black tracking-tighter text-white uppercase",
-  contact: "mt-6 flex flex-wrap gap-x-6 gap-y-2 font-extrabold text-slate-400 uppercase tracking-widest",
+  jobTitle: "text-[10px] sm:text-xs md:text-sm font-black tracking-[0.3em] md:tracking-[0.5em] uppercase text-orange-500",
+  name: "text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none",
+  contact: "mt-6 flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 font-extrabold text-xs md:text-sm text-slate-400 uppercase tracking-widest",
   additionalInfo: "flex flex-wrap items-center gap-x-4 mt-6 text-[10px] font-bold uppercase tracking-widest text-orange-500/80",
-  main: "space-y-12",
-  sectionTitle: "flex items-center p-1 text-2xl border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-8 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
-  summary: "text-slate-400 italic border-l-2 border-orange-500/30 pl-6 max-w-[700px] break-all break-inside-avoid",
-  summaryContent: "mb-4",
-  sectionItem: "relative pl-7 pb-7 border-l border-slate-800 break-inside-avoid",
-  sectionHeader: "flex flex-col gap-3 mb-3 relative before:content-[''] before:absolute before:-left-[36.5px] before:top-1.5 before:w-4 before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
-  sectionHeaderTitle: "text-lg font-bold text-white tracking-tight",
-  sectionHeaderInfo: "font-black text-orange-500 uppercase tracking-wider",
-  sectionDesc: "text-slate-400 max-w-[700px] break-all break-inside-avoid",
-  testSectionItem:"mb-4 last:mb-0 break-inside-avoid",
-  testSectionHeader:"mb-2",
-  testSectionInfo:"font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
-}]
+  main: "space-y-10 md:space-y-12",
+  sectionTitle: "flex items-center p-1 text-xl md:text-2xl border-b-2 md:border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-6 md:mb-8 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
+  summary: "text-slate-400 italic border-l-2 border-orange-500/30 pl-4 md:pl-6 max-w-full md:max-w-[700px] break-all break-inside-avoid",
+  summaryContent: "mb-4 text-sm md:text-base",
+  sectionItem: "relative pl-6 md:pl-7 pb-7 border-l border-slate-800 break-inside-avoid",
+  sectionHeader: "flex flex-col gap-2 md:gap-3 mb-3 relative before:content-[''] before:absolute before:-left-[28.5px] md:before:-left-[36.5px] before:top-1.5 before:w-3 before:h-3 md:before:w-4 md:before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
+  sectionHeaderTitle: "text-base md:text-lg font-bold text-white tracking-tight",
+  sectionHeaderInfo: "text-sm md:text-base font-black text-orange-500 uppercase tracking-wider",
+  sectionDesc: "text-sm md:text-base text-slate-400 max-w-full md:max-w-[700px] break-all break-inside-avoid",
+  testSectionItem: "mb-4 last:mb-0 break-inside-avoid",
+  testSectionHeader: "mb-2",
+  testSectionInfo: "text-sm md:text-base font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
+ }
+}
