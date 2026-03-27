@@ -12,16 +12,19 @@
   function onFileChange(event:Event):void {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
+  if(!file) return
   if(!props.allowedTypes.includes(file?.type!)){
     alert('Format file tidak didukung. Hanya JPG dan PNG yang diperbolehkan.')
-    return
   }else if(file?.size! > props.maxSize){
     alert('ukuran gambar terlalu besar')
-    return
   }else{
+    if (imageUrl.value) {
+      URL.revokeObjectURL(imageUrl.value)
+    }
     imageUrl.value = URL.createObjectURL(file!)
     emit('onSubmit',file!)
   }
+  target.value = ''
 }
 </script>
 

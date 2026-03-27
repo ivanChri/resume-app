@@ -11,6 +11,9 @@
 <template>
   <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" :style="{fontFamily:themesData.primaryFonts}" id="test">
     <header :class="style.header">
+      <div v-if="themesData.supportedPhotos && data.header.photoPreview" class="img-container mb-3 p-1">
+        <img :src="data.header.photoPreview" class="w-30 h-30 rounded-full border-1 border-orange-300"/>
+      </div>
       <div :class="style.infoHeader">
         <div class="main-title">
           <h1 :class="style.jobTitle">{{ data.header.jobTitle }}</h1>

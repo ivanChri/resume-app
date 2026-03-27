@@ -13,7 +13,8 @@
     fontsSize:themesStore.selectedFontsSize,
     lineHeight:themesStore.selectedLineHeight,
     supportedIcons:themesStore.themes?.supportedIcon!,
-    iconColorAccents:themesStore.themes?.iconColorAccents!
+    iconColorAccents:themesStore.themes?.iconColorAccents!,
+    supportedPhotos:themesStore.themes?.supportedUserPhoto!
    }
  })
  const computedHeader = computed(() => {

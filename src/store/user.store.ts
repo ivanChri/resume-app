@@ -69,6 +69,7 @@ export const useUserStore = defineStore('user',() => {
   }
 },{ 
   persist:{
-    key:'user-store'
+    key:'user-store',
+    omit:['biodata.photoPreview']
   } 
 })

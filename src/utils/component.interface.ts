@@ -88,6 +88,7 @@ export interface themesConfigProps {
   lineHeight:string,
   supportedIcons:boolean,
   iconColorAccents:string,
+  supportedPhotos:boolean
 }
 
 export interface themesConfig {

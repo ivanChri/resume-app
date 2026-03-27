@@ -3,7 +3,7 @@
  import FormController from './form/FormController.vue';
  import ThemesCustomize from './themes/ThemesCustomize.vue';
  import { print } from './utils/utility';
-import SkeletonLoading from './component/SkeletonLoading.vue';
+ import SkeletonLoading from './component/SkeletonLoading.vue';
  const asyncThemesPreview = defineAsyncComponent(() => import('./themes/ThemesPreview.vue'))
 </script>
 

@@ -9,14 +9,14 @@ export const dataThemes:themesData[] = [
   },
   {
     name:"twoColumn-professional",
-    supportedUserPhoto:false,
+    supportedUserPhoto:true,
     themesImgUrl:"",
     supportedIcon:true,
     iconColorAccents:"fill-blue-600"
   },
   {
    name:"creative",
-   supportedUserPhoto:false,
+   supportedUserPhoto:true,
    themesImgUrl:"",
    supportedIcon:true,
    iconColorAccents:"fill-orange-600"

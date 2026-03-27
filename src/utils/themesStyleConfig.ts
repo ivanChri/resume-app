@@ -53,7 +53,7 @@ export const themesStyleConfig:{[key:string]:any} = {
   sectionTitle: "flex items-center p-1 text-xl md:text-2xl border-b-2 md:border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-6 md:mb-8 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
   summary: "text-slate-400 italic border-l-2 border-orange-500/30 pl-4 md:pl-6 max-w-full md:max-w-[700px] break-all break-inside-avoid",
   summaryContent: "mb-4 text-sm md:text-base",
-  sectionItem: "relative pl-6 md:pl-7 pb-7 border-l border-slate-800 break-inside-avoid",
+  sectionItem: "relative pl-6 md:pl-7 pb-7 pt-3 border-l border-slate-800 break-inside-avoid",
   sectionHeader: "flex flex-col gap-2 md:gap-3 mb-3 relative before:content-[''] before:absolute before:-left-[28.5px] md:before:-left-[36.5px] before:top-1.5 before:w-3 before:h-3 md:before:w-4 md:before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
   sectionHeaderTitle: "text-base md:text-lg font-bold text-white tracking-tight",
   sectionHeaderInfo: "text-sm md:text-base font-black text-orange-500 uppercase tracking-wider",
