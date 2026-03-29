@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import { ref,computed,defineAsyncComponent,useTemplateRef} from 'vue';
   import SkeletonLoading from '../component/SkeletonLoading.vue';
-  import { genericConfigGenerator } from '../utils/genericConfig';
+  import { genericConfigGenerator } from '../utils/config/genericConfig';
   import { useUserValidationStore } from '../store/userValidation.store';
+  import type { formControllerComponent } from '../utils/types/component.interface';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
   const asyncGenericList = defineAsyncComponent(() => import('./GenericList.vue'))
   const emit = defineEmits<{
@@ -12,7 +13,7 @@
   const componentIndex = ref<number>(0)
   const validation = useUserValidationStore()
   const genericConfig = genericConfigGenerator()
-  const components = [
+  const components:formControllerComponent[] = [
    {
     name:'Biodata',
     buttonName:'Personal Info',

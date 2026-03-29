@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import { reactive,watch,onMounted } from 'vue';
   import { useUserStore } from '../store/user.store';
+  import { useThemesStore } from '../store/themes.store';
   import ImageUploader from '../component/ImageUploader.vue';
   import AddtionalBiodata from '../component/AdditionalBiodataForm.vue';
   const store = useUserStore()
+  const themesStore = useThemesStore()
   const tempEmail = reactive<{email:string,errorMessage:string,valid:boolean | null}>({
     email:'',
     errorMessage:'',
@@ -74,6 +76,7 @@
           :maxSize="1 * 1024 * 1024" 
           :allowedTypes="['image/jpeg', 'image/png']"
           :storedPreviewImage="store.biodata.photoPreview || null"
+          :supportedImgPreview="themesStore.themes?.supportedUserPhoto!"
           @onSubmit="setUserPhotoPreview"
         />
       </div>

@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T extends {id:string}">
  import { computed } from 'vue';
  import { generateRandomId } from '../utils/utility';
- import type { genericProps } from '../utils/component.interface';
- import { labelConfig } from '../utils/fieldConfig';
+ import type { genericProps } from '../utils/types/component.interface';
+ import { labelConfig } from '../utils/config/fieldConfig';
  import AccordionList from '../component/AccordionList.vue';
  import ContentForm from '../component/ContentForm.vue';
  import DescriptionForm from '../component/DescriptionForm.vue';

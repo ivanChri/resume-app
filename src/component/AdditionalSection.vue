@@ -1,6 +1,6 @@
 <script setup lang="ts">
  import { ref } from 'vue';
- import type { optionalFinalizationComponentStatus } from '../utils/component.interface';
+ import type { optionalFinalizationComponentStatus } from '../utils/types/component.interface';
  const emit = defineEmits<{
    (e:'add',key:string,name:string):void
  }>()

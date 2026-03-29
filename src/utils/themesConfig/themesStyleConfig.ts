@@ -1,4 +1,5 @@
-export const themesStyleConfig:{[key:string]:any} = {
+import type { resumeThemeStyle } from "../types/themes.interface"
+export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   "professional-corporate-minimalist":{
   base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:p-0",
   header: "border-b-2 border-slate-900 pb-4 mb-6",
@@ -42,24 +43,24 @@ export const themesStyleConfig:{[key:string]:any} = {
   testSectionInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
  },
  "creative": {
-  base: "w-full max-w-[210mm] mx-auto my-0 md:my-10 p-6 sm:p-10 md:p-12 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-12 print:my-0",
-  header: "relative mb-8 md:mb-12 border-b border-slate-800 pb-8",
+  base: "w-full max-w-[210mm] mx-auto my-0 md:my-6 p-5 sm:p-8 md:p-10 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-10 print:my-0",
+  header: "relative mb-6 md:mb-8 border-b border-slate-800 pb-6",
   infoHeader: "flex flex-col gap-1",
   jobTitle: "text-[10px] sm:text-xs md:text-sm font-black tracking-[0.3em] md:tracking-[0.5em] uppercase text-orange-500",
   name: "text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none",
-  contact: "mt-6 flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 font-extrabold text-xs md:text-sm text-slate-400 uppercase tracking-widest",
-  additionalInfo: "flex flex-wrap items-center gap-x-4 mt-6 text-[10px] font-bold uppercase tracking-widest text-orange-500/80",
-  main: "space-y-10 md:space-y-12",
-  sectionTitle: "flex items-center p-1 text-xl md:text-2xl border-b-2 md:border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-6 md:mb-8 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
+  contact: "mt-5 flex flex-wrap gap-x-4 md:gap-x-6 gap-y-2 font-extrabold text-slate-400 uppercase tracking-widest",
+  additionalInfo: "flex flex-wrap items-center gap-x-4 mt-4 font-bold uppercase tracking-widest text-orange-500/80",
+  main: "space-y-8 md:space-y-10",
+  sectionTitle: "flex items-center p-1 text-xl md:text-2xl border-b-2 md:border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-5 md:mb-6 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
   summary: "text-slate-400 italic border-l-2 border-orange-500/30 pl-4 md:pl-6 max-w-full md:max-w-[700px] break-all break-inside-avoid",
-  summaryContent: "mb-4 text-sm md:text-base",
-  sectionItem: "relative pl-6 md:pl-7 pb-7 pt-3 border-l border-slate-800 break-inside-avoid",
-  sectionHeader: "flex flex-col gap-2 md:gap-3 mb-3 relative before:content-[''] before:absolute before:-left-[28.5px] md:before:-left-[36.5px] before:top-1.5 before:w-3 before:h-3 md:before:w-4 md:before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
-  sectionHeaderTitle: "text-base md:text-lg font-bold text-white tracking-tight",
-  sectionHeaderInfo: "text-sm md:text-base font-black text-orange-500 uppercase tracking-wider",
-  sectionDesc: "text-sm md:text-base text-slate-400 max-w-full md:max-w-[700px] break-all break-inside-avoid",
-  testSectionItem: "mb-4 last:mb-0 break-inside-avoid",
-  testSectionHeader: "mb-2",
-  testSectionInfo: "text-sm md:text-base font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
- }
+  summaryContent: "mb-3 text-sm md:text-base",
+  sectionItem: "relative pl-6 md:pl-7 pb-5 pt-1 border-l border-slate-800 break-inside-avoid",
+  sectionHeader: "flex flex-col gap-1 md:gap-2 mb-2 relative before:content-[''] before:absolute before:-left-[28.5px] md:before:-left-[36.5px] before:top-1.5 before:w-3 before:h-3 md:before:w-4 md:before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
+  sectionHeaderTitle: "font-bold text-white tracking-tight uppercase",
+  sectionHeaderInfo: "font-black text-orange-500 uppercase tracking-wider",
+  sectionDesc: "text-slate-400 max-w-full md:max-w-[700px] break-all break-inside-avoid",
+  testSectionItem: "mb-3 last:mb-0 break-inside-avoid",
+  testSectionHeader: "mb-1",
+  testSectionInfo: "font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
+}
 }

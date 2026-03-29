@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref,computed } from "vue";
-import { themesStyleConfig } from "../utils/themesStyleConfig";
-import { fontSizeValue,lineHeightValue,fontsFamilyValue } from "../utils/fieldConfig";
-import type { themesData } from "../utils/component.interface";
-import type { themesConfig } from "../utils/component.interface";
+import { themesStyleConfig } from "../utils/themesConfig/themesStyleConfig";
+import { fontSizeValue,lineHeightValue,fontsFamilyValue } from "../utils/config/fieldConfig";
+import type { themesData } from "../utils/types/themes.interface";
+import type { themesConfig } from "../utils/types/themes.interface";
 export const useThemesStore = defineStore('themes',() => {
   const themes = ref<themesData | null>(null)
   const themesConfig = ref<themesConfig>({

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed,type ComputedRef } from "vue";
 import { useUserStore } from "./user.store";
-import type { biodata } from "../utils/form.interface";
+import type { biodata } from "../utils/types/form.interface";
 export const useUserValidationStore = defineStore(('userValidation'), () => {
  const regex = /<br\s*\/?>/i
  const userStore = useUserStore()

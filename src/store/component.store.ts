@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { finalizationComponentData } from "../utils/component.interface";
+import type { finalizationComponentData } from "../utils/types/component.interface";
 export const useComponentStore = defineStore('component',() => {
   const finalizationComponent = ref<finalizationComponentData[]>([
     {

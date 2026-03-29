@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref,computed } from 'vue';
-  import type { ParentType } from '../utils/component.interface';
-  import type { employmentTypes } from '../utils/form.interface';
-  import { fieldConfig } from '../utils/fieldConfig';
+  import type { ParentType } from '../utils/types/component.interface';
+  import type { employmentTypes } from '../utils/types/form.interface';
+  import { fieldConfig } from '../utils/config/fieldConfig';
   import MonthPicker from './MonthPicker.vue';
   import Dropdow from './Dropdow.vue';
   type MonthPickerConfig = {

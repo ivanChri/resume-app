@@ -3,7 +3,7 @@
  import AccordionList from '../component/AccordionList.vue';
  import Dropdow from '../component/Dropdow.vue';
  import { generateRandomId } from '../utils/utility';
- import type { languageSpeakingLevel } from '../utils/form.interface';
+ import type { languageSpeakingLevel } from '../utils/types/form.interface';
  const store = useUserStore()
  const language:languageSpeakingLevel[] = ['Native Speaker','Highly Proficient','Very Good Command']
  function addLanguage():void{

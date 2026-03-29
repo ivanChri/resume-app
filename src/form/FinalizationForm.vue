@@ -1,10 +1,11 @@
 <script setup lang="ts">
  import { ref,defineAsyncComponent,useTemplateRef } from 'vue';
  import { useComponentStore } from '../store/component.store';
- import { genericConfigGenerator } from '../utils/genericConfig';
+ import { genericConfigGenerator } from '../utils/config/genericConfig';
  import Accordion from '../component/Accordion.vue';
  import AdditionalSection from '../component/AdditionalSection.vue';
  import { getOptionalDataResetHandler } from '../utils/utility';
+ import type { componentRegisrty } from '../utils/types/component.interface';
  const activeIndex = ref<number | null>(null)
  const currentId = ref<string | null>(null)
  const alertRef = useTemplateRef('alertRef')
@@ -13,7 +14,7 @@
  const genericConfig = genericConfigGenerator()
  const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
  const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
-const components:{[key:string]:any} = {
+const components:componentRegisrty = {
   biodata:{
    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
    props:{},

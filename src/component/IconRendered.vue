@@ -1,6 +1,6 @@
 <script setup lang="ts">
  import { computed } from 'vue';
- import { iconData } from '../utils/iconData';
+ import { iconData } from '../utils/config/iconData';
  const props = defineProps<{
    name:string,
    size:string,

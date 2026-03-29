@@ -28,11 +28,7 @@
     </div>
     <div class="flex flex-col p-1 gap-2">
       <label for="postal-code">Postal Code</label>
-<<<<<<< HEAD
       <input type="text" v-model="postalCodeModel" id="postal-code" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
-=======
-      <input type="number" v-model="postalCodeModel" id="postal-code" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
->>>>>>> b08635fc0590e8a2f5c940e5ca8fe47aa9c2752d
     </div>
     <div class="flex flex-col p-1 gap-2">
       <label for="driving-license">Driving License</label>

@@ -10,7 +10,7 @@ import type {
   course,
   language,
   volunteering,
- } from "../utils/form.interface";
+ } from "../utils/types/form.interface";
 export const useUserStore = defineStore('user',() => {
   const biodata = ref<biodata>({
     jobTitle:'',

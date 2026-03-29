@@ -1,6 +1,6 @@
-import { useUserStore } from "../store/user.store";
-import type { workExperice, education, portofolio, volunteering, course } from "./form.interface";
-import type { genericData } from "./component.interface";
+import { useUserStore } from "../../store/user.store";
+import type { workExperice, education, portofolio, volunteering, course } from "../types/form.interface";
+import type { genericData } from "../types/component.interface";
 type GenericListConfig<T extends Record<string, any>> = {
   [K in keyof T]: genericData<T[K]>
 }

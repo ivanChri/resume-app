@@ -1,4 +1,4 @@
-import type { themesData } from "./component.interface";
+import type { themesData } from "../types/themes.interface"
 export const dataThemes:themesData[] = [
   {
     name:"professional-corporate-minimalist",

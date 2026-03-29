@@ -1,25 +1,25 @@
 <script setup lang="ts">
- import type { themesProps,themesConfigProps } from '../utils/component.interface';
+ import type { themesProps,themesConfigProps,resumeThemeStyle } from '../utils/types/themes.interface';
  import IconRendered from '../component/IconRendered.vue';
  defineProps<{
   data:themesProps,
   themesData:themesConfigProps
-  style:any
+  style:resumeThemeStyle
   }>()
 </script>
 
 <template>
-  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" :style="{fontFamily:themesData.primaryFonts}" id="test">
+  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" id="test">
     <header :class="style.header">
       <div v-if="themesData.supportedPhotos && data.header.photoPreview" class="img-container mb-3 p-1">
         <img :src="data.header.photoPreview" class="w-30 h-30 rounded-full border-1 border-orange-300"/>
       </div>
-      <div :class="style.infoHeader">
+      <div :class="style.infoHeader" :style="{fontFamily:themesData.primaryFontsFamily}">
         <div class="main-title">
           <h1 :class="style.jobTitle">{{ data.header.jobTitle }}</h1>
           <h2 :class="style.name">{{ data.header.firstName }} {{ data.header.lastName }}</h2>
         </div>
-        <div :class="style.contact">
+        <div :class="style.contact" :style="{fontFamily:themesData.secondaryFontsFamily}">
           <div class="flex gap-2">
             <IconRendered v-if="themesData.supportedIcons && data.header.phone" name="phone" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
             <span>{{ data.header.phone }}</span>
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div :class="style.additionalInfo">
+      <div :class="style.additionalInfo" :style="{fontFamily:themesData.secondaryFontsFamily}">
         <span v-for="item in data.addtionalDetails" :key="item.id">
           {{ item.name }} : {{ item.value }}
         </span>
@@ -44,17 +44,17 @@
     </header>
     <main :class="style.main">
       <div v-if="data.summary.length" :class="[style.summary,style.summaryContent]">
-        <h3 :class="style.sectionTitle">Profile</h3>
-        <p v-html="data.summary"></p>
+        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Profile</h3>
+        <p v-html="data.summary" :style="{fontFamily:themesData.secondaryFontsFamily}"></p>
       </div>
       <div v-if="data.addtionalInformation.length" :class="[style.summary,style.summaryContent]">
-        <h3 :class="style.sectionTitle">Addtional Details</h3>
-        <p v-html="data.addtionalInformation"></p>
+        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Addtional Details</h3>
+        <p v-html="data.addtionalInformation" :style="{fontFamily:themesData.secondaryFontsFamily}"></p>
       </div>
       <!-- experience section -->
       <div class="experience" v-if="data.experience.length > 0">
-        <h3 :class="style.sectionTitle">Work experience</h3>
-        <div v-for="item in data.experience" :class="style.sectionItem" :key="item.id">
+        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Work experience</h3>
+        <div v-for="item in data.experience" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
            <div :class="style.sectionHeader">
              <h4 :class="style.sectionHeaderTitle">{{ item.jobTitle }}</h4>
              <div :class="style.sectionHeaderInfo">
@@ -70,8 +70,8 @@
       <!-- end experience section -->
       <!-- start education section -->
        <div class="education" v-if="data.education.length">
-         <h3 :class="style.sectionTitle">Education</h3>
-         <div v-for="item in data.education" :class="style.sectionItem" :key="item.id">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Education</h3>
+         <div v-for="item in data.education" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
            <div :class="style.sectionHeader">
              <h4 :class="style.sectionHeaderTitle">{{ item.degree }} at {{ item.schoolName }}</h4>
              <h5 :class="style.sectionHeaderInfo">{{ item.city }}, {{ item.startDate }} - {{ item.endDate }}</h5>
@@ -84,8 +84,8 @@
       <!-- end education section -->
       <!-- start skills section -->
        <div class="skills" v-if="data.skills.length">
-         <h3 :class="style.sectionTitle">Skills</h3>
-         <div v-for="item in data.skills" :class="style.testSectionItem" :key="item.id">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>
+         <div v-for="item in data.skills" :class="style.testSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
            <div :class="style.testSectionHeader">
              <h4 :class="style.testSectionInfo">{{ item.name }} - {{ item.level }} </h4>
            </div>
@@ -94,8 +94,8 @@
       <!-- end skills section -->
       <!-- start course section -->
        <div class="course" v-if="data.course.length">
-         <h3 :class="style.sectionTitle">Course</h3>
-         <div v-for="item in data.course" :class="style.sectionItem" :key="item.id">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Course</h3>
+         <div v-for="item in data.course" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
            <div :class="style.sectionHeader">
              <h4 :class="style.sectionHeaderTitle">{{ item.courseName }} - {{ item.institution }}</h4>
              <h5 :class="style.sectionHeaderInfo">{{ item.startDate }} - {{ item.endDate }}</h5>
@@ -108,8 +108,8 @@
       <!-- end course section -->
       <!-- start portofolio section -->
        <div class="portofolio" v-if="data.portofolio.length">
-         <h3 :class="style.sectionTitle">Portofolio</h3>
-         <div v-for="item in data.portofolio" :class="style.sectionItem" :key="item.id">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Portofolio</h3>
+         <div v-for="item in data.portofolio" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
            <div :class="style.sectionHeader">
              <h4 :class="style.sectionHeaderTitle">
               <a :href="item.projectLink" rel="noopener" target="_blank" class="no-underline">{{ item.projectName }}</a>
@@ -126,8 +126,8 @@
       <!-- end portofolio section -->
       <!-- start volunteering section -->
       <div class="volunteering" v-if="data.volunteering.length">
-        <h3 :class="style.sectionTitle">Volunteering</h3>
-        <div v-for="item in data.volunteering" :class="style.sectionItem" :key="item.id ">
+        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Volunteering</h3>
+        <div v-for="item in data.volunteering" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id ">
           <div :class="style.sectionHeader">
             <h4 :class="style.sectionHeaderTitle">{{ item.role }} at {{ item.institution }}</h4>
             <h5 :class="style.sectionHeaderInfo">{{ item.city }} {{ item.startDate }} - {{ item.endDate }}</h5>
@@ -140,8 +140,8 @@
       <!-- end volunteering section -->
       <!-- start language section -->
       <div class="language" v-if="data.language.length">
-        <h3 :class="style.sectionTitle">Language</h3>
-        <div v-for="item in data.language" :class="style.testSectionItem" :key="item.id">
+        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Language</h3>
+        <div v-for="item in data.language" :class="style.testSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
           <div :class="style.testSectionHeader">
             <h4 :class="style.testSectionInfo">{{ item.languageName }} - {{ item.languageLevel }} </h4>
           </div>

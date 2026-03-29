@@ -2,7 +2,7 @@
  import { useUserStore } from '../store/user.store';
  import { generateRandomId } from '../utils/utility';
  import AccordionList from '../component/AccordionList.vue';
- import type { levelName } from '../utils/form.interface';
+ import type { levelName } from '../utils/types/form.interface';
  const store = useUserStore()
  const skillsButtonObj:{level:levelName,style:string,activeStyle:string}[] = [
   {

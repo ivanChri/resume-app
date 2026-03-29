@@ -1,7 +1,8 @@
 <script setup lang="ts">
- import { computed,defineAsyncComponent } from 'vue';
+ import { computed,defineAsyncComponent,onMounted } from 'vue';
  import SkeletonLoading from '../component/SkeletonLoading.vue';
- import type { themesProps } from '../utils/component.interface';
+ import { dataThemes } from '../utils/themesConfig/themes';
+ import type { themesProps } from '../utils/types/themes.interface';
  import { useUserStore } from '../store/user.store';
  import { useThemesStore } from '../store/themes.store';
  const asyncTest = defineAsyncComponent(() => import('./test.vue'))
@@ -9,7 +10,8 @@
  const themesStore = useThemesStore()
  const computedThemesConfig = computed(() => {
    return {
-    primaryFonts:themesStore.selectedPrimaryFontFamily,
+    primaryFontsFamily:themesStore.selectedPrimaryFontFamily,
+    secondaryFontsFamily:themesStore.selectedSecondaryFontFamily,
     fontsSize:themesStore.selectedFontsSize,
     lineHeight:themesStore.selectedLineHeight,
     supportedIcons:themesStore.themes?.supportedIcon!,
@@ -54,6 +56,9 @@
    language:userStore.language.filter((item) => item.languageName),
    addtionalInformation:userStore.additionalInformation
   }
+ })
+ onMounted(() => {
+   if(!themesStore.themes) themesStore.themes = dataThemes[0]
  })
 </script>
 

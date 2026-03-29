@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { dataThemes } from '../utils/themes';
-  import type { themesData } from '../utils/component.interface';
+  import { dataThemes } from '../utils/themesConfig/themes';
+  import type { themesData } from '../utils/types/themes.interface';
   import { useThemesStore } from '../store/themes.store';
   const themesStore = useThemesStore()
   function addSeletectedThemes(themes:themesData):void{
