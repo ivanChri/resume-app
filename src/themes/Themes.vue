@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" id="test">
+  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" id="main-themes">
     <header :class="style.header">
       <div v-if="themesData.supportedPhotos && data.header.photoPreview" class="img-container mb-3 p-1">
         <img :src="data.header.photoPreview" class="w-30 h-30 rounded-full border-1 border-orange-300"/>
@@ -85,9 +85,9 @@
       <!-- start skills section -->
        <div class="skills" v-if="data.skills.length">
          <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>
-         <div v-for="item in data.skills" :class="style.testSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.testSectionHeader">
-             <h4 :class="style.testSectionInfo">{{ item.name }} - {{ item.level }} </h4>
+         <div v-for="item in data.skills" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
+           <div :class="style.additionalSectionHeader">
+             <h4 :class="style.additionalSectionInfo">{{ item.name }} - {{ item.level }} </h4>
            </div>
          </div>
        </div>
@@ -141,9 +141,9 @@
       <!-- start language section -->
       <div class="language" v-if="data.language.length">
         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Language</h3>
-        <div v-for="item in data.language" :class="style.testSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-          <div :class="style.testSectionHeader">
-            <h4 :class="style.testSectionInfo">{{ item.languageName }} - {{ item.languageLevel }} </h4>
+        <div v-for="item in data.language" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
+          <div :class="style.additionalSectionHeader">
+            <h4 :class="style.additionalSectionInfo">{{ item.languageName }} - {{ item.languageLevel }} </h4>
           </div>
         </div>
       </div>

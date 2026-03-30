@@ -20,6 +20,7 @@
 </script>
 
 <template>
+  <Teleport to="body">
   <Transition
     enter-active-class="transition duration-300 ease-out"
     enter-from-class="opacity-0 scale-95"
@@ -32,12 +33,12 @@
         <div class="flex items-center gap-3 mb-4">
           <div class="text-3xl text-yellow-500">⚠️</div>
           <h2 class="text-lg font-semibold text-gray-800">
-           <slot name="header">Konfirmasi Penghapusan</slot>
+           <slot name="header">Confirm Deletion</slot>
           </h2>
         </div>
         <p class="text-sm text-gray-600 mb-6">
           <slot name="body">
-            Apakah Anda yakin ingin menghapus item ini? Tindakan ini tidak dapat dibatalkan.
+            Are you sure you want to delete this item? This action cannot be undone.
           </slot>
         </p>
         <div class="flex justify-end gap-3">
@@ -53,4 +54,5 @@
       </div>
     </div>
   </Transition>
+  </Teleport>
 </template>

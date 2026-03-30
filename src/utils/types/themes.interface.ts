@@ -77,7 +77,7 @@ export interface resumeThemeStyle {
   summary: string;
   summaryContent: string;
   sectionDesc: string;
-  testSectionItem: string;
-  testSectionHeader: string;
-  testSectionInfo: string;
+  additionalSectionItem: string;
+  additionalSectionHeader: string;
+  additionalSectionInfo: string;
 }

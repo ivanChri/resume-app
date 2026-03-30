@@ -5,7 +5,7 @@
  import type { themesProps } from '../utils/types/themes.interface';
  import { useUserStore } from '../store/user.store';
  import { useThemesStore } from '../store/themes.store';
- const asyncTest = defineAsyncComponent(() => import('./test.vue'))
+ const asyncTest = defineAsyncComponent(() => import('./Themes.vue'))
  const userStore = useUserStore()
  const themesStore = useThemesStore()
  const computedThemesConfig = computed(() => {

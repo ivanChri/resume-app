@@ -30,8 +30,8 @@ export function getOptionalDataResetHandler(name:string):void{
      return
   }
 }
-export function print(){
-  const container = document.getElementById('test') as HTMLDivElement
+export async function exportPdf():Promise<void>{
+  const container = document.getElementById('main-themes') as HTMLDivElement
   const opt = {
   margin:[10, 10, 10, 10],
   filename:'document.pdf',
@@ -52,6 +52,6 @@ export function print(){
     before: '.break-before-page',
     avoid: '.break-inside-avoid',
   }
- } as any;
-  html2pdf().set(opt).from(container).save();
+ } as any
+  await html2pdf().set(opt).from(container).save()
 }

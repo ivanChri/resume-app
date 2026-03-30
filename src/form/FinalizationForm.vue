@@ -14,7 +14,7 @@
  const genericConfig = genericConfigGenerator()
  const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
  const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
-const components:componentRegisrty = {
+ const components:componentRegisrty = {
   biodata:{
    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
    props:{},

@@ -7,7 +7,7 @@
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
   const asyncGenericList = defineAsyncComponent(() => import('./GenericList.vue'))
   const emit = defineEmits<{
-    (e:'printPdf'):void
+    (e:'printPdf'):Promise<void>
   }>()
   const alertRef = useTemplateRef('alertRef')
   const componentIndex = ref<number>(0)
@@ -106,8 +106,8 @@
 <template>
    <div class="@container flex flex-col gap-2 border-1 border-gray-400 rounded-md p-1">
      <asyncAlert ref="alertRef" @confirm="printPdf">
-       <template #header>Konfirmasi Pengunduhan</template>
-       <template #body>Beberapa Data Belum Lengkap Apakah Anda Yakin Untuk Mendownloadnya ?</template>
+       <template #header>Download Confirmation</template>
+       <template #body>Some Data Is Incomplete Are You Sure To Download It?</template>
        <template #confirmButtonName>Download</template>
       </asyncAlert>
      <div class="component-container min-h-[300px] md:min-h-[400px] lg:min-h-[300px] rounded-md p-1">

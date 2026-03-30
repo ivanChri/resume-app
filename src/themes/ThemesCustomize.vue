@@ -1,5 +1,6 @@
 <script setup lang="ts">
  import { ref,computed,useTemplateRef,defineAsyncComponent } from 'vue';
+ import SkeletonLoading from '../component/SkeletonLoading.vue';
  type device = 'mobile' | 'desktop'
  const props = defineProps<{
    deviceType:device
@@ -41,7 +42,14 @@
      </template>
     <template #default>
        <div class="themes-config-container p-1">
-          <component :is="components[componentIndex]"></component>
+        <Suspense>
+          <template #default>
+            <component :is="components[componentIndex]"></component>
+          </template>
+          <template #fallback>
+            <SkeletonLoading :rows="10" minHeight="400px"></SkeletonLoading>
+          </template>
+        </Suspense>
        </div>
     </template>
   </asyncModal>

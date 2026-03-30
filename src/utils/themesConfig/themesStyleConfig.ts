@@ -17,9 +17,9 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   summary: "text-justify max-w-[700px] break-all break-inside-avoid",
   summaryContent: "mb-6 max-w-full",
   sectionDesc: "text-slate-600 mt-2 max-w-[700px] break-all prose-p:m-0",
-  testSectionItem:"mb-4 last:mb-0 break-inside-avoid",
-  testSectionHeader:"flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1 gap-1",
-  testSectionInfo:"text-slate-500 sm:text-right uppercase"
+  additionalSectionItem:"mb-4 last:mb-0 break-inside-avoid",
+  additionalSectionHeader:"flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1 gap-1",
+  additionalSectionInfo:"text-slate-500 sm:text-right uppercase"
   },
   "twoColumn-professional":{
   base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:h-[297mm] print:shadow-none",
@@ -38,9 +38,9 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   sectionDesc: "text-slate-600 mt-2 break-all prose-p:m-0 max-w-full md:max-w-[700px]",
   summary: "bg-slate-50 p-5 border-l-4 border-indigo-500 rounded-r-sm",
   summaryContent: "text-slate-700 text-justify max-w-full break-all md:max-w-[700px] break-inside-avoid",
-  testSectionItem: "mb-8 last:mb-0 break-inside-avoid",
-  testSectionHeader: "mb-2",
-  testSectionInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
+  additionalSectionItem: "mb-8 last:mb-0 break-inside-avoid",
+  additionalSectionHeader: "mb-2",
+  additionalSectionInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
  },
  "creative": {
   base: "w-full max-w-[210mm] mx-auto my-0 md:my-6 p-5 sm:p-8 md:p-10 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-10 print:my-0",
@@ -59,8 +59,8 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   sectionHeaderTitle: "font-bold text-white tracking-tight uppercase",
   sectionHeaderInfo: "font-black text-orange-500 uppercase tracking-wider",
   sectionDesc: "text-slate-400 max-w-full md:max-w-[700px] break-all break-inside-avoid",
-  testSectionItem: "mb-3 last:mb-0 break-inside-avoid",
-  testSectionHeader: "mb-1",
-  testSectionInfo: "font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
+  additionalSectionItem: "mb-3 last:mb-0 break-inside-avoid",
+  additionalSectionHeader: "mb-1",
+  additionalSectionInfo: "font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
 }
 }
