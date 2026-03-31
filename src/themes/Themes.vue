@@ -29,11 +29,11 @@
             <span>{{ data.header.email }}</span>
           </div>
           <div v-for="item in data.socialMedia" :key="item.id" class="flex gap-2">
-            <IconRendered v-if="themesData.supportedIcons" :name="item.label" size="20" :icon-color-accents="themesData.iconColorAccents"></IconRendered>
+            <IconRendered v-if="themesData.supportedIcons" :name="item.label.toLowerCase()" size="20" :icon-color-accents="themesData.iconColorAccents"></IconRendered>
             <a rel="noopener" target="_blank" :href="item.link" class="no-underline">
-              {{ item.label }}
+             <span>{{ item.label }}</span>
             </a>
-          </div>
+          </div>  
         </div>
       </div>
       <div :class="style.additionalInfo" :style="{fontFamily:themesData.secondaryFontsFamily}">
@@ -153,18 +153,19 @@
 </template>
 
 <style scoped>
-#test .sectionDesc ul {
+#main-themes .sectionDesc ul {
   list-style-type: disc;
   margin-left: 1.25rem;
   margin-top: 0.5rem;
 }
 
-#test .no-underline {
+#main-themes .no-underline {
   text-decoration: none;
   transition: color 0.2s;
 }
 
-#test .no-underline:hover {
+#main-themes .no-underline:hover {
   text-decoration: underline;
+  text-decoration-color:gray;
 }
 </style>

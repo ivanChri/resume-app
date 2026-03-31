@@ -57,7 +57,7 @@ defineExpose({ open, close })
                 @click="close" 
                 class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gray-200 hover:bg-gray-300 font-medium transition-colors"
               >
-                Tutup
+                Close
               </button>
             </slot>
           </div>

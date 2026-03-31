@@ -34,7 +34,7 @@
   <h2 class="text-lg my-2">Additional Section</h2>
   <div class="button-container grid grid-cols-1 md:grid-cols-2 gap-3 my-3">
     <button v-for="(item,index) in additionalButtonLabel" 
-     class="p-2 border border-gray-400 rounded-md cursor-pointer text-left lg:text-center hover:bg-gray-300 disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
+     class="p-2 border border-gray-500 bg-gray-50 rounded-md cursor-pointer text-left lg:text-center hover:bg-gray-300 disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed"
      :key="index"
      @click="add(item.key,item.componentName)"
      :disabled="optionalComponentStatus[item.componentName as keyof optionalFinalizationComponentStatus]">

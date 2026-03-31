@@ -32,6 +32,9 @@ export function getOptionalDataResetHandler(name:string):void{
 }
 export async function exportPdf():Promise<void>{
   const container = document.getElementById('main-themes') as HTMLDivElement
+  const viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null
+  const originalContent = viewport?.content || "width=device-width, initial-scale=1"
+  if (viewport) viewport.content = "width=1200";
   const opt = {
   margin:[10, 10, 10, 10],
   filename:'document.pdf',
@@ -40,12 +43,12 @@ export async function exportPdf():Promise<void>{
     scale: 2,
     useCORS: true,
     logging: false,
-    windowWidth:1024,
   },
   jsPDF:{ 
     unit: 'mm', 
     format: 'a4', 
-    orientation: 'portrait' 
+    orientation: 'portrait',
+    windowWidth:1200
   },
   pagebreak: {
     mode: ['css', 'legacy'],
@@ -53,5 +56,13 @@ export async function exportPdf():Promise<void>{
     avoid: '.break-inside-avoid',
   }
  } as any
-  await html2pdf().set(opt).from(container).save()
+  try {
+    await html2pdf().set(opt).from(container).save()
+  } catch (error) {
+    console.error("Gagal export PDF:", error)
+  } finally {
+    if (viewport) {
+      viewport.content = originalContent
+    }
+  }
 }

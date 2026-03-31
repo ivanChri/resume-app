@@ -52,7 +52,7 @@
      <slot :item="item" :index="index"></slot>
     </Accordion>
      <div class="button-container p-1 mt-2">
-      <button @click="addItem" class="add-btn border p-1 rounded-md text-center ml-3">
+      <button @click="addItem" class="add-btn rounded-md p-2 border-2 cursor-pointer text-center text-white bg-blue-600 ml-2">
         <slot name="buttonName"></slot>
       </button>
     </div>

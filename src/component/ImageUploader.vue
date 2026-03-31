@@ -39,7 +39,7 @@
       <label for="file" class="border-1 border-white-300 p-2 rounded-md bg-blue-600 text-white cursor-pointer">upload photo</label>
       <input type="file" id="file" accept="image/*" @change="onFileChange"/>
     </div>
-    <div v-else class="not-supported-img-info border-1 rounded-md bg-gray-200 text-center p-1 text-red-700 font-bold">
+    <div v-else class="not-supported-img-info border-1 rounded-md bg-red-200 text-center p-1 text-red-600">
       <h3>This template does not support photos</h3>
     </div>
   </div>

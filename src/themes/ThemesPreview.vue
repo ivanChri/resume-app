@@ -65,7 +65,7 @@
 <template>
   <div class="@container preview-container w-full">
   <div class="bg-gray-300 rounded-md min-h-full p-4 lg:p-8 flex justify-center overflow-y-auto">
-    <div class="resume-container w-full md:w-[1000px] min-h-[800px] bg-white shadow-lg p-5">
+    <div class="resume-container w-full md:w-[1000px] min-h-[800px] bg-white shadow-lg p-2 md:p-5">
      <suspense>
        <template #default>
         <asyncTest

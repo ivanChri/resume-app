@@ -20,7 +20,7 @@
       return
     }
     isMobileDevice.value = false
-    await new Promise<void>((resolve) => setTimeout(resolve,2000))
+    await new Promise<void>((resolve) => setTimeout(resolve,2500))
     const element = document.getElementById('main-themes')
     if (element) await exportPdf()
   }catch (error){
@@ -39,7 +39,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col h-screen overflow-hidden">
+  <div class="flex flex-row h-screen overflow-hidden">
     <LoadingSpinnerOverlay :loading="isLoading"></LoadingSpinnerOverlay>
     <div class="flex flex-1 overflow-hidden">
       <div class="w-full lg:w-1/2 overflow-y-auto p-2 md:p-4 border-r border-gray-400 relative">
