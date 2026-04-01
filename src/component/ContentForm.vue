@@ -4,7 +4,7 @@
   import type { employmentTypes } from '../utils/types/form.interface';
   import { fieldConfig } from '../utils/config/fieldConfig';
   import MonthPicker from './MonthPicker.vue';
-  import Dropdow from './Dropdow.vue';
+  import Dropdown from './Dropdown.vue';
   type MonthPickerConfig = {
     disable:boolean,
     methods:(data:string) => void
@@ -108,7 +108,7 @@
       </div>
       <div v-if="showEmploymentType" class="dropdown container p-1 relative flex flex-col gap-2">
         <span class="font-semibold text-md">Employment Types</span>
-        <Dropdow v-model:selected-option="employmentTypesModel" :options="types"></Dropdow>
+        <Dropdown v-model:selected-option="employmentTypesModel" :options="types"></Dropdown>
       </div>
       <div v-if="showLinkInput" class="flex flex-col p-1 gap-2 link-container">
        <label class="font-semibold text-md" for="link">Link</label>

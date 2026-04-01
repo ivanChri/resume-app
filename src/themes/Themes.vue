@@ -20,11 +20,11 @@
           <h2 :class="style.name">{{ data.header.firstName }} {{ data.header.lastName }}</h2>
         </div>
         <div :class="style.contact" :style="{fontFamily:themesData.secondaryFontsFamily}">
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-wrap">
             <IconRendered v-if="themesData.supportedIcons && data.header.phone" name="phone" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
             <span>{{ data.header.phone }}</span>
           </div>
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-wrap">
             <IconRendered v-if="themesData.supportedIcons && data.header.email" name="email" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
             <span>{{ data.header.email }}</span>
           </div>
@@ -51,6 +51,20 @@
         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Addtional Details</h3>
         <p v-html="data.addtionalInformation" :style="{fontFamily:themesData.secondaryFontsFamily}"></p>
       </div>
+      <!-- start education section -->
+       <div class="education" v-if="data.education.length">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Education</h3>
+         <div v-for="item in data.education" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
+           <div :class="style.sectionHeader">
+             <h4 :class="style.sectionHeaderTitle">{{ item.degree }} at {{ item.schoolName }}</h4>
+             <h5 :class="style.sectionHeaderInfo">{{ item.city }}, {{ item.startDate }} - {{ item.endDate }}</h5>
+           </div>
+          <div :class="style.sectionDesc">
+           <p v-html="item.description"></p>
+          </div>
+         </div>
+       </div>
+      <!-- end education section -->
       <!-- experience section -->
       <div class="experience" v-if="data.experience.length > 0">
         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Work experience</h3>
@@ -68,20 +82,6 @@
         </div>
       </div>
       <!-- end experience section -->
-      <!-- start education section -->
-       <div class="education" v-if="data.education.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Education</h3>
-         <div v-for="item in data.education" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.sectionHeader">
-             <h4 :class="style.sectionHeaderTitle">{{ item.degree }} at {{ item.schoolName }}</h4>
-             <h5 :class="style.sectionHeaderInfo">{{ item.city }}, {{ item.startDate }} - {{ item.endDate }}</h5>
-           </div>
-          <div :class="style.sectionDesc">
-           <p v-html="item.description"></p>
-          </div>
-         </div>
-       </div>
-      <!-- end education section -->
       <!-- start skills section -->
        <div class="skills" v-if="data.skills.length">
          <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>

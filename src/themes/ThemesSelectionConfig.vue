@@ -9,13 +9,14 @@
 </script>
 
 <template>
-  <div class="themes-selection-container flex flex-wrap gap-2">
+  <div class="themes-selection-container flex flex-wrap gap-3 align-center">
     <div v-for="(item,index) in dataThemes"
-    class="p-1 border border-1 rounded-md cursor-pointer"
+    class="p-1 border-2 rounded-md cursor-pointer text-center p-2 bg-gray-200"
     :class="{ 'border-blue-600' : item.name === themesStore.themes?.name }"
     @click="addSeletectedThemes(item)"
     :key="index">
-       {{ item.name }}
+      <img :src="item.themesImgUrl" class="w-60 h-60 rounded-md" :alt="item.name"/>
+      <span class="text-bold">{{ item.name }}</span>
     </div>
   </div>
 </template>

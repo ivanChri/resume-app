@@ -48,7 +48,7 @@ export async function exportPdf():Promise<void>{
     unit: 'mm', 
     format: 'a4', 
     orientation: 'portrait',
-    windowWidth:1200
+    windowWidth:1024
   },
   pagebreak: {
     mode: ['css', 'legacy'],

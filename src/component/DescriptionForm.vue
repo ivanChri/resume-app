@@ -54,6 +54,24 @@
   sel?.removeAllRanges()
   sel?.addRange(range)
 }
+ function onPaste(event: ClipboardEvent): void {
+  event.preventDefault()
+  const text = event.clipboardData?.getData('text/plain') || ''
+  const target = event.target as HTMLDivElement
+  const currentText = target.innerText.trim();
+  const totalLengthAfterPaste = currentText.length + text.length
+  if (totalLengthAfterPaste <= props.wordLimit) {
+    document.execCommand('insertText', false, text) 
+    onUpdate(event); 
+  } else {
+    const availableSpace = props.wordLimit - currentText.length;
+    if (availableSpace > 0) {
+      const truncatedText = text.substring(0, availableSpace);
+      document.execCommand('insertText', false, truncatedText);
+      onUpdate(event);
+    }
+  }
+}
  onMounted(() => {
    if(descriptionModel.value){
      descriptionEditor.value!.innerHTML = descriptionModel.value
@@ -81,7 +99,7 @@
         <span>1List</span>
       </button>
     </div>
-    <div ref="descriptionEditor" @input="onUpdate" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 min-h-[220px]"  id="description" contenteditable="true"></div>
+    <div ref="descriptionEditor" @input="onUpdate" @paste="onPaste" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 min-h-[220px]"  id="description" contenteditable="true"></div>
     <div class="wordLength p-1 max-w-md">
        <span>{{ descriptionWordLength }} / {{ props.wordLimit }}</span>
     </div>

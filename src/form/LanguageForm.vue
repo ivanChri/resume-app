@@ -1,7 +1,7 @@
 <script setup lang="ts">
  import { useUserStore } from '../store/user.store';
  import AccordionList from '../component/AccordionList.vue';
- import Dropdow from '../component/Dropdow.vue';
+ import Dropdown from '../component/Dropdown.vue';
  import { generateRandomId } from '../utils/utility';
  import type { languageSpeakingLevel } from '../utils/types/form.interface';
  const store = useUserStore()
@@ -36,7 +36,7 @@
          <input type="text" v-model="item.languageName" id="languageName" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500" />
         </div>
         <div class="dropdown-container mt-8">
-          <Dropdow v-model:selected-option="item.languageLevel" :options="language"></Dropdow>   
+          <Dropdown v-model:selected-option="item.languageLevel" :options="language"></Dropdown>   
         </div>
       </div>
      </template>

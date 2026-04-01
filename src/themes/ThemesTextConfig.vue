@@ -1,7 +1,7 @@
 <script setup lang="ts">
  import { useThemesStore } from '../store/themes.store';
  import Slider from '../component/Slider.vue';
- import Dropdow from '../component/Dropdow.vue';
+ import Dropdown from '../component/Dropdown.vue';
  const themesStore = useThemesStore()
  const fontSizeLabel = ['Small','Normal','Large']
  const lineHeightStepsLabel = ['Compact','Normal','Relaxed','Spacious']
@@ -13,11 +13,11 @@
     <div class="dropdown-container flex flex-row gap-1">
       <div class="relative p-1 grow-1">
         <h3 class="mb-2">Primary Font</h3>
-        <Dropdow v-model:selected-option="themesStore.themesConfig.primaryFontFamily" :options="primaryFontFamilyLabel"></Dropdow>
+        <Dropdown v-model:selected-option="themesStore.themesConfig.primaryFontFamily" :options="primaryFontFamilyLabel"></Dropdown>
       </div>
       <div class="relative p-1 grow-1">
         <h3 class="mb-2">Secondary Font</h3>
-        <Dropdow v-model:selected-option="themesStore.themesConfig.secondaryFontFamily" :options="primaryFontFamilyLabel"></Dropdow>
+        <Dropdown v-model:selected-option="themesStore.themesConfig.secondaryFontFamily" :options="primaryFontFamilyLabel"></Dropdown>
       </div>
     </div>
     <div class="slider-container flex flex-col gap-2">
