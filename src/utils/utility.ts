@@ -40,9 +40,15 @@ export async function exportPdf():Promise<void>{
   filename:'document.pdf',
   image:{ type: 'jpeg', quality: 0.98 },
   html2canvas:{ 
-    scale: 2,
+    scale: 1.5,
     useCORS: true,
     logging: false,
+    onclone: (clonedDoc:any) => {
+      const styleTags = document.querySelectorAll('style');
+      styleTags.forEach((tag) => {
+        clonedDoc.head.appendChild(tag.cloneNode(true));
+      });
+    }
   },
   jsPDF:{ 
     unit: 'mm', 
@@ -57,6 +63,7 @@ export async function exportPdf():Promise<void>{
   }
  } as any
   try {
+    await new Promise<void>((resolve) => setTimeout(resolve,1500))
     await html2pdf().set(opt).from(container).save()
   } catch (error) {
     console.error("Gagal export PDF:", error)
