@@ -53,6 +53,7 @@ const rowStyle = (index:number) => {
     rgba(255, 255, 255, 0) 100%
   );
   animation: shimmer 1.5s infinite linear;
+  animation-delay: 0.3ms;
 }
 
 @keyframes shimmer {

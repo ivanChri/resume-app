@@ -49,7 +49,7 @@
             </Transition>
           </template>
           <template #fallback>
-            <SkeletonLoading :rows="15" minHeight="400px"></SkeletonLoading>
+            <SkeletonLoading :rows="12" minHeight="400px"></SkeletonLoading>
           </template>
         </Suspense>
        </div>
