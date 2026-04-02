@@ -42,12 +42,14 @@
      </template>
     <template #default>
        <div class="themes-config-container p-1">
-        <Suspense>
+        <Suspense :key="componentIndex">
           <template #default>
-            <component :is="components[componentIndex]"></component>
+            <Transition name="fade" mode="out-in">
+              <component :is="components[componentIndex]"></component>
+            </Transition>
           </template>
           <template #fallback>
-            <SkeletonLoading :rows="10" minHeight="400px"></SkeletonLoading>
+            <SkeletonLoading :rows="15" minHeight="400px"></SkeletonLoading>
           </template>
         </Suspense>
        </div>
@@ -55,3 +57,16 @@
   </asyncModal>
   </div>
 </template>
+
+<style scoped>
+ .fade-enter-active,
+ .fade-leave-active {
+   transition: opacity 0.3s ease;
+   transition-delay: 0.3s;
+ }
+
+ .fade-enter-from,
+ .fade-leave-to {
+   opacity: 0;
+ }
+</style>

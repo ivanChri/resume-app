@@ -111,18 +111,19 @@
        <template #confirmButtonName>Download</template>
       </asyncAlert>
      <div class="component-container min-h-[300px] md:min-h-[400px] lg:min-h-[300px] rounded-md p-1">
-       <Suspense @resolve="scrollToTop">
+       <Suspense :key="componentIndex" @resolve="scrollToTop">
         <template #default>
-         <component 
-          :key="components[componentIndex].name" 
-          :is="components[componentIndex].component"
-          v-bind="components[componentIndex].props"
-          @add="components[componentIndex].add"
-          @delete="components[componentIndex].delete">
-         </component>
+         <Transition name="fade" mode="out-in">
+          <component
+           :is="components[componentIndex].component"
+           v-bind="components[componentIndex].props"
+           @add="components[componentIndex].add"
+           @delete="components[componentIndex].delete">
+          </component>
+         </Transition>
        </template>
        <template #fallback>
-         <SkeletonLoading :rows="10" minHeight="400px"></SkeletonLoading>   
+         <SkeletonLoading :rows="15" minHeight="400px"></SkeletonLoading>   
        </template>
       </Suspense>
      </div>
@@ -139,3 +140,16 @@
      </div>
    </div>
 </template>
+
+<style scoped>
+ .fade-enter-active,
+ .fade-leave-active {
+   transition: opacity 0.3s ease;
+   transition-delay: 0.3s;
+ }
+
+ .fade-enter-from,
+ .fade-leave-to {
+   opacity: 0;
+ }
+</style>
