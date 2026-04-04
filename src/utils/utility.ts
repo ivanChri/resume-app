@@ -1,5 +1,6 @@
 import { useUserStore } from "../store/user.store";
 import html2pdf from "html2pdf.js";
+import html2canvasPro from 'html2canvas-pro';
 export function generateRandomId(length: number = 10): string {
   const randomPart = Math.random().toString(36).substring(2);
   if (randomPart.length < length) {
@@ -31,6 +32,8 @@ export function getOptionalDataResetHandler(name:string):void{
   }
 }
 export async function exportPdf():Promise<void>{
+  const oldContainers = document.querySelectorAll('.html2canvas-container')
+  oldContainers.forEach(el => el.remove())
   const container = document.getElementById('main-themes') as HTMLDivElement
   const viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null
   const originalContent = viewport?.content || "width=device-width, initial-scale=1"
@@ -39,23 +42,37 @@ export async function exportPdf():Promise<void>{
   margin:[10, 10, 10, 10],
   filename:'document.pdf',
   image:{ type: 'jpeg', quality: 0.98 },
-  html2canvas:{ 
+  html2canvas:{
+    canvas:null,
+    html2canvas: html2canvasPro,
     scale: 2,
+    windowWidth:1200,
     useCORS: true,
     logging: false,
     letterRendering: true,
+    allowTaint: false,
     onclone: (clonedDoc:any) => {
-      const styleTags = document.querySelectorAll('style');
-      styleTags.forEach((tag) => {
-        clonedDoc.head.appendChild(tag.cloneNode(true));
-      });
+      clonedDoc.documentElement.className = document.documentElement.className
+      clonedDoc.body.className = document.body.className
+      const styleElements = document.querySelectorAll('style')
+      styleElements.forEach(s => {
+       const newStyle = clonedDoc.createElement('style')
+       newStyle.innerHTML = s.innerHTML;
+       clonedDoc.head.appendChild(newStyle);
+      })
+      const clonedContainer = clonedDoc.getElementById('main-themes')
+      if (clonedContainer) {
+      const computedStyle = window.getComputedStyle(container)
+      clonedContainer.style.backgroundColor = computedStyle.backgroundColor
+      clonedContainer.style.color = computedStyle.color
+      clonedContainer.style.fontFamily = computedStyle.fontFamily
+     }
     }
   },
   jsPDF:{ 
     unit: 'mm', 
     format: 'a4', 
     orientation: 'portrait',
-    windowWidth:1024
   },
   pagebreak: {
     mode: ['css', 'legacy'],
@@ -65,6 +82,7 @@ export async function exportPdf():Promise<void>{
  } as any
   try {
     await document.fonts.ready
+    await new Promise<any>((resolve) => setTimeout(resolve,1500))
     await html2pdf().set(opt).from(container).save()
   } catch (error) {
     console.error("Gagal export PDF:", error)
@@ -72,5 +90,8 @@ export async function exportPdf():Promise<void>{
     if (viewport) {
       viewport.content = originalContent
     }
+    setTimeout(() => {
+      document.querySelectorAll('.html2canvas-container').forEach(el => el.remove())
+    }, 1000)
   }
 }
