@@ -6,6 +6,7 @@
  import AdditionalSection from '../component/AdditionalSection.vue';
  import { getOptionalDataResetHandler } from '../utils/utility';
  import type { componentRegisrty } from '../utils/types/component.interface';
+import SkeletonLoading from '../component/SkeletonLoading.vue';
  const activeIndex = ref<number | null>(null)
  const currentId = ref<string | null>(null)
  const alertRef = useTemplateRef('alertRef')
@@ -141,11 +142,18 @@
       :showToolbar="!item.isRequired"
       @on-toggle="toggle"
       @open-alert="openAlert">
-       <component 
-        :is="components[item.componentName].component" 
-        v-bind="components[item.componentName].props"
-        @add="components[item.componentName].add"
-        @delete="components[item.componentName].delete"></component>
+       <Suspense>
+         <template #default>
+           <component 
+           :is="components[item.componentName].component" 
+            v-bind="components[item.componentName].props"
+            @add="components[item.componentName].add"
+            @delete="components[item.componentName].delete"></component>
+         </template>
+         <template #fallback>
+           <SkeletonLoading></SkeletonLoading>
+         </template>
+       </Suspense>
       </Accordion>
     </div>
     </div>

@@ -5,7 +5,6 @@
   import { useUserValidationStore } from '../store/userValidation.store';
   import type { formControllerComponent } from '../utils/types/component.interface';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
-  const asyncGenericList = defineAsyncComponent(() => import('./GenericList.vue'))
   const emit = defineEmits<{
     (e:'printPdf'):Promise<void>
   }>()
@@ -25,7 +24,7 @@
    {
     name:'experience',
     buttonName:'Work Experience',
-    component:asyncGenericList,
+    component:defineAsyncComponent(() => import('./GenericList.vue')),
     props:genericConfig['experience'].props,
     add:genericConfig['experience'].emit.addData,
     delete:genericConfig['experience'].emit.deleteData
@@ -33,7 +32,7 @@
    {
     name:'education',
     buttonName:'Education',
-    component:asyncGenericList,
+    component:defineAsyncComponent(() => import('./GenericList.vue')),
     props:genericConfig['education'].props,
     add:genericConfig['education'].emit.addData,
     delete:genericConfig['education'].emit.deleteData
