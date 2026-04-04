@@ -103,7 +103,7 @@
 </script>
 
 <template>
-   <div class="@container flex flex-col gap-2 border-1 border-gray-400 rounded-md p-1">
+   <div class="@container form-container flex flex-col gap-2 border-1 border-gray-400 rounded-md p-1">
      <asyncAlert ref="alertRef" @confirm="printPdf">
        <template #header>Download Confirmation</template>
        <template #body>Some Data Is Incomplete Are You Sure To Download It?</template>

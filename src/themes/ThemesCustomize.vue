@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <div class="main-modal p-1">
+  <div class="customize-container main-modal p-1">
   <button @click="modalRef?.open()" class="border-1 cursor-pointer rounded-full w-12 h-12 font-bold lg:rounded-md lg:w-25 lg:h-auto p-2 border-gray-400 bg-blue-600 text-white">
     {{ cumpotedDeviceType }}
   </button>

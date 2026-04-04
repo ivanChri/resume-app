@@ -17,4 +17,4 @@ A client-side application inspired by the resume editor from resume.io.
 7. Pinia-plugin-persistedstate
 8. Tiptap
 
-Live Demo:https://loquacious-crisp-3e77ac.netlify.app/ 
+Live Demo:https://fanciful-crisp-1ebf08.netlify.app/

@@ -48,26 +48,9 @@ export async function exportPdf():Promise<void>{
     scale: 2,
     windowWidth:1200,
     useCORS: true,
-    logging: false,
+    logging: true,
     letterRendering: true,
     allowTaint: false,
-    onclone: (clonedDoc:any) => {
-      clonedDoc.documentElement.className = document.documentElement.className
-      clonedDoc.body.className = document.body.className
-      const styleElements = document.querySelectorAll('style')
-      styleElements.forEach(s => {
-       const newStyle = clonedDoc.createElement('style')
-       newStyle.innerHTML = s.innerHTML;
-       clonedDoc.head.appendChild(newStyle);
-      })
-      const clonedContainer = clonedDoc.getElementById('main-themes')
-      if (clonedContainer) {
-      const computedStyle = window.getComputedStyle(container)
-      clonedContainer.style.backgroundColor = computedStyle.backgroundColor
-      clonedContainer.style.color = computedStyle.color
-      clonedContainer.style.fontFamily = computedStyle.fontFamily
-     }
-    }
   },
   jsPDF:{ 
     unit: 'mm', 
@@ -82,7 +65,7 @@ export async function exportPdf():Promise<void>{
  } as any
   try {
     await document.fonts.ready
-    await new Promise<any>((resolve) => setTimeout(resolve,1500))
+    await new Promise<any>((resolve) => setTimeout(resolve,3000))
     await html2pdf().set(opt).from(container).save()
   } catch (error) {
     console.error("Gagal export PDF:", error)
