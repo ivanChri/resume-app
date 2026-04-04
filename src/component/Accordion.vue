@@ -35,7 +35,7 @@
       </Transition>
     </div>
     <div v-if="showToolbar" class="button-container p-1">
-      <button @click="$emit('openAlert',itemId)" class="delete-button p-1 text-center rounded-md border border-red-400 bg-red-300">Delete</button>
+      <button @click="$emit('openAlert',itemId)" class="delete-button cursor-pointer p-1 text-center rounded-md border border-red-400 bg-red-300">Delete</button>
     </div>
   </div>
 </template>

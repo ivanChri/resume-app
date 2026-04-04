@@ -115,11 +115,12 @@
         <input type="text" v-model="store.biodata.country" id="country" class="p-2 rounded-sm bg-slate-300 focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 w-full" />
       </div>
     </div>
-  <AddtionalBiodata 
-   v-model:dateOfBirthModel="store.biodata.dateOfBirth"
-   v-model:placeOfBirthModel="store.biodata.placeOfBirth"
-   v-model:postalCodeModal="store.biodata.postalCode"
-   v-model:drivingLicenseModel="store.biodata.drivingLicense"
-   v-model:nationalityModel="store.biodata.nationality"></AddtionalBiodata>
+    <AddtionalBiodata 
+      v-model:dateOfBirthModel="store.biodata.dateOfBirth"
+      v-model:placeOfBirthModel="store.biodata.placeOfBirth"
+      v-model:postalCodeModal="store.biodata.postalCode"
+      v-model:drivingLicenseModel="store.biodata.drivingLicense"
+      v-model:nationalityModel="store.biodata.nationality">
+    </AddtionalBiodata>
   </section>
 </template>

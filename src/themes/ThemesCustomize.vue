@@ -25,17 +25,17 @@
   <asyncModal ref="modalRef">
      <template #header>
         <button @click="componentIndex = 0" :class="[
-          'px-4 py-2 text-sm font-medium transition-all duration-200 -mb-px',
+          'px-4 py-2 text-sm cursor-pointer font-medium transition-all duration-200 -mb-px',
           componentIndex === 0 
           ? 'text-blue-600 border-b-2 border-blue-600' 
           : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent']">Preview</button>
        <button @click="componentIndex = 1" :class="[
-          'px-4 py-2 text-sm font-medium transition-all duration-200 -mb-px',
+          'px-4 py-2 text-sm cursor-pointer font-medium transition-all duration-200 -mb-px',
           componentIndex === 1
           ? 'text-blue-600 border-b-2 border-blue-600' 
           : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent']">Themes</button>
        <button  @click="componentIndex = 2" :class="[
-          'px-4 py-2 text-sm font-medium transition-all duration-200 -mb-px',
+          'px-4 py-2 text-sm cursor-pointer font-medium transition-all duration-200 -mb-px',
           componentIndex === 2
           ? 'text-blue-600 border-b-2 border-blue-600' 
           : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent']">Text</button>

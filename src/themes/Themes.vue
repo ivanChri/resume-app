@@ -82,16 +82,6 @@
         </div>
       </div>
       <!-- end experience section -->
-      <!-- start skills section -->
-       <div class="skills" v-if="data.skills.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>
-         <div v-for="item in data.skills" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.additionalSectionHeader">
-             <h4 :class="style.additionalSectionInfo">{{ item.name }} - {{ item.level }} </h4>
-           </div>
-         </div>
-       </div>
-      <!-- end skills section -->
       <!-- start course section -->
        <div class="course" v-if="data.course.length">
          <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Course</h3>
@@ -138,6 +128,16 @@
         </div>
       </div>
       <!-- end volunteering section -->
+       <!-- start skills section -->
+       <div class="skills" v-if="data.skills.length">
+         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>
+         <div v-for="item in data.skills" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
+           <div :class="style.additionalSectionHeader">
+             <h4 :class="style.additionalSectionInfo">{{ item.name }} - {{ item.level }} </h4>
+           </div>
+         </div>
+       </div>
+      <!-- end skills section -->
       <!-- start language section -->
       <div class="language" v-if="data.language.length">
         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Language</h3>

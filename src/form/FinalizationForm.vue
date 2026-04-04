@@ -1,5 +1,5 @@
 <script setup lang="ts">
- import { ref,defineAsyncComponent,useTemplateRef } from 'vue';
+ import { ref,defineAsyncComponent,useTemplateRef,onMounted } from 'vue';
  import { useComponentStore } from '../store/component.store';
  import { genericConfigGenerator } from '../utils/config/genericConfig';
  import Accordion from '../component/Accordion.vue';
@@ -112,6 +112,19 @@
  function toggle(index:number):void {
   activeIndex.value = activeIndex.value === index ? null : index;
  }
+ onMounted(() => {
+  [
+   'portofolio',
+   'courses',
+   'language',
+   'volunteering',
+   'additionalInformation'
+  ].forEach((item) => {
+    if(store.finalizationComponent.find((el) => el.componentName === item)){
+      additionalSectionRef.value?.toggleOptionalComponentStatus(item)
+    }
+  })
+ })
 </script>
 
 <template>

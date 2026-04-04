@@ -25,7 +25,6 @@ export interface finalizationComponentData {
 }
 
 export interface optionalFinalizationComponentStatus {
-  awards:boolean,
   portofolio:boolean,
   courses:boolean,
   language:boolean,

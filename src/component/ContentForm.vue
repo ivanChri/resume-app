@@ -116,7 +116,7 @@
       </div>
     </div>
     <div class="descriptionEditor-container col-span-1 md:col-span-2">
-      <label class="font-semibold text-md mb-1" for="description">Description</label>
+      <label class="font-semibold text-md mb-4" for="description">Description</label>
       <slot></slot>
     </div>
   </div>

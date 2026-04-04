@@ -2,7 +2,7 @@
 const props = defineProps({
   rows: {
     type: Number,
-    default: 2
+    default: 8
   },
   rowHeight: {
     type: String,

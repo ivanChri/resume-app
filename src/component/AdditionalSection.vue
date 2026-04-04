@@ -5,7 +5,6 @@
    (e:'add',key:string,name:string):void
  }>()
  const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
-  awards:false,
   portofolio:false,
   courses:false,
   language:false,

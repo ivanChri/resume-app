@@ -1,16 +1,17 @@
 <script setup lang="ts" generic="T extends {id:string}">
- import { computed } from 'vue';
+ import { computed,defineAsyncComponent } from 'vue';
  import { generateRandomId } from '../utils/utility';
  import type { genericProps } from '../utils/types/component.interface';
  import { labelConfig } from '../utils/config/fieldConfig';
  import AccordionList from '../component/AccordionList.vue';
+ import SkeletonLoading from '../component/SkeletonLoading.vue';
  import ContentForm from '../component/ContentForm.vue';
- import DescriptionForm from '../component/DescriptionForm.vue';
  const props = defineProps<genericProps<T>>()
  const emit = defineEmits<{
    (e:'add',data:T):void,
    (e:'delete',index:number):void
  }>()
+ const AsyncEditor = defineAsyncComponent(() => import('../component/TipTapEditor.vue'))
  const currentTitle = computed(() => labelConfig[props.parent].title || '')
  const currentButtonLabel = computed(() => labelConfig[props.parent].buttonLabel)
  const currentTitleKeys = computed(() => props.parent === 'education' ?  props.keys.sub : props.keys.title)
@@ -49,7 +50,14 @@
           v-model:end-date-model="item[keys.endDate!]"
           v-model:link-model="item[keys.link!]"
           v-model:employment-types-model="item[keys.employmentTypes!]">
-           <DescriptionForm :word-limit="300" v-model:description-model="item[keys.description]"></DescriptionForm>
+            <Suspense>
+              <template #default>
+                <AsyncEditor v-model="item[keys.description]" :word-limit="300"></AsyncEditor>
+              </template>
+              <template #fallback>
+                <SkeletonLoading></SkeletonLoading>
+              </template>
+            </Suspense>
           </ContentForm>
       </template>
       <template #buttonName>{{ currentButtonLabel }}</template>
