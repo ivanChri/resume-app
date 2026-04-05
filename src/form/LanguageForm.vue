@@ -2,7 +2,7 @@
  import { useUserStore } from '../store/user.store';
  import AccordionList from '../component/AccordionList.vue';
  import Dropdown from '../component/Dropdown.vue';
- import { generateRandomId } from '../utils/utility';
+ import { generateRandomId } from '../utils/utility/utility';
  import type { languageSpeakingLevel } from '../utils/types/form.interface';
  const store = useUserStore()
  const language:languageSpeakingLevel[] = ['Native Speaker','Highly Proficient','Very Good Command']

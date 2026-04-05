@@ -15,9 +15,9 @@
   const file = target.files?.[0]
   if(!file) return
   if(!props.allowedTypes.includes(file?.type!)){
-    alert('Format file tidak didukung. Hanya JPG dan PNG yang diperbolehkan.')
+    alert('File format not supported. Only JPG and PNG are allowed.')
   }else if(file?.size! > props.maxSize){
-    alert('ukuran gambar terlalu besar')
+    alert('image size is too large')
   }else{
     if (imageUrl.value) {
       URL.revokeObjectURL(imageUrl.value)

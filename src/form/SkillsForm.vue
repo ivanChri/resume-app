@@ -1,6 +1,6 @@
 <script setup lang="ts">
  import { useUserStore } from '../store/user.store';
- import { generateRandomId } from '../utils/utility';
+ import { generateRandomId } from '../utils/utility/utility';
  import AccordionList from '../component/AccordionList.vue';
  import type { levelName } from '../utils/types/form.interface';
  const store = useUserStore()

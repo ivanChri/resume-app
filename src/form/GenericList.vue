@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T extends {id:string}">
  import { computed,defineAsyncComponent } from 'vue';
- import { generateRandomId } from '../utils/utility';
+ import { generateRandomId } from '../utils/utility/utility';
  import type { genericProps } from '../utils/types/component.interface';
  import { labelConfig } from '../utils/config/fieldConfig';
  import AccordionList from '../component/AccordionList.vue';

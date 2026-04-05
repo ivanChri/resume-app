@@ -4,7 +4,7 @@
  import ThemesCustomize from './themes/ThemesCustomize.vue';
  import SkeletonLoading from './component/SkeletonLoading.vue';
  import LoadingSpinnerOverlay from './component/LoadingSpinnerOverlay.vue';
- import { exportPdf } from './utils/utility';
+ import { exportPdf } from './utils/utility/exportPdf';
  const asyncThemesPreview = defineAsyncComponent(() => import('./themes/ThemesPreview.vue'))
  const isLoading = ref<boolean>(false)
  const isMobileDevice = ref<boolean>(false)
@@ -16,13 +16,13 @@
   isLoading.value = true
   try {
     if(!isMobileDevice.value){
-      await exportPdf()
+      await exportPdf('main-themes')
       return
     }
     isMobileDevice.value = false
     await new Promise<void>((resolve) => setTimeout(resolve,2500))
     const element = document.getElementById('main-themes')
-    if (element) await exportPdf()
+    if (element) await exportPdf('main-themes')
   }catch (error){
     console.log(error)
   }finally{

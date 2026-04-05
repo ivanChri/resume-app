@@ -4,7 +4,7 @@
  import { genericConfigGenerator } from '../utils/config/genericConfig';
  import Accordion from '../component/Accordion.vue';
  import AdditionalSection from '../component/AdditionalSection.vue';
- import { getOptionalDataResetHandler } from '../utils/utility';
+ import { getOptionalDataResetHandler } from '../utils/utility/utility';
  import type { componentRegisrty } from '../utils/types/component.interface';
 import SkeletonLoading from '../component/SkeletonLoading.vue';
  const activeIndex = ref<number | null>(null)

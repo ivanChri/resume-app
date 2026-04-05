@@ -1,9 +1,9 @@
 import type { resumeThemeStyle } from "../types/themes.interface"
 export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   "professional-minimalist":{
-  base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:p-0",
+  base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:w-[210mm] print:p-2",
   header: "border-b-2 border-slate-900 pb-4 mb-6",
-  infoHeader: "flex flex-col md:flex-row justify-between items-center md:items-start gap-4",
+  infoHeader: "flex flex-col md:flex-row justify-between items-center md:items-start gap-4 print:flex-row print:items-start",
   name: "text-4xl font-bold tracking-tight text-slate-900 uppercase leading-none",
   jobTitle: "text-lg font-medium tracking-widest uppercase text-slate-500 mt-1",
   sectionTitle: "text-sm font-bold uppercase tracking-[0.2em] text-slate-900 border-l-4 border-slate-900 pl-3 mb-4",
@@ -22,7 +22,7 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   additionalSectionInfo:"text-slate-500 sm:text-right uppercase"
   },
   "twoColumn-professional":{
-  base: "w-full max-w-[210mm] mx-auto bg-white border-1 border-gray-400 shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:h-[297mm] print:shadow-none",
+  base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:shadow-none",
   header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
   infoHeader: "flex flex-col gap-2",
   jobTitle: "text-xs font-bold tracking-[0.25em] text-indigo-400 uppercase",
@@ -43,7 +43,7 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   additionalSectionInfo: "font-semibold text-indigo-600 mb-2 flex flex-wrap justify-between gap-2"
  },
  "creative": {
-  base: "w-full max-w-[210mm] print:w-[210mm] print:h-[297mm] mx-auto my-0 md:my-6 p-5 sm:p-8 md:p-10 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-10 print:my-0",
+  base: "w-full max-w-[210mm] print:w-[210mm] mx-auto my-0 md:my-6 p-5 sm:p-8 md:p-10 bg-slate-950 relative text-slate-200 shadow-2xl before:content-[''] before:absolute before:top-4 before:right-4 md:before:top-6 md:before:right-6 before:w-8 before:h-8 md:before:w-12 md:before:h-12 before:border-t-4 before:border-r-4 before:border-orange-500 after:content-[''] after:absolute after:bottom-4 after:left-4 md:after:bottom-6 md:after:left-6 after:w-8 after:h-8 md:after:w-12 md:after:h-12 after:border-b-4 after:border-l-4 after:border-orange-500 print:p-10 print:my-0",
   header: "relative mb-6 md:mb-8 border-b border-slate-800 pb-6",
   infoHeader: "flex flex-col gap-1",
   jobTitle: "text-[10px] sm:text-xs md:text-sm font-black tracking-[0.3em] md:tracking-[0.5em] uppercase text-orange-500",
