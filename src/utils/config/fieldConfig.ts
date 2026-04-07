@@ -90,29 +90,3 @@ export const fontsFamilyValue:{[key:string]:string} = {
   Montserrat:'var(--font-montserrat)',
   'Open-sans':'var(--font-opensans)'
 } as const
-export const descriptionButtonLabel = [
-  {
-    name:'bold',
-    label:'B'
-  },
-  {
-    name:'italic',
-    label:'I'
-  },
-  {
-    name:'underline',
-    label:'U'
-  },
-  {
-    name:'bulletList',
-    label:'.List'
-  },
-  {
-    name:'orderedList',
-    label:'1List'
-  },
-  // {
-  //   name:'link',
-  //   label:'<link/>'
-  // }
-]

@@ -14,8 +14,8 @@ export async function exportPdf(elementId: string):Promise<void>{
   if (!targetDoc) return
   let headHtml = ''
   document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-    headHtml += link.outerHTML;
-  });
+    headHtml += link.outerHTML
+  })
   document.querySelectorAll('style').forEach(style => {
     headHtml += style.outerHTML
   })
@@ -72,7 +72,7 @@ export async function exportPdf(elementId: string):Promise<void>{
         } else {
           setTimeout(checkReady, 100)
         }
-      };
+      }
       checkReady()
     })
     if (iframe.contentWindow?.document.fonts) {
@@ -81,7 +81,6 @@ export async function exportPdf(elementId: string):Promise<void>{
     await new Promise(resolve => setTimeout(resolve, 500))
     iframe.contentWindow?.focus()
     iframe.contentWindow?.print()
-
   } catch (err) {
     console.error("Gagal mencetak:", err)
   } finally {

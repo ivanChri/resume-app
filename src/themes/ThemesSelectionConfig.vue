@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="themes-selection-container flex flex-wrap gap-3 align-center">
+  <div class="themes-selection-container flex flex-wrap gap-4 justify-center">
     <div v-for="(item,index) in dataThemes"
     class="p-1 border-2 rounded-md cursor-pointer text-center p-2 bg-gray-200"
     :class="{ 'border-blue-600' : item.name === themesStore.themes?.name }"

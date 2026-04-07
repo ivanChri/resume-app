@@ -5,7 +5,7 @@
  import type { themesProps } from '../utils/types/themes.interface';
  import { useUserStore } from '../store/user.store';
  import { useThemesStore } from '../store/themes.store';
- const asyncTest = defineAsyncComponent(() => import('./Themes.vue'))
+ const asyncThemes = defineAsyncComponent(() => import('./Themes.vue'))
  const userStore = useUserStore()
  const themesStore = useThemesStore()
  const computedThemesConfig = computed(() => {
@@ -68,11 +68,12 @@
     <div class="resume-container w-full md:w-[1000px] min-h-[800px] bg-white shadow-lg p-2 md:p-5">
      <suspense>
        <template #default>
-        <asyncTest
+        <asyncThemes
          :data="data"
          :themes-data="computedThemesConfig"
          :style="themesStore.selectedThemes">
-        </asyncTest>
+           
+        </asyncThemes>
        </template>
        <template #fallback>
          <skeleton-loading :rows="20" min-height="400px"></skeleton-loading>

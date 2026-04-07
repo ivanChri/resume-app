@@ -1,7 +1,7 @@
 import type { resumeThemeStyle } from "../types/themes.interface"
 export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   "professional-minimalist":{
-  base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:w-[210mm] print:p-2",
+  base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:w-[210mm]",
   header: "border-b-2 border-slate-900 pb-4 mb-6",
   infoHeader: "flex flex-col md:flex-row justify-between items-center md:items-start gap-4 print:flex-row print:items-start",
   name: "text-4xl font-bold tracking-tight text-slate-900 uppercase leading-none",
@@ -22,8 +22,8 @@ export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
   additionalSectionInfo:"text-slate-500 sm:text-right uppercase"
   },
   "twoColumn-professional":{
-  base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:shadow-none",
-  header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
+  base: "w-full max-w-[210mm] mx-auto border-1 border-gray-400 bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:shadow-none",
+  header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 border-r-2 border-blue-800 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
   infoHeader: "flex flex-col gap-2",
   jobTitle: "text-xs font-bold tracking-[0.25em] text-indigo-400 uppercase",
   name: "text-2xl sm:text-3xl md:text-4xl print:text-3xl font-black uppercase tracking-tighter leading-none break-words",
