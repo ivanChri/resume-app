@@ -1,20 +1,19 @@
 <script setup lang="ts">
- import { ref,defineAsyncComponent,useTemplateRef,onMounted } from 'vue';
+ import { defineAsyncComponent,useTemplateRef,onMounted } from 'vue';
  import { useComponentStore } from '../store/component.store';
+ import { useUserValidationStore } from '../store/userValidation.store';
  import { genericConfigGenerator } from '../utils/config/genericConfig';
- import Accordion from '../component/Accordion.vue';
- import AdditionalSection from '../component/AdditionalSection.vue';
  import { getOptionalDataResetHandler } from '../utils/utility/utility';
  import type { componentRegisrty } from '../utils/types/component.interface';
-import SkeletonLoading from '../component/SkeletonLoading.vue';
- const activeIndex = ref<number | null>(null)
- const currentId = ref<string | null>(null)
- const alertRef = useTemplateRef('alertRef')
+ import SkeletonLoading from '../component/SkeletonLoading.vue';
+ import AccordionList from '../component/AccordionList.vue';
+ import AdditionalSection from '../component/AdditionalSection.vue';
  const additionalSectionRef = useTemplateRef('additionalSectionRef')
  const store = useComponentStore()
  const genericConfig = genericConfigGenerator()
+ const validationStore = useUserValidationStore()
+ const optionalStatusValue = ['portofolio','courses','language','volunteering','additionalInformation']
  const asyncGenericComponent = defineAsyncComponent(() => import('./GenericList.vue'))
- const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
  const components:componentRegisrty = {
   biodata:{
    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
@@ -93,13 +92,7 @@ import SkeletonLoading from '../component/SkeletonLoading.vue';
     order:length,
   })
    additionalSectionRef.value?.toggleOptionalComponentStatus(componentName)
- }
- function openAlert(itemId:string):void{
-   alertRef.value?.open()
-   currentId.value = itemId
- }
- function confirmDelete(){
-   if(currentId.value) deleteAdditionalComponent(currentId.value)
+   validationStore.addOptionalValidation(componentName)
  }
  function deleteAdditionalComponent(itemId:string):void{
    const index = store.finalizationComponent.findIndex((item) => item.id == itemId)
@@ -107,22 +100,15 @@ import SkeletonLoading from '../component/SkeletonLoading.vue';
    if(index !== -1){
     getOptionalDataResetHandler(currentComponentName)
     additionalSectionRef.value?.toggleOptionalComponentStatus(currentComponentName)
+    validationStore.removeOptionalValidation(index)
     store.finalizationComponent.splice(index,1)
    }
  }
- function toggle(index:number):void {
-  activeIndex.value = activeIndex.value === index ? null : index;
- }
  onMounted(() => {
-  [
-   'portofolio',
-   'courses',
-   'language',
-   'volunteering',
-   'additionalInformation'
-  ].forEach((item) => {
+  optionalStatusValue.forEach((item) => {
     if(store.finalizationComponent.find((el) => el.componentName === item)){
       additionalSectionRef.value?.toggleOptionalComponentStatus(item)
+      validationStore.addOptionalValidation(item)
     }
   })
  })
@@ -130,22 +116,15 @@ import SkeletonLoading from '../component/SkeletonLoading.vue';
 
 <template>
   <section class="finalization-container p-1 w-full flex flex-col gap-2 relative">
-    <asyncAlert ref="alertRef" @confirm="confirmDelete" @close-event="() => currentId = null"></asyncAlert>
-    <div class="content-container">
-    <div v-for="(item,index) in store.finalizationComponent" class="p-1">
-     <Accordion 
-      :key="item.key"
-      :title="item.key"
-      :item-id="item.id"
-      :item-index="index"
-      :active="index === activeIndex"
-      :showToolbar="!item.isRequired"
-      @on-toggle="toggle"
-      @open-alert="openAlert">
-       <Suspense>
+     <AccordionList 
+     :items="store.finalizationComponent" 
+      title-key="key"
+      @delete="deleteAdditionalComponent">
+      <template #default="{item}">
+        <Suspense>
          <template #default>
            <component 
-           :is="components[item.componentName].component" 
+           :is="components[item.componentName].component"
             v-bind="components[item.componentName].props"
             @add="components[item.componentName].add"
             @delete="components[item.componentName].delete"></component>
@@ -154,9 +133,8 @@ import SkeletonLoading from '../component/SkeletonLoading.vue';
            <SkeletonLoading></SkeletonLoading>
          </template>
        </Suspense>
-      </Accordion>
-    </div>
-    </div>
+      </template>
+    </AccordionList>
     <div class="footer">
       <AdditionalSection ref="additionalSectionRef" @add="addOptionalComponent"></AdditionalSection>
     </div>

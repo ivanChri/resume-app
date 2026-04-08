@@ -27,7 +27,8 @@ const editor = useEditor({
     }),
   ],
   onUpdate: ({ editor }) => {
-    if(editor) emit('update:modelValue', editor.getHTML())
+    const content = editor.isEmpty ? '' : editor.getHTML()
+    emit('update:modelValue', content)
   },
   editorProps: {
     attributes: {

@@ -3,11 +3,12 @@
  import Accordion from './Accordion.vue';
  interface items {
   id: string,
+  isRequired?:boolean
   [key: string]: any
 }
  const props = defineProps<{
    items:items[]
-   titleKey:string
+   titleKey:keyof items
  }>()
  const emit = defineEmits<{
    (e:'add'):void
@@ -22,8 +23,8 @@
    activeIndex.value = props.items.length - 1
  }
  function openAlert(itemId:string):void{
-   alertRef.value?.open()
    currentId.value = itemId
+   if(alertRef.value) alertRef.value.open()
  }
  function confirmDelete():void{
   if(currentId.value) emit('delete',currentId.value)
@@ -45,13 +46,12 @@
      :itemId="item.id"
      :itemIndex="index"
      :active="index === activeIndex"
-     :showToolbar="true"
+     :showToolbar="!item['isRequired']"
      @onToggle="toggle"
-     @openAlert="openAlert"
-    >
-     <slot :item="item" :index="index"></slot>
+     @openAlert="openAlert">
+      <slot :item="item" :index="index"></slot>
     </Accordion>
-     <div class="button-container p-1 mt-2">
+     <div v-if="$slots.buttonName" class="footer p-1 mt-2">
       <button @click="addItem" class="add-btn rounded-md p-2 border-2 cursor-pointer text-center text-white bg-blue-600 ml-2">
         <slot name="buttonName"></slot>
       </button>

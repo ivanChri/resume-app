@@ -86,7 +86,7 @@
     }
   }
   function checkData():void{
-   if(!validation.validateAllData){
+   if(!validation.validateAllData()){
     alertRef.value?.open()
    }else{
     printPdf()
