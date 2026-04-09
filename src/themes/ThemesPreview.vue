@@ -72,7 +72,6 @@
          :data="data"
          :themes-data="computedThemesConfig"
          :style="themesStore.selectedThemes">
-           
         </asyncThemes>
        </template>
        <template #fallback>

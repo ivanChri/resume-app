@@ -9,7 +9,7 @@
  import AccordionList from '../component/AccordionList.vue';
  import AdditionalSection from '../component/AdditionalSection.vue';
  const additionalSectionRef = useTemplateRef('additionalSectionRef')
- const store = useComponentStore()
+ const componentStore = useComponentStore()
  const genericConfig = genericConfigGenerator()
  const validationStore = useUserValidationStore()
  const optionalStatusValue = ['portofolio','courses','language','volunteering','additionalInformation']
@@ -83,30 +83,23 @@
   }
 }
  function addOptionalComponent(key:string,componentName:string):void{
-  const length = store.finalizationComponent.length + 1
-  store.finalizationComponent.push({
-    id:`component-${length}`,
-    key,
-    componentName,
-    isRequired:false,
-    order:length,
-  })
+   componentStore.addComponent(key,componentName)
    additionalSectionRef.value?.toggleOptionalComponentStatus(componentName)
    validationStore.addOptionalValidation(componentName)
  }
  function deleteAdditionalComponent(itemId:string):void{
-   const index = store.finalizationComponent.findIndex((item) => item.id == itemId)
-   const currentComponentName = store.finalizationComponent[index].componentName
+   const index = componentStore.finalizationComponent.findIndex((item) => item.id == itemId)
+   const currentComponentName = componentStore.finalizationComponent[index].componentName
    if(index !== -1){
     getOptionalDataResetHandler(currentComponentName)
     additionalSectionRef.value?.toggleOptionalComponentStatus(currentComponentName)
     validationStore.removeOptionalValidation(index)
-    store.finalizationComponent.splice(index,1)
+    componentStore.deleteComponent(index)
    }
  }
  onMounted(() => {
   optionalStatusValue.forEach((item) => {
-    if(store.finalizationComponent.find((el) => el.componentName === item)){
+    if(componentStore.finalizationComponent.find((el) => el.componentName === item)){
       additionalSectionRef.value?.toggleOptionalComponentStatus(item)
       validationStore.addOptionalValidation(item)
     }
@@ -117,17 +110,18 @@
 <template>
   <section class="finalization-container p-1 w-full flex flex-col gap-2 relative">
      <AccordionList 
-     :items="store.finalizationComponent" 
+     :items="componentStore.finalizationComponent"
+     :ss="validationStore.currentValidationValue"
       title-key="key"
       @delete="deleteAdditionalComponent">
       <template #default="{item}">
         <Suspense>
          <template #default>
-           <component 
+          <component 
            :is="components[item.componentName].component"
-            v-bind="components[item.componentName].props"
-            @add="components[item.componentName].add"
-            @delete="components[item.componentName].delete"></component>
+           v-bind="components[item.componentName].props"
+           @add="components[item.componentName].add"
+           @delete="components[item.componentName].delete"></component>
          </template>
          <template #fallback>
            <SkeletonLoading></SkeletonLoading>

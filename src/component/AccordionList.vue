@@ -3,7 +3,7 @@
  import Accordion from './Accordion.vue';
  interface items {
   id: string,
-  isRequired?:boolean
+  isRequired?:boolean,
   [key: string]: any
 }
  const props = defineProps<{
@@ -40,18 +40,18 @@
 <template>
   <section class="accrodion-list w-full flex flex-col gap-1">
     <asyncAlert ref="alertRef" @confirm="confirmDelete" @closeEvent="() => currentId = null"></asyncAlert>
-    <Accordion v-for="(item,index) in props.items"
-     :key="item.id"
-     :title="item[titleKey]"
-     :itemId="item.id"
-     :itemIndex="index"
-     :active="index === activeIndex"
-     :showToolbar="!item['isRequired']"
-     @onToggle="toggle"
-     @openAlert="openAlert">
-      <slot :item="item" :index="index"></slot>
+      <Accordion v-for="(item,index) in items"
+       :key="item.id"
+       :title="item[titleKey]"
+       :itemId="item.id"
+       :itemIndex="index"
+       :active="index === activeIndex"
+       :showToolbar="!item['isRequired']"
+       @onToggle="toggle"
+       @openAlert="openAlert">
+        <slot :item="item" :index="index"></slot>
     </Accordion>
-     <div v-if="$slots.buttonName" class="footer p-1 mt-2">
+    <div v-if="$slots.buttonName" class="footer p-1 mt-2">
       <button @click="addItem" class="add-btn rounded-md p-2 border-2 cursor-pointer text-center text-white bg-blue-600 ml-2">
         <slot name="buttonName"></slot>
       </button>

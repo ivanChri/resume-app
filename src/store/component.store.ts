@@ -46,7 +46,24 @@ export const useComponentStore = defineStore('component',() => {
      order:6
     }
   ].sort((a,b) => a.order - b.order))
-  return {finalizationComponent}
+  function addComponent(key:string,componentName:string):void{
+   const length = finalizationComponent.value.length + 1
+   finalizationComponent.value.push({
+     id:`component-${length}`,
+     key,
+     componentName,
+     isRequired:false,
+     order:length,
+   })
+  }
+  function deleteComponent(index:number):void{
+    finalizationComponent.value.splice(index,1)
+  }
+  return {
+    finalizationComponent,
+    addComponent,
+    deleteComponent
+  }
 },{
   persist:{
     key:'component-store'
