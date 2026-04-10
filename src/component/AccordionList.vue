@@ -1,13 +1,15 @@
 <script setup lang="ts">
  import { ref,onMounted,useTemplateRef,defineAsyncComponent } from 'vue';
+ import type { componentDataValidation } from '../utils/types/component.interface';
  import Accordion from './Accordion.vue';
  interface items {
   id: string,
   isRequired?:boolean,
   [key: string]: any
-}
+ }
  const props = defineProps<{
    items:items[]
+   computedComponentStatus?:Record<string,componentDataValidation>
    titleKey:keyof items
  }>()
  const emit = defineEmits<{
@@ -32,6 +34,11 @@
  function toggle (index:number):void {
    activeIndex.value = activeIndex.value === index ? null : index
  }
+ function find(key:string):componentDataValidation | undefined{
+   if(props.computedComponentStatus){
+    return props.computedComponentStatus[key]
+   }
+ }
  onMounted(() => {
    if(!props.items.length) addItem()
  })
@@ -47,6 +54,9 @@
        :itemIndex="index"
        :active="index === activeIndex"
        :showToolbar="!item['isRequired']"
+       :statusBorder="computedComponentStatus ? 
+        (find(item.id)?.data?.value ? 'border-green-600' : 'border-red-600') : 
+        'border-gray-50'"
        @onToggle="toggle"
        @openAlert="openAlert">
         <slot :item="item" :index="index"></slot>

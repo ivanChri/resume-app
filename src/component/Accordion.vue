@@ -5,6 +5,7 @@
     itemIndex:number
     active:boolean
     showToolbar:boolean
+    statusBorder:string
   }>()
   defineEmits<{
     (e:'onToggle',index:number):void
@@ -13,7 +14,7 @@
 </script>
 
 <template>
-   <div class="w-full rounded-lg mb-2 flex flex-col gap-2 border border-gray-400">
+   <div :class='["w-full rounded-lg mb-2 flex flex-col gap-2 border border-gray-400",statusBorder]'>
     <div class="border w-full border-gray-200 rounded-lg overflow-hidden">
       <button
         class="w-full flex justify-between items-center p-4 text-left font-medium bg-gray-50 hover:bg-gray-100 cursor-pointer"

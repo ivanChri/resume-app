@@ -4,42 +4,42 @@ import type { finalizationComponentData } from "../utils/types/component.interfa
 export const useComponentStore = defineStore('component',() => {
   const finalizationComponent = ref<finalizationComponentData[]>([
     {
-     id:'component-1',
+     id:'biodata',
      key:'Biodata',
      componentName:'biodata',
      isRequired:true,
      order:1,
     },
     {
-     id:'component-2',
+     id:'summary',
      key:'Profesinal Summary',
      componentName:'summary',
      isRequired:true,
      order:2,
     },
     {
-     id:'component-3',
+     id:'education',
      key:'Education',
      componentName:'education',
      isRequired:true,
      order:3,
     },
     {
-     id:'component-4',
+     id:'experience',
      key:'Working Experience',
      componentName:'experience',
      isRequired:true,
      order:4,
     },
     {
-     id:'component-5',
+     id:'socialMedia',
      key:'Website & Social Links',
      componentName:'socialMedia',
      isRequired:true,
      order:5
     },
     {
-     id:'component-6',
+     id:'skills',
      key:'Skills',
      componentName:'skills',
      isRequired:true,
@@ -49,7 +49,7 @@ export const useComponentStore = defineStore('component',() => {
   function addComponent(key:string,componentName:string):void{
    const length = finalizationComponent.value.length + 1
    finalizationComponent.value.push({
-     id:`component-${length}`,
+     id:componentName,
      key,
      componentName,
      isRequired:false,

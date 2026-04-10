@@ -11,6 +11,7 @@ function toggleDropdown():void{
 }
 function onUpdate(optionValue:string):void{
   selectedOptionModel.value = optionValue
+  console.log(optionValue)
   toggleDropdown()
 }
 </script>

@@ -1,5 +1,5 @@
 import type { resumeThemeStyle } from "../types/themes.interface"
-export const themesStyleConfig:{[key:string]:resumeThemeStyle} = {
+export const themesStyleConfig:Record<string,resumeThemeStyle> = {
   "professional-minimalist":{
   base: "mx-auto p-8 bg-white text-slate-800 shadow-sm w-full max-w-[210mm] box-border print:w-[210mm]",
   header: "border-b-2 border-slate-900 pb-4 mb-6",

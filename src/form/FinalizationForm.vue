@@ -100,8 +100,8 @@
  onMounted(() => {
   optionalStatusValue.forEach((item) => {
     if(componentStore.finalizationComponent.find((el) => el.componentName === item)){
-      additionalSectionRef.value?.toggleOptionalComponentStatus(item)
       validationStore.addOptionalValidation(item)
+      additionalSectionRef.value?.toggleOptionalComponentStatus(item)
     }
   })
  })
@@ -111,8 +111,8 @@
   <section class="finalization-container p-1 w-full flex flex-col gap-2 relative">
      <AccordionList 
      :items="componentStore.finalizationComponent"
-     :ss="validationStore.currentValidationValue"
       title-key="key"
+      :computed-component-status="validationStore.statusMap"
       @delete="deleteAdditionalComponent">
       <template #default="{item}">
         <Suspense>

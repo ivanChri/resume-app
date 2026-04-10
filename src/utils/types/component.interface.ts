@@ -1,5 +1,4 @@
-import type { Component } from "vue";
-
+import type { Component,ComputedRef } from "vue";
 export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'volunteering'
 
 interface formComponent {
@@ -15,6 +14,11 @@ export interface formControllerComponent extends formComponent {
   name:string,
   buttonName:string
 }
+
+export interface componentDataValidation {
+  name:string,
+  data:ComputedRef<boolean>
+}  
 
 export interface finalizationComponentData {
   id:string,

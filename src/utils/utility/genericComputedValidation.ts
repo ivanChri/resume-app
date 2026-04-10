@@ -13,7 +13,7 @@ export function validateArrayTypeData<T extends object>(getter : () => T[]):Comp
     if(!Array.isArray(data) || !data.length) return false
     return data.every((el) => {
      const val = Object.values(el)
-     return val.every((value) => value !== '' && !regex.test(String(value)))
+     return val.every((value) => value && !regex.test(String(value)))
     })
     }catch{
       return false
