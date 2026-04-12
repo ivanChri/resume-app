@@ -16,7 +16,7 @@
    activeStyle:'bg-yellow-600'
   },
   {
-   level:'Experienced',
+   level:'Advanced',
    style:'border-red-400 bg-red-100 hover:bg-red-300',
    activeStyle:'bg-red-600'
   },

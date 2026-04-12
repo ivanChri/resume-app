@@ -5,7 +5,7 @@
  import { generateRandomId } from '../utils/utility/utility';
  import type { languageSpeakingLevel } from '../utils/types/form.interface';
  const store = useUserStore()
- const language:languageSpeakingLevel[] = ['Native Speaker','Highly Proficient','Very Good Command']
+ const language:languageSpeakingLevel[] = ['Beginner','Intermediate','Advanced','Fluent' ,'Native']
  function addLanguage():void{
     store.language.push({
      id:generateRandomId(),

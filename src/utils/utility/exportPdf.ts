@@ -54,6 +54,9 @@ export async function exportPdf(elementId: string):Promise<void>{
           body, h1, h2, h3, h4, span, p {
             visibility: visible !important;
           }
+          .sectionDesc p{
+            word-break: normal !important;
+          }
         </style>
       </head>
       <body>

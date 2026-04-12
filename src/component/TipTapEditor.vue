@@ -32,7 +32,7 @@ const editor = useEditor({
   },
   editorProps: {
     attributes: {
-      class: 'focus:outline-none',
+      class: 'prose prose-slate max-w-none focus:outline-none',
     },
   },
 })
@@ -75,7 +75,7 @@ const editor = useEditor({
     </div>
     <editor-content 
       :editor="editor" 
-      class="p-4 min-h-[200px] prose prose-slate max-w-none focus:outline-none"
+      class="p-4 min-h-[200px]"
     />
     <div v-if="editor" class="p-2 border-t border-gray-200 text-sm text-gray-500 flex justify-end gap-4">
       <span :class="{'text-red-500 font-bold': editor.storage.characterCount.characters() >= wordLimit}">

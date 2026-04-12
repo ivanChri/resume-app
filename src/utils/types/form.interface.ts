@@ -43,14 +43,14 @@ export interface socialMedia {
   link:string,
 }
 
-export type levelName = 'Beginner' | 'Intermediate' | 'Experienced' | 'Expert'
+export type levelName = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'
 export interface skills {
   id:string,
   name:string,
   level:levelName | null,
 }
 
-export type languageSpeakingLevel = 'Native Speaker' | 'Highly Proficient' | 'Very Good Command' 
+export type languageSpeakingLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'Fluent' | 'Native'
 export interface language {
   id:string,
   languageName:string,
