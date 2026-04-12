@@ -52,7 +52,7 @@
           v-model:employment-types-model="item[keys.employmentTypes!]">
             <Suspense>
               <template #default>
-                <AsyncEditor v-model="item[keys.description]" :word-limit="300"></AsyncEditor>
+                <AsyncEditor v-model="item[keys.description]" :word-limit="350"></AsyncEditor>
               </template>
               <template #fallback>
                 <SkeletonLoading></SkeletonLoading>

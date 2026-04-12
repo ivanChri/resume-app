@@ -8,7 +8,7 @@
  }>()
  const currentYear = ref<number>(new Date().getFullYear())
  const selectedMonth = ref<string>('')
- const months = ['Jan','Feb','Mar','Apr','May','Sept','Oct','Nov','Dec']
+ const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
  const selectedOption = computed<string>(() => {
    if(!selectedMonth.value && currentYear.value) return ''
    return `${selectedMonth.value}, ${currentYear.value}`
