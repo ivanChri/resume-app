@@ -38,8 +38,8 @@ export const useUserStore = defineStore('user',() => {
   const courses = ref<course[]>([])
   const language = ref<language[]>([])
   const volunteering = ref<volunteering[]>([])
-  const setPhotoPreview = (file:File):void => {
-    biodata.value.photoPreview = URL.createObjectURL(file)
+  const setPhotoPreview = (data:string):void => {
+    biodata.value.photoPreview = data
   }
   const resetAdditionalInformationData = () => additionalInformation.value = ''
   const resetSkillsData = () => skills.value.length = 0

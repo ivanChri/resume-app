@@ -14,18 +14,20 @@
  }
  async function downloadPdf():Promise<void>{
   isLoading.value = true
+  const originalDeviceState = isMobileDevice.value
   try {
-    if(!isMobileDevice.value){
+    if(originalDeviceState){
       await exportPdf('main-themes')
       return
     }
     isMobileDevice.value = false
-    await new Promise<void>((resolve) => setTimeout(resolve,2500))
+    await new Promise<void>((resolve) => setTimeout(resolve,500))
     const element = document.getElementById('main-themes')
     if (element) await exportPdf('main-themes')
   }catch (error){
     console.log(error)
   }finally{
+    isMobileDevice.value = originalDeviceState
     isLoading.value = false
   }
  }

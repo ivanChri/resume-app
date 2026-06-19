@@ -1,4 +1,5 @@
-export const fieldConfig = {
+import type { fieldConfigData } from "../types/component.interface"
+export const fieldConfig:Record<string,fieldConfigData> = {
    experience: {
     title:'JobTitle',
     sub:'Employer',
@@ -82,6 +83,19 @@ export const labelConfig = {
     buttonLabel:'Add Volunteering'
    }
  } as const
+export function getFieldConfig(parent:string):fieldConfigData{
+    return {
+     title:fieldConfig[parent].title || 'Title',
+     sub:fieldConfig[parent].sub || 'Subtitle',
+     labelName:fieldConfig[parent].labelName,
+     useMonthPicker:fieldConfig[parent].useMonthPicker,
+     useMonthPickerStatus:fieldConfig[parent].useMonthPickerStatus,
+     statusLabel:fieldConfig[parent].statusLabel,
+     showCity:fieldConfig[parent].showCity,
+     showLink:fieldConfig[parent].showLink,
+     showEmploymentType:fieldConfig[parent].showEmploymentType
+   }
+}
 export const fontSizeValue = ['text-xs','text-base','text-lg'] as const
 export const lineHeightValue = ['leading-[1.3]','leading-[1.5]','leading-[1.7]','leading-[1.9]'] as const
 export const fontsFamilyValue:Record<string,string> = {

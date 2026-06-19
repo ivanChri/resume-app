@@ -16,8 +16,8 @@
     errorMessage:'',
     valid:null
   })
-  function setUserPhotoPreview(file:File):void{
-    store.setPhotoPreview(file)
+  function setUserPhotoPreview(data:string):void{
+    store.setPhotoPreview(data)
   }
   function validateEmail(email:string):void{
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
@@ -36,20 +36,20 @@
     if (!/^\+?\d+$/.test(cleaned)){
       store.biodata.phone = ''
       tempPhoneNumber.valid = false
-      tempPhoneNumber.errorMessage = 'Nomor hanya boleh berisi angka'
+      tempPhoneNumber.errorMessage = 'Numbers can only contain digits'
       return
     }
     const digitCount = cleaned.startsWith('+') ? cleaned.length - 1 : cleaned.length
     if(digitCount < 7){
       store.biodata.phone = ''
       tempPhoneNumber.valid = false
-      tempPhoneNumber.errorMessage = 'Nomor terlalu pendek (min. 7 digit)'
+      tempPhoneNumber.errorMessage = 'Number is too short (min. 7 digits)'
       return
     }
     if(digitCount > 15){
       store.biodata.phone = ''
       tempPhoneNumber.valid = false
-      tempPhoneNumber.errorMessage = 'Nomor terlalu panjang (maks. 15 digit)'
+      tempPhoneNumber.errorMessage = 'Number is too long (max. 15 digits)'
       return
     }
     tempPhoneNumber.valid = true

@@ -46,7 +46,11 @@
 
 <template>
   <section class="accrodion-list w-full flex flex-col gap-1">
-    <asyncAlert ref="alertRef" @confirm="confirmDelete" @closeEvent="() => currentId = null"></asyncAlert>
+    <asyncAlert 
+     ref="alertRef"
+     :showConfirmButton="true"
+     @confirm="confirmDelete" 
+     @closeEvent="() => currentId = null"></asyncAlert>
       <Accordion v-for="(item,index) in items"
        :key="item.id"
        :title="item[titleKey]"

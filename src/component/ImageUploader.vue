@@ -1,38 +1,54 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref,defineAsyncComponent,useTemplateRef } from 'vue';
   const props = defineProps<{
     maxSize:number,
     allowedTypes:string[],
     storedPreviewImage:string | null,
     supportedImgPreview:boolean
   }>()
+  const asyncAlert = defineAsyncComponent(() => import('./Alert.vue'))
+  const alertRef = useTemplateRef('alertRef')
   const emit = defineEmits<{
-   (e:'onSubmit',file:File):void
+   (e:'onSubmit',data:string):void
   }>()
   const imageUrl = ref<string | null>(props.storedPreviewImage)
+  const alertMessage = ref<string>('')
   function onFileChange(event:Event):void {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
   if(!file) return
-  if(!props.allowedTypes.includes(file?.type!)){
-    alert('File format not supported. Only JPG and PNG are allowed.')
-  }else if(file?.size! > props.maxSize){
-    alert('image size is too large')
-  }else{
-    if (imageUrl.value) {
-      URL.revokeObjectURL(imageUrl.value)
-    }
-    imageUrl.value = URL.createObjectURL(file!)
-    emit('onSubmit',file!)
+  if(!props.allowedTypes.includes(file.type)){
+    openAlert('File format not supported. Only JPG and PNG are allowed!')
+    return
+  }else if(file.size > props.maxSize){
+    openAlert('image size is too large!')
+    return
   }
+  const reader = new FileReader()
+  reader.onload = (e:ProgressEvent<FileReader>) => {
+    const base64Value = e.target?.result!
+    if(typeof base64Value === 'string'){
+      imageUrl.value = base64Value
+      emit('onSubmit',base64Value)
+    }
+  }
+  reader.readAsDataURL(file)
   target.value = ''
-}
+ }
+ function openAlert(message:string):void{
+    alertMessage.value = message
+    alertRef.value?.open()
+ }
 </script>
 
 <template>
   <div class="image-container p-1 flex gap-4 items-center">
-    <div class="image-container rounded-md border-2" :class="{'text-gray-300':!supportedImgPreview}">
-      <img v-if="imageUrl" :src="imageUrl" class="object-cover w-21 h-21"/>
+    <asyncAlert ref="alertRef" :show-confirm-button="false">
+      <template #header>Error</template>
+      <template #body>{{ alertMessage }}</template>
+    </asyncAlert>
+    <div class="image-container rounded-md border-2" :class="{'text-gray-500':supportedImgPreview}">
+      <img v-if="imageUrl && supportedImgPreview" :src="imageUrl" class="object-cover w-21 h-21"/>
       <svg v-else xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
     </div>
     <div v-if="supportedImgPreview" class="uploader-container p-2 flex flex-col gap-2">

@@ -11,8 +11,8 @@ type config = {
   volunteering: volunteering
   course: course
 }
-export function genericConfigGenerator(): GenericListConfig<config> {
-  const userStore = useUserStore()
+export function genericConfigGenerator():GenericListConfig<config> {
+  const userStore = useUserStore() 
   return {
     experience: {
       props: {

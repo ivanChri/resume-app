@@ -5,14 +5,14 @@
  const props = defineProps<{
    deviceType:device
  }>()
- const componentIndex = ref(0)
+ const componentIndex = ref<number>(0)
  const asyncModal = defineAsyncComponent(() => import('../component/Modal.vue'))
  const asyncThemesSelectionConfig = defineAsyncComponent(() => import('../themes/ThemesSelectionConfig.vue'))
  const asyncThemesTextConfig = defineAsyncComponent(() => import('../themes/ThemesTextConfig.vue'))
  const asyncPreview = defineAsyncComponent(() => import('./ThemesPreview.vue'))
  const components = [asyncPreview,asyncThemesSelectionConfig,asyncThemesTextConfig]
  const modalRef = useTemplateRef('modalRef')
- const cumpotedDeviceType = computed(() => {
+ const computedDeviceType = computed(() => {
    return props.deviceType === 'mobile' ? '=' : 'Customize'
  })
 </script>
@@ -20,7 +20,7 @@
 <template>
   <div class="customize-container main-modal p-1">
   <button @click="modalRef?.open()" class="border-1 cursor-pointer rounded-full w-12 h-12 font-bold lg:rounded-md lg:w-25 lg:h-auto p-2 border-gray-400 bg-blue-600 text-white">
-    {{ cumpotedDeviceType }}
+    {{ computedDeviceType }}
   </button>
   <asyncModal ref="modalRef">
      <template #header>

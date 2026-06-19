@@ -1,8 +1,5 @@
 <script setup lang="ts">
  import { ref,computed } from 'vue';
- defineProps<{
-  disabledButton:boolean
- }>()
  const emit = defineEmits<{
    (e:'onUpdate',data:string):void
  }>()
@@ -32,8 +29,7 @@
      </div>
      <div class="Month grid grid-cols-3 gap-3 p-1">
       <button v-for="(month,index) in months" 
-        class="rounded-md p-1 border-1 border-gray-300 text-center cursor-pointer hover:bg-gray-200 disabled:bg-gray-400 disabled:text-gray-200 disabled:cursor-not-allowed" 
-        :disabled="disabledButton"
+        class="rounded-md p-1 border-1 border-gray-300 text-center cursor-pointer hover:bg-gray-200" 
         :key="index"
         @click="updateSelectedMonth(month)">{{ month }}</button>
       </div>

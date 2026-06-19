@@ -1,80 +1,22 @@
 <script setup lang="ts">
-  import { ref,computed,defineAsyncComponent,useTemplateRef} from 'vue';
+  import { ref,computed,defineAsyncComponent,useTemplateRef,shallowRef} from 'vue';
   import SkeletonLoading from '../component/SkeletonLoading.vue';
-  import { genericConfigGenerator } from '../utils/config/genericConfig';
   import { useUserValidationStore } from '../store/userValidation.store';
-  import type { formControllerComponent } from '../utils/types/component.interface';
+  import { getFormComponents } from '../utils/config/formControllerComponentsConfig.ts';
+  import type { formControllerComponent } from '../utils/types/component.interface.ts';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
+  const components = shallowRef<formControllerComponent[]>(getFormComponents())
   const emit = defineEmits<{
     (e:'printPdf'):Promise<void>
   }>()
   const alertRef = useTemplateRef('alertRef')
   const componentIndex = ref<number>(0)
   const validation = useUserValidationStore()
-  const genericConfig = genericConfigGenerator()
-  const components:formControllerComponent[] = [
-   {
-    name:'Biodata',
-    buttonName:'Personal Info',
-    component:defineAsyncComponent(() => import('./BiodataForm.vue')),
-    props:{},
-    add:() => {},
-    delete:() => {}
-   },
-   {
-    name:'experience',
-    buttonName:'Work Experience',
-    component:defineAsyncComponent(() => import('./GenericList.vue')),
-    props:genericConfig['experience'].props,
-    add:genericConfig['experience'].emit.addData,
-    delete:genericConfig['experience'].emit.deleteData
-   },
-   {
-    name:'education',
-    buttonName:'Education',
-    component:defineAsyncComponent(() => import('./GenericList.vue')),
-    props:genericConfig['education'].props,
-    add:genericConfig['education'].emit.addData,
-    delete:genericConfig['education'].emit.deleteData
-   },
-   {
-    name:'socialMedia',
-    buttonName:'Social Media',
-    component:defineAsyncComponent(() => import('./SocialMediaForm.vue')),
-    props:{},
-    add:() => {},
-    delete:() => {}
-   },
-   {
-    name:'skills',
-    buttonName:'Skills',
-    component:defineAsyncComponent(() => import('./SkillsForm.vue')),
-    props:{},
-    add:() => {},
-    delete:() => {}
-   },
-   {
-    name:'summary',
-    buttonName:'Profesional Summary',
-    component:defineAsyncComponent(() => import('./SummaryForm.vue')),
-    props:{},
-    add:() => {},
-    delete:() => {}
-   },
-   {
-    name:'finalization',
-    buttonName:'finish',
-    component:defineAsyncComponent(() => import('./FinalizationForm.vue')),
-    props:{},
-    add:() => {},
-    delete:() => {}
-   }
- ]
   const nextButtonLabel = computed(() => {
-   return components[componentIndex.value + 1]?.buttonName || 'Download'
+   return components.value[componentIndex.value + 1]?.buttonName || 'Download'
   })
   function next():void{
-    if(componentIndex.value < components.length - 1){
+    if(componentIndex.value < components.value.length - 1){
       componentIndex.value++
     }else{
       checkData()
@@ -104,7 +46,7 @@
 
 <template>
    <div class="@container form-container flex flex-col gap-2 border-1 border-gray-400 rounded-md p-1">
-     <asyncAlert ref="alertRef" @confirm="printPdf">
+     <asyncAlert ref="alertRef" :showConfirmButton="true" @confirm="printPdf">
        <template #header>Download Confirmation</template>
        <template #body>Some Data Is Incomplete Are You Sure To Download It?</template>
        <template #confirmButtonName>Download</template>

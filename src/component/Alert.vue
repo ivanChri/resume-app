@@ -1,5 +1,8 @@
 <script setup lang="ts">
  import { ref } from 'vue';
+ defineProps<{
+   showConfirmButton:boolean
+ }>()
  const isOpen = ref(false)
  const emit = defineEmits<{
   (e:'confirm'):void
@@ -45,7 +48,7 @@
           <button @click="close" class="px-4 py-2 rounded-lg border cursor-pointer border-gray-300 text-gray-700 hover:bg-gray-100 transition">
             Close
           </button>
-          <button @click="confirmStatus" class="px-4 py-2 rounded-lg cursor-pointer bg-red-600 text-white hover:bg-red-700 transition">
+          <button v-if="showConfirmButton" @click="confirmStatus" class="px-4 py-2 rounded-lg cursor-pointer bg-red-600 text-white hover:bg-red-700 transition">
             <slot name="confirmButtonName">
               Delete
             </slot>

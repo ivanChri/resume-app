@@ -66,3 +66,15 @@ export interface genericData<T> {
   props:genericProps<T>
   emit:genericEmitter<T>
 }
+
+export interface fieldConfigData {
+   title:string,
+   sub:string,
+   showCity:boolean,
+   showLink:boolean,
+   showEmploymentType:boolean,
+   labelName:string,
+   statusLabel:string | null,
+   useMonthPicker:boolean,
+   useMonthPickerStatus:boolean
+}
