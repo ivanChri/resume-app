@@ -1,153 +1,71 @@
 <script setup lang="ts">
- import type { themesProps,themesConfigProps,resumeThemeStyle } from '../utils/types/themes.interface';
+ import type { themesHeaderProps } from '../utils/types/themes.interface';
  import IconRendered from '../component/IconRendered.vue';
  defineProps<{
-  data:themesProps,
-  themesData:themesConfigProps
-  style:resumeThemeStyle
+   data:themesHeaderProps,
   }>()
 </script>
 
 <template>
-  <div :class="[themesData.fontsSize,themesData.lineHeight,style.base]" id="main-themes">
-    <header :class="style.header">
-      <div v-if="themesData.supportedPhotos && data.header.photoPreview" class="img-container mb-3 p-1">
+  <div 
+   id="main-themes" 
+   :class="[
+     data.style.base,
+     data.themesData.fontsSize,
+     data.themesData.lineHeight,
+    ]"
+    :style="{ 
+     '--font-primary': data.themesData.primaryFontsFamily, 
+     '--font-secondary': data.themesData.secondaryFontsFamily 
+    }">
+    <header id="header" :class="data.style.header">
+      <div v-if="data.themesData.supportedPhotos && data.header.photoPreview" class="img-container mb-3 p-1">
         <img :src="data.header.photoPreview" class="w-30 h-30 rounded-full border-1 border-orange-300"/>
       </div>
-      <div :class="style.infoHeader" :style="{fontFamily:themesData.primaryFontsFamily}">
+      <div :class="data.style.infoHeader">
         <div class="main-title">
-          <h1 :class="style.jobTitle">{{ data.header.jobTitle }}</h1>
-          <h2 :class="style.name">{{ data.header.firstName }} {{ data.header.lastName }}</h2>
+          <h1 :class="data.style.jobTitle">{{ data.header.jobTitle }}</h1>
+          <h2 :class="data.style.name">{{ data.header.firstName }} {{ data.header.lastName }}</h2>
         </div>
-        <div :class="style.contact" :style="{fontFamily:themesData.secondaryFontsFamily}">
-          <div class="flex gap-2 flex-wrap">
-            <IconRendered v-if="themesData.supportedIcons && data.header.phone" name="phone" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
-            <span>{{ data.header.phone }}</span>
-          </div>
-          <div class="flex gap-2 flex-wrap">
-            <IconRendered v-if="themesData.supportedIcons && data.header.email" name="email" :icon-color-accents="themesData.iconColorAccents" size="20"></IconRendered>
-            <span>{{ data.header.email }}</span>
+        <div id="contact" :class="data.style.contact">
+          <div v-for="(item,index) in data.contact" :key="index" class="flex gap-2 flex-wrap">
+            <IconRendered
+             v-if="data.themesData.supportedIcons && item.value"
+             :name="item.name"
+             :icon-color-accents="data.themesData.iconColorAccents" 
+             size="20">
+            </IconRendered>
+            <span>{{ item.value }}</span>
           </div>
           <div v-for="item in data.socialMedia" :key="item.id" class="flex gap-2">
-            <IconRendered v-if="themesData.supportedIcons" :name="item.label.toLowerCase()" size="20" :icon-color-accents="themesData.iconColorAccents"></IconRendered>
+            <IconRendered
+             v-if="data.themesData.supportedIcons"
+             :name="item.label.toLowerCase()"
+             size="20"
+             :icon-color-accents="data.themesData.iconColorAccents">
+            </IconRendered>
             <a rel="noopener" target="_blank" :href="item.link" class="no-underline">
              <span>{{ item.label }}</span>
             </a>
           </div>  
         </div>
       </div>
-      <div :class="style.additionalInfo" :style="{fontFamily:themesData.secondaryFontsFamily}">
-        <span v-for="item in data.addtionalDetails" :key="item.id">
+      <div id="additionalInfo" :class="[data.style.additionalInfo]">
+        <span v-for="(item,index) in data.addtionalDetails" :key="index">
           {{ item.name }} : {{ item.value }}
         </span>
       </div>
     </header>
-    <main :class="style.main">
-      <div v-if="data.summary.length" :class="[style.summary,style.summaryContent]">
-        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Profile</h3>
-        <p v-html="data.summary" :style="{fontFamily:themesData.secondaryFontsFamily}"></p>
-      </div>
-      <div v-if="data.addtionalInformation.length" :class="[style.summary,style.summaryContent]">
-        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Addtional Details</h3>
-        <p v-html="data.addtionalInformation" :style="{fontFamily:themesData.secondaryFontsFamily}"></p>
-      </div>
-      <!-- start education section -->
-       <div class="education" v-if="data.education.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Education</h3>
-         <div v-for="item in data.education" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.sectionHeader">
-             <h4 :class="style.sectionHeaderTitle">{{ item.degree }} at {{ item.schoolName }}</h4>
-             <h5 :class="style.sectionHeaderInfo">{{ item.city }}, {{ item.startDate }} - {{ item.endDate }}</h5>
-           </div>
-          <div :class="style.sectionDesc">
-           <p v-html="item.description"></p>
-          </div>
-         </div>
+    <main id="main" :class="data.style.main">
+     <div class="profile">
+      <div v-for="item in data.summaryContent">
+       <div v-if="item.value" :class="[data.style.summary,data.style.summaryContent]">
+        <h3 :class="data.style.sectionTitle">{{ item.name }}</h3>
+        <p v-html="item.value"></p>
        </div>
-      <!-- end education section -->
-      <!-- experience section -->
-      <div class="experience" v-if="data.experience.length > 0">
-        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Work experience</h3>
-        <div v-for="item in data.experience" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.sectionHeader">
-             <h4 :class="style.sectionHeaderTitle">{{ item.jobTitle }}</h4>
-             <div :class="style.sectionHeaderInfo">
-               <h5>{{ item.employer }} , {{ item.city }} - {{ item.employmentTypes }}</h5>
-               <h5>{{ item.startDate }} - {{ item.endDate }}</h5>
-             </div>
-           </div>
-           <div :class="style.sectionDesc">
-             <p v-html="item.description"></p>
-           </div>
-        </div>
       </div>
-      <!-- end experience section -->
-      <!-- start course section -->
-       <div class="course" v-if="data.course.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Course</h3>
-         <div v-for="item in data.course" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.sectionHeader">
-             <h4 :class="style.sectionHeaderTitle">{{ item.courseName }} - {{ item.institution }}</h4>
-             <h5 :class="style.sectionHeaderInfo">{{ item.startDate }} - {{ item.endDate }}</h5>
-           </div>
-           <div :class="style.sectionDesc">
-             <p v-html="item.description"></p>
-           </div>
-         </div>
-       </div>
-      <!-- end course section -->
-      <!-- start portofolio section -->
-       <div class="portofolio" v-if="data.portofolio.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Portofolio</h3>
-         <div v-for="item in data.portofolio" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.sectionHeader">
-             <h4 :class="style.sectionHeaderTitle">
-              <a :href="item.projectLink" rel="noopener" target="_blank" class="no-underline">{{ item.projectName }}</a>
-              <span class="separator"> - </span>
-              {{ item.projectType }}
-             </h4>
-             <h5 :class="style.sectionHeaderInfo">{{ item.startDate }} - {{ item.endDate }}</h5>
-           </div>
-           <div :class="style.sectionDesc">
-             <p v-html="item.description"></p>
-           </div>
-         </div>
-       </div>
-      <!-- end portofolio section -->
-      <!-- start volunteering section -->
-      <div class="volunteering" v-if="data.volunteering.length">
-        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Volunteering</h3>
-        <div v-for="item in data.volunteering" :class="style.sectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id ">
-          <div :class="style.sectionHeader">
-            <h4 :class="style.sectionHeaderTitle">{{ item.role }} at {{ item.institution }}</h4>
-            <h5 :class="style.sectionHeaderInfo">{{ item.city }} {{ item.startDate }} - {{ item.endDate }}</h5>
-          </div>
-          <div :class="style.sectionDesc">
-            <p v-html="item.description"></p>
-          </div>
-        </div>
-      </div>
-      <!-- end volunteering section -->
-       <!-- start skills section -->
-       <div class="skills" v-if="data.skills.length">
-         <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Skills</h3>
-         <div v-for="item in data.skills" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-           <div :class="style.additionalSectionHeader">
-             <h4 :class="style.additionalSectionInfo">{{ item.name }} - {{ item.level }} </h4>
-           </div>
-         </div>
-       </div>
-      <!-- end skills section -->
-      <!-- start language section -->
-      <div class="language" v-if="data.language.length">
-        <h3 :class="style.sectionTitle" :style="{fontFamily:themesData.primaryFontsFamily}">Language</h3>
-        <div v-for="item in data.language" :class="style.additionalSectionItem" :style="{fontFamily:themesData.secondaryFontsFamily}" :key="item.id">
-          <div :class="style.additionalSectionHeader">
-            <h4 :class="style.additionalSectionInfo">{{ item.languageName }} - {{ item.languageLevel }} </h4>
-          </div>
-        </div>
-      </div>
-      <!-- end language section -->
+     </div>
+     <slot name="main-content"></slot>
     </main>
   </div>
 </template>
@@ -159,13 +77,29 @@
   margin-top: 0.5rem;
 }
 
-#main-themes .no-underline {
+#main-themes :deep(.no-underline) {
   text-decoration: none;
   transition: color 0.2s;
 }
 
-#main-themes .no-underline:hover {
+#main-themes :deep(.no-underline:hover) {
   text-decoration: underline;
   text-decoration-color:gray;
+}
+
+#main-themes :deep(h3),
+#header .main-title,
+#main :deep(.section .section-title),
+#main :deep(.section .section-header-title){ 
+  font-family: var(--font-primary);
+}
+
+#contact,
+#additionalInfo,
+.profile p,
+#main :deep(.section .section-header-info),
+#main :deep(.section .additional-section-item),
+#main :deep(.section .section-desc){
+  font-family: var(--font-secondary);
 }
 </style>

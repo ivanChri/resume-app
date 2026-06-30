@@ -3,7 +3,7 @@
  import { useComponentStore } from '../store/component.store';
  import { useUserValidationStore } from '../store/userValidation.store';
  import { getOptionalDataResetHandler } from '../utils/utility/utility';
- import { getFinalizationComponent } from '../utils/config/finalizationComponentsConfig.ts';
+ import { getFinalizationComponent } from '../utils/utility/getFinalizationComponent.ts';
  import SkeletonLoading from '../component/SkeletonLoading.vue';
  import AccordionList from '../component/AccordionList.vue';
  import AdditionalSection from '../component/AdditionalSection.vue';
@@ -12,7 +12,14 @@
  const additionalSectionRef = useTemplateRef('additionalSectionRef')
  const componentStore = useComponentStore()
  const validationStore = useUserValidationStore()
- const optionalStatusValue = ['portofolio','courses','language','volunteering','additionalInformation']
+ const optionalStatusValue = [
+  'portfolio',
+  'courses',
+  'language',
+  'volunteering',
+  'additionalInformation',
+  'organization'
+ ]
  function addOptionalComponent(key:string,componentName:string):void{
    componentStore.addComponent(key,componentName)
    additionalSectionRef.value?.toggleOptionalComponentStatus(componentName)

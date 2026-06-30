@@ -75,8 +75,8 @@
         <ImageUploader 
           :maxSize="1 * 1024 * 1024" 
           :allowedTypes="['image/jpeg', 'image/png']"
-          :storedPreviewImage="store.biodata.photoPreview || null"
-          :supportedImgPreview="themesStore.themes?.supportedUserPhoto!"
+          :storedPreviewImage="store.biodata.photoPreview ?? null"
+          :supportedImgPreview="themesStore.themes?.supportedUserPhoto ?? false"
           @onSubmit="setUserPhotoPreview"
         />
       </div>

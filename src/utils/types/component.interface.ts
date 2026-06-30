@@ -1,5 +1,15 @@
 import type { Component,ComputedRef } from "vue";
-export type ParentType = 'experience' | 'education' | 'portofolio' | 'course' | 'volunteering'
+import type { 
+  workExperice,
+  education,
+  portfolio,
+  volunteering,
+  course,
+  organization 
+} from "./form.interface";
+export type ParentType = 'experience' | 'education' 
+ | 'portfolio' | 'course' 
+ | 'volunteering' | 'organization'
 
 interface formComponent {
   component:Component,
@@ -29,11 +39,12 @@ export interface finalizationComponentData {
 }
 
 export interface optionalFinalizationComponentStatus {
-  portofolio:boolean,
+  portfolio:boolean,
   courses:boolean,
   language:boolean,
   volunteering:boolean,
-  additionalInformation:boolean
+  additionalInformation:boolean,
+  organization:boolean
 }
 
 export interface genericDataKeys {
@@ -43,9 +54,8 @@ export interface genericDataKeys {
   startDate?: string,
   endDate?: string,
   city?: string,
-  description: string,
+  description?: string,
   link?:string,
-  year?:string,
   employmentTypes?:string
 }
 
@@ -63,9 +73,24 @@ interface genericEmitter<T>{
 }
 
 export interface genericData<T> {
-  props:genericProps<T>
+  props:genericProps<T>,
   emit:genericEmitter<T>
 }
+
+type config = {
+  experience: workExperice,
+  education: education,
+  portfolio: portfolio,
+  volunteering: volunteering,
+  course: course,
+  organization: organization
+}
+
+type genericList<T> = {
+  [K in keyof T]: genericData<T[K]>
+}
+
+export type genericListConfig = genericList<config>
 
 export interface fieldConfigData {
    title:string,

@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends {id:string}">
+<script setup lang="ts" generic="T extends { id: string }">
  import { computed,defineAsyncComponent } from 'vue';
  import { generateRandomId } from '../utils/utility/utility';
  import type { genericProps } from '../utils/types/component.interface';
@@ -16,7 +16,7 @@
  const currentButtonLabel = computed(() => labelConfig[props.parent].buttonLabel)
  const currentTitleKeys = computed(() => props.parent === 'education' ?  props.keys.sub : props.keys.title)
  const showInfo = computed(() => currentTitle && props.infoText)
- function addData():void{ 
+ function addData():void{
   const newItem = JSON.parse(JSON.stringify(props.initialData))
   newItem.id = generateRandomId()
   emit('add',newItem)
@@ -45,14 +45,14 @@
           :parent="props.parent"
           v-model:title-model="item[keys.title]"
           v-model:sub-model="item[keys.sub]"
-          v-model:city-model="item[keys.city!]"
-          v-model:start-date-model="item[keys.startDate!]"
-          v-model:end-date-model="item[keys.endDate!]"
-          v-model:link-model="item[keys.link!]"
-          v-model:employment-types-model="item[keys.employmentTypes!]">
+          v-model:city-model="item[keys.city || 'city']"
+          v-model:start-date-model="item[keys.startDate || 'startDate']"
+          v-model:end-date-model="item[keys.endDate || 'endDate']"
+          v-model:link-model="item[keys.link || 'link']"
+          v-model:employment-types-model="item[keys.employmentTypes || 'employmentTypes']">
             <Suspense>
               <template #default>
-                <AsyncEditor v-model="item[keys.description]" :word-limit="350"></AsyncEditor>
+                <AsyncEditor v-model="item[keys.description || 'description']" :word-limit="350"></AsyncEditor>
               </template>
               <template #fallback>
                 <SkeletonLoading></SkeletonLoading>

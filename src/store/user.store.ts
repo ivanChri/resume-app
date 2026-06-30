@@ -6,10 +6,11 @@ import type {
   education,
   socialMedia,
   skills,
-  portofolio,
+  portfolio,
   course,
   language,
   volunteering,
+  organization
  } from "../utils/types/form.interface";
 export const useUserStore = defineStore('user',() => {
   const biodata = ref<biodata>({
@@ -34,16 +35,17 @@ export const useUserStore = defineStore('user',() => {
   const summary = ref<string>('')
   const additionalInformation = ref<string>('')
   const skills = ref<skills[]>([])
-  const portofolio = ref<portofolio[]>([])
+  const portfolio = ref<portfolio[]>([])
   const courses = ref<course[]>([])
   const language = ref<language[]>([])
   const volunteering = ref<volunteering[]>([])
+  const organization = ref<organization[]>([])
   const setPhotoPreview = (data:string):void => {
     biodata.value.photoPreview = data
   }
   const resetAdditionalInformationData = () => additionalInformation.value = ''
   const resetSkillsData = () => skills.value.length = 0
-  const resetPortofolioData = () => portofolio.value.length = 0
+  const resetPortfolioData = () => portfolio.value.length = 0
   const resetCourseData = () => courses.value.length = 0
   const resetLanguageData = () => language.value.length = 0
   const  resetVolunteeringData = () => volunteering.value.length = 0
@@ -54,15 +56,16 @@ export const useUserStore = defineStore('user',() => {
     socialMedia,
     skills,
     summary,
-    portofolio,
+    portfolio,
     courses,
     language,
     volunteering,
     additionalInformation,
+    organization,
     setPhotoPreview,
     resetAdditionalInformationData,
     resetSkillsData,
-    resetPortofolioData,
+    resetPortfolioData,
     resetCourseData,
     resetLanguageData,
     resetVolunteeringData

@@ -1,24 +1,23 @@
 import { defineAsyncComponent } from 'vue';
 import { genericConfigGenerator } from './genericConfig.ts';
 import type { componentRegisrty } from '../types/component.interface.ts';
-const asyncGenericComponent = defineAsyncComponent(() => import('../../form/GenericList.vue'))
-export function getFinalizationComponent():componentRegisrty{
+export function getComponent():componentRegisrty{
  const genericConfig = genericConfigGenerator()
   return {
-    biodata:{
-   component:defineAsyncComponent(() => import('../../form/BiodataForm.vue')),
-   props:{},
-   add:() => {},
-   delete:() => {}
+   biodata:{
+    component:defineAsyncComponent(() => import('../../form/BiodataForm.vue')),
+    props:{},
+    add:() => {},
+    delete:() => {}
   },
   experience:{
-   component:asyncGenericComponent,
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
    props:genericConfig['experience'].props,
    add:genericConfig['experience'].emit.addData,
    delete:genericConfig['experience'].emit.deleteData
   },
   education:{
-   component:asyncGenericComponent,
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
    props:genericConfig['education'].props,
    add:genericConfig['education'].emit.addData,
    delete:genericConfig['education'].emit.deleteData
@@ -41,11 +40,11 @@ export function getFinalizationComponent():componentRegisrty{
    add:() => {},
    delete:() => {}
   },
-  portofolio:{
-    component:asyncGenericComponent,
-    props:genericConfig['portofolio'].props,
-    add:genericConfig['portofolio'].emit.addData,
-    delete:genericConfig['portofolio'].emit.deleteData
+  portfolio:{
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
+   props:genericConfig['portfolio'].props,
+   add:genericConfig['portfolio'].emit.addData,
+   delete:genericConfig['portfolio'].emit.deleteData
   },
   language:{
    component:defineAsyncComponent(() => import('../../form/LanguageForm.vue')),
@@ -54,13 +53,19 @@ export function getFinalizationComponent():componentRegisrty{
    delete:() => {}
   },
   volunteering:{
-   component:asyncGenericComponent,
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
    props:genericConfig['volunteering'].props,
    add:genericConfig['volunteering'].emit.addData,
    delete:genericConfig['volunteering'].emit.deleteData
   },
+  organization:{
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
+   props:genericConfig['organization'].props,
+   add:genericConfig['organization'].emit.addData,
+   delete:genericConfig['organization'].emit.deleteData
+  },
   courses:{
-   component:asyncGenericComponent,
+   component:defineAsyncComponent(() => import('../../form/GenericList.vue')),
    props:genericConfig['course'].props,
    add:genericConfig['course'].emit.addData,
    delete:genericConfig['course'].emit.deleteData
@@ -70,6 +75,12 @@ export function getFinalizationComponent():componentRegisrty{
    props:{},
    add:() => {},
    delete:() => {}
-  } 
+  },
+  finalization:{
+   component:defineAsyncComponent(() => import('../../form/FinalizationForm.vue')),
+   props:{},
+   add:() => {},
+   delete:() => {}
+  }
  } as const
 }

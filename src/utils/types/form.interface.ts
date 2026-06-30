@@ -57,7 +57,7 @@ export interface language {
   languageLevel:languageSpeakingLevel | null
 }
 
-export interface portofolio {
+export interface portfolio {
   id:string,
   projectName:string,
   projectType:string,
@@ -85,3 +85,5 @@ export interface volunteering {
   city:string,
   description:string
 }
+
+export interface organization extends volunteering {}

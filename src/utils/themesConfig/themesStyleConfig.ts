@@ -22,14 +22,14 @@ export const themesStyleConfig:Record<string,resumeThemeStyle> = {
   additionalSectionInfo:"text-slate-500 sm:text-right uppercase"
   },
   "twoColumn-professional":{
-  base: "w-full max-w-[210mm] mx-auto border-1 border-gray-400 bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:shadow-none",
-  header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 border-r-2 border-blue-800 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
+  base: "w-full max-w-[210mm] mx-auto bg-white shadow-2xl flex flex-col sm:flex-row print:flex-row print:w-[210mm] print:shadow-none",
+  header: "w-full sm:w-[42%] print:w-[42%] bg-slate-900 text-slate-200 p-8 flex flex-col gap-5 break-words print:min-h-[297mm]", 
   infoHeader: "flex flex-col gap-2",
   jobTitle: "text-xs font-bold tracking-[0.25em] text-indigo-400 uppercase",
   name: "text-2xl sm:text-3xl md:text-4xl print:text-3xl font-black uppercase tracking-tighter leading-none break-words",
   contact: "flex flex-col gap-2",
   additionalInfo: "grid grid-cols-1 gap-2 mt-4 pt-5 border-t border-slate-700/50 uppercase",
-  main: "w-full sm:w-[58%] print:w-[58%] p-8 md:p-12 print:p-10 bg-white flex flex-col gap-10",
+  main: "w-full sm:w-[58%] print:w-[58%] border-2 border-slate-600 p-8 md:p-12 print:p-10 bg-white flex flex-col gap-6",
   sectionTitle: "text-lg font-extrabold border-b-2 border-slate-900 mb-6 pb-2 text-slate-900 uppercase tracking-tighter",
   sectionItem: "mb-6 last:mb-0 break-inside-avoid",
   sectionHeader: "my-2",
@@ -52,7 +52,7 @@ export const themesStyleConfig:Record<string,resumeThemeStyle> = {
   additionalInfo: "flex flex-wrap items-center gap-x-4 mt-4 font-bold uppercase tracking-widest text-orange-500/80",
   main: "space-y-8 md:space-y-10",
   sectionTitle: "flex items-center p-1 text-xl md:text-2xl border-b-2 md:border-b-3 pb-2 border-orange-500 font-black uppercase tracking-tighter text-white mb-5 md:mb-6 before:content-[''] before:w-3 before:h-3 before:bg-orange-500 before:mr-4 before:rounded-full outline-none",
-  summary: "text-slate-400 italic border-l-2 border-orange-500/30 pl-4 md:pl-6 max-w-full md:max-w-[700px] break-all break-inside-avoid",
+  summary: "text-slate-400 border-l-2 border-orange-500/30 pl-4 md:pl-6 max-w-full md:max-w-[700px] break-all break-inside-avoid",
   summaryContent: "mb-3 text-sm md:text-base",
   sectionItem: "relative pl-5.5 md:pl-7 pb-3 pt-2 border-l border-slate-800 break-inside-avoid",
   sectionHeader: "flex flex-col gap-1 md:gap-2 mb-2 relative before:content-[''] before:absolute before:-left-[28.5px] md:before:-left-[36.5px] before:top-1.5 before:w-3 before:h-3 md:before:w-4 md:before:h-4 before:bg-slate-400 before:border-2 before:border-orange-500 before:rounded-full",
@@ -63,4 +63,4 @@ export const themesStyleConfig:Record<string,resumeThemeStyle> = {
   additionalSectionHeader: "mb-1",
   additionalSectionInfo: "font-semibold uppercase text-orange-600 mb-2 flex flex-wrap justify-between gap-3"
  }
-}
+} as const

@@ -3,36 +3,76 @@ import type {
   education,
   skills,
   socialMedia,
-  portofolio,
+  portfolio,
   course,
   volunteering,
-  language
+  language,
+  organization
 } from "./form.interface";
+import type { genericDataKeys } from "./component.interface";
 
-export interface themesProps {
+export interface themesHeaderProps {
   header:{
     firstName:string,
     lastName:string,
     jobTitle:string,
     photoPreview:string,
-    email:string,
-    phone:string
   },
-  addtionalDetails:{
-   id:string,
-   name:string,
-   value:string
-  }[],
-  summary:string,
-  experience:workExperice[],
-  education:education[],
-  skills:skills[],
+  addtionalDetails:{name:string,value:string}[],
+  summaryContent:{name:string,value:string}[],
+  contact:{name:string,value:string}[],
   socialMedia:socialMedia[],
-  portofolio:portofolio[],
-  course:course[],
-  volunteering:volunteering[],
-  language:language[],
-  addtionalInformation:string
+  style:{
+   base:string,
+   header: string,
+   infoHeader: string,
+   name: string,
+   jobTitle: string,
+   sectionTitle: string,
+   contact: string,
+   additionalInfo: string,
+   main: string,
+   summary: string,
+   summaryContent: string
+  },
+  themesData:themesConfigProps
+}
+
+export interface themesSectionProps<T> {
+  name:string,
+  data:T[],
+  keys:genericDataKeys,
+}
+
+export type config = {
+  experience: workExperice,
+  education: education,
+  portfolio: portfolio,
+  volunteering: volunteering,
+  course: course,
+  skills:skills,
+  language:language,
+  organization:organization
+}
+
+type configToArray<T> = {
+  [K in keyof T]: themesSectionProps<T[K]>
+}[keyof T][]
+
+export type sectionArray = configToArray<config>
+
+export interface computedSection<T> extends themesSectionProps<T> {
+  style: {
+    sectionItem: string,
+    sectionTitle: string,
+    sectionHeader: string,
+    sectionHeaderTitle: string,
+    sectionHeaderInfo: string,
+    sectionDesc: string,
+    additionalSectionItem:string,
+    additionalSectionHeader: string,
+    additionalSectionInfo: string,
+  }
 }
 
 export interface themesConfigProps {
@@ -77,7 +117,13 @@ export interface resumeThemeStyle {
   summary: string;
   summaryContent: string;
   sectionDesc: string;
-  additionalSectionItem: string;
+  additionalSectionItem:string;
   additionalSectionHeader: string;
   additionalSectionInfo: string;
+}
+
+export interface themesLayoutStyle {
+  base:string,
+  header:string,
+  main:string
 }

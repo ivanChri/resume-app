@@ -22,7 +22,7 @@ export const fieldConfig:Record<string,fieldConfigData> = {
     useMonthPicker: true,
     useMonthPickerStatus:true
   },
-   portofolio:{
+   portfolio:{
     title:'ProjectName',
     sub:'ProjectType',
     showCity: false,
@@ -54,7 +54,18 @@ export const fieldConfig:Record<string,fieldConfigData> = {
     statusLabel: "Currently Volunteering Here",
     useMonthPicker: true,
     useMonthPickerStatus:true
-  }
+  },
+  organization:{
+    title:'Role',
+    sub:'Institution',
+    showCity: true,
+    showLink: false,
+    showEmploymentType:false,
+    labelName: "Start & End Date",
+    statusLabel: "Currently Active Here",
+    useMonthPicker: true,
+    useMonthPickerStatus:true
+  },
  } as const
 
 export const labelConfig = {
@@ -66,36 +77,23 @@ export const labelConfig = {
     title:'Education',
     buttonLabel:'Add Education'
    },
-   portofolio:{
-    title:'Portofolio/Personal Project',
-    buttonLabel:'Add Portofolio'
+   portfolio:{
+    title:'Portfolio/Personal Project',
+    buttonLabel:'Add Portfolio'
    },
    course:{
     title:null,
     buttonLabel:'Add Course'
    },
-   awards:{
-    title:null,
-    buttonLabel:'Add Awards'
-   },
    volunteering:{
     title:null,
     buttonLabel:'Add Volunteering'
+   },
+   organization:{
+    title:null,
+    buttonLabel:'Add Organization'
    }
  } as const
-export function getFieldConfig(parent:string):fieldConfigData{
-    return {
-     title:fieldConfig[parent].title || 'Title',
-     sub:fieldConfig[parent].sub || 'Subtitle',
-     labelName:fieldConfig[parent].labelName,
-     useMonthPicker:fieldConfig[parent].useMonthPicker,
-     useMonthPickerStatus:fieldConfig[parent].useMonthPickerStatus,
-     statusLabel:fieldConfig[parent].statusLabel,
-     showCity:fieldConfig[parent].showCity,
-     showLink:fieldConfig[parent].showLink,
-     showEmploymentType:fieldConfig[parent].showEmploymentType
-   }
-}
 export const fontSizeValue = ['text-xs','text-base','text-lg'] as const
 export const lineHeightValue = ['leading-[1.3]','leading-[1.5]','leading-[1.7]','leading-[1.9]'] as const
 export const fontsFamilyValue:Record<string,string> = {

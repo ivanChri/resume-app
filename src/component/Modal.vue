@@ -27,18 +27,17 @@ defineExpose({ open, close })
       leave-from-class="opacity-100 translate-y-0 sm:scale-100"
       leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     >
-      <div v-if="isOpen" class="fixed inset-0 z-[60] flex items-end sm:items-center justify-center overflow-hidden">
+      <div v-if="isOpen" class="fixed inset-0 z-[60] flex items-center justify-center overflow-hidden p-0 sm:p-4">
         <div 
           class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
           @click="close"
         ></div>
-
         <div 
-          class="relative flex flex-col bg-white w-full h-full sm:h-auto sm:max-h-[90vh] sm:w-[95%] sm:max-w-4xl sm:rounded-2xl shadow-2xl overflow-hidden"
+          class="relative flex flex-col bg-white w-full h-[100dvh] max-h-[100dvh] sm:h-auto sm:max-h-[90vh] sm:w-full sm:max-w-4xl sm:rounded-2xl shadow-2xl overflow-hidden"
           role="dialog"
           aria-modal="true"
         >
-          <div class="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-white border-b border-gray-100 pt-[calc(1rem+env(safe-area-inset-top))] sm:pt-4">
+          <div class="sticky top-0 z-10 flex flex-shrink-0 items-center justify-between px-6 py-4 bg-white border-b border-gray-100 pt-[calc(1rem+env(safe-area-inset-top))] sm:pt-4">
             <div class="font-semibold text-lg text-gray-800">
               <slot name="header"></slot>
             </div>
@@ -48,18 +47,8 @@ defineExpose({ open, close })
               </svg>
             </button>
           </div>
-          <div class="flex-1 px-6 py-4 min-h-[500px] overflow-y-auto overscroll-contain bg-white text-gray-600">
+          <div class="flex-1 px-6 py-4 min-h-0 sm:min-h-[500px] overflow-y-auto overscroll-contain bg-white text-gray-600">
             <slot></slot>
-          </div>
-          <div class="sticky bottom-0 z-10 px-6 py-4 bg-gray-50/80 backdrop-blur-md border-t border-gray-100 flex justify-end gap-3 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-4">
-            <slot name="footer">
-              <button 
-                @click="close" 
-                class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gray-200 hover:bg-gray-300 font-medium transition-colors"
-              >
-                Close
-              </button>
-            </slot>
           </div>
         </div>
       </div>
@@ -76,3 +65,4 @@ defineExpose({ open, close })
   border-radius: 10px;
 }
 </style>
+relative flex flex-col bg-white w-full h-full sm:h-auto sm:max-h-[90vh] sm:w-[100%] sm:max-w-4xl sm:rounded-2xl shadow-2xl overflow-hidden

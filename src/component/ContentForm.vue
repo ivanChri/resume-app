@@ -2,7 +2,7 @@
   import { computed,useTemplateRef } from 'vue';
   import type { ParentType,fieldConfigData } from '../utils/types/component.interface';
   import type { employmentTypes } from '../utils/types/form.interface';
-  import { getFieldConfig } from '../utils/config/fieldConfig';
+  import { getFieldConfig } from '../utils/utility/getFieldConfig.ts';
   import Dropdown from './Dropdown.vue';
   import MonthPickerContainer from './MonthPickerContainer.vue';
   const props = defineProps<{

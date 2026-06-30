@@ -2,10 +2,10 @@
   import { ref,computed,defineAsyncComponent,useTemplateRef,shallowRef} from 'vue';
   import SkeletonLoading from '../component/SkeletonLoading.vue';
   import { useUserValidationStore } from '../store/userValidation.store';
-  import { getFormComponents } from '../utils/config/formControllerComponentsConfig.ts';
+  import { getFormComponent } from '../utils/utility/getFormComponent.ts';
   import type { formControllerComponent } from '../utils/types/component.interface.ts';
   const asyncAlert = defineAsyncComponent(() => import('../component/Alert.vue'))
-  const components = shallowRef<formControllerComponent[]>(getFormComponents())
+  const components = shallowRef<formControllerComponent[]>(getFormComponent())
   const emit = defineEmits<{
     (e:'printPdf'):Promise<void>
   }>()

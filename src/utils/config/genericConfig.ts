@@ -1,17 +1,6 @@
 import { useUserStore } from "../../store/user.store";
-import type { workExperice, education, portofolio, volunteering, course } from "../types/form.interface";
-import type { genericData } from "../types/component.interface";
-type GenericListConfig<T extends Record<string, any>> = {
-  [K in keyof T]: genericData<T[K]>
-}
-type config = {
-  experience: workExperice
-  education: education
-  portofolio: portofolio
-  volunteering: volunteering
-  course: course
-}
-export function genericConfigGenerator():GenericListConfig<config> {
+import type { genericListConfig } from "../types/component.interface";
+export function genericConfigGenerator():genericListConfig{
   const userStore = useUserStore() 
   return {
     experience: {
@@ -82,10 +71,10 @@ export function genericConfigGenerator():GenericListConfig<config> {
         }
       }
     },
-    portofolio: {
+    portfolio: {
       props: {
-        parent: 'portofolio',
-        data: userStore['portofolio'],
+        parent: 'portfolio',
+        data: userStore['portfolio'],
         initialData: {
           id: '',
           projectName: '',
@@ -108,10 +97,10 @@ export function genericConfigGenerator():GenericListConfig<config> {
       },
       emit:{
         addData(data){
-          userStore['portofolio'].push(data)
+          userStore['portfolio'].push(data)
         },
         deleteData(index){
-         if(index !== -1) userStore['portofolio'].splice(index,1)
+         if(index !== -1) userStore['portfolio'].splice(index,1)
         }
       }
     },
@@ -166,7 +155,7 @@ export function genericConfigGenerator():GenericListConfig<config> {
           sub: 'institution',
           startDate: 'startDate',
           endDate: 'endDate',
-          city: 'city',
+          city:'city',
           description: 'description'
         },
         infoText: null,
@@ -177,6 +166,39 @@ export function genericConfigGenerator():GenericListConfig<config> {
         },
         deleteData(index){
          if(index !== -1) userStore['courses'].splice(index,1)
+        }
+      }
+    },
+    organization:{
+      props:{
+        parent:'organization',
+        data:userStore['organization'],
+        initialData:{
+          id: '',
+          role: '',
+          institution: '',
+          startDate: '',
+          endDate: '',
+          city: '',
+          description: ''
+        },
+        keys: {
+          id: 'id',
+          title: 'role',
+          sub: 'institution',
+          startDate: 'startDate',
+          endDate: 'endDate',
+          city: 'city',
+          description: 'description'
+        },
+        infoText:null
+      },
+       emit:{
+        addData(data){
+          userStore['organization'].push(data)
+        },
+        deleteData(index){
+         if(index !== -1) userStore['organization'].splice(index,1)
         }
       }
     }

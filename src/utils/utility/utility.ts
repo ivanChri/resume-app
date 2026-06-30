@@ -15,8 +15,8 @@ export function getOptionalDataResetHandler(name:string):void{
     case 'skills':
      userStore.resetSkillsData()
      return
-    case 'portofolio':
-     userStore.resetPortofolioData()
+    case 'portfolio':
+     userStore.resetPortfolioData()
      return
     case 'language':
      userStore.resetLanguageData()

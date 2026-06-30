@@ -5,18 +5,20 @@
    (e:'add',key:string,name:string):void
  }>()
  const optionalComponentStatus = ref<optionalFinalizationComponentStatus>({
-  portofolio:false,
+  portfolio:false,
   courses:false,
   language:false,
   volunteering:false,
-  additionalInformation:false
+  additionalInformation:false,
+  organization:false
  })
  const additionalButtonLabel = [
-  {key:'Portofolio / Personal Project',componentName:'portofolio'},
+  {key:'Portfolio / Personal Project',componentName:'portfolio'},
   {key:'Courses',componentName:'courses'},
   {key:'Languages',componentName:'language'},
   {key:'Comunity volunteering',componentName:'volunteering'},
-  {key:'Additional Information',componentName:'additionalInformation'}
+  {key:'Additional Information',componentName:'additionalInformation'},
+  {key:'Organization',componentName:'organization'}
  ]
  function toggleOptionalComponentStatus(key:string):void{
   const itemKey = key as keyof optionalFinalizationComponentStatus
