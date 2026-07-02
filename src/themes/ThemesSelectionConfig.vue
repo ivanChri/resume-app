@@ -9,9 +9,9 @@
 </script>
 
 <template>
-  <div class="themes-selection-container flex flex-wrap gap-4 justify-center md:justify-between">
+  <div class="themes-selection-container flex flex-wrap gap-2 justify-center md:justify-between">
     <div v-for="(item,index) in dataThemes"
-    class="p-1 border-2 rounded-md cursor-pointer text-center bg-gray-200"
+    class="p-1 border-1 rounded-md cursor-pointer text-center bg-gray-200"
     :class="{ 'border-blue-600' : item.name === themesStore.themes?.name }"
     @click="addSeletectedThemes(item)"
     :key="index">

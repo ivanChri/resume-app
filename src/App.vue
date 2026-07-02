@@ -16,7 +16,7 @@
   isLoading.value = true
   const originalDeviceState = isMobileDevice.value
   try {
-    if(originalDeviceState){
+    if(!isMobileDevice.value){
       await exportPdf('main-themes')
       return
     }

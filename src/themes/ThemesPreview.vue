@@ -1,5 +1,5 @@
 <script setup lang="ts">
- import { computed,defineAsyncComponent,onMounted } from 'vue';
+ import { ref,computed,defineAsyncComponent,onMounted,onUnmounted } from 'vue';
  import SkeletonLoading from '../component/SkeletonLoading.vue';
  import { dataThemes } from '../utils/themesConfig/themes';
  import { getSectionConfig } from '../utils/config/sectionComponentsConfig.ts';
@@ -11,6 +11,11 @@
  const asyncThemesSection = defineAsyncComponent(() => import('../component/ThemesSection.vue'))
  const userStore = useUserStore()
  const themesStore = useThemesStore()
+ const resumeRef = ref<HTMLDivElement | null>(null)
+ const isMobile = ref<boolean>(false)
+ const scaleRatio = ref(1)
+ const targetWidth = 1000
+ const mediaQuery = window.matchMedia(`(max-width: ${targetWidth}px)`)
  const computedThemesConfig = computed(() => {
    return {
     primaryFontsFamily:themesStore.selectedPrimaryFontFamily,
@@ -93,31 +98,65 @@
     }
   })
  })
+ function calculateScale():void{
+   if(!resumeRef.value) return
+   if(mediaQuery.matches){
+    const containerWidth = window.innerWidth
+    scaleRatio.value = containerWidth / targetWidth
+   }else{
+    scaleRatio.value = 1
+   }
+ }
+ function handleMediaQueryChange(e: MediaQueryListEvent | MediaQueryList):void{
+   isMobile.value = e.matches
+   if(e.matches){
+     calculateScale()
+     window.addEventListener('resize',calculateScale)
+   }else{
+    scaleRatio.value = 1
+    window.removeEventListener('resize', calculateScale)
+   }
+ }
  onMounted(() => {
    if(!themesStore.themes) themesStore.themes = dataThemes[0]
    if(!themesStore.themesSectionOrder) themesStore.themesSectionOrder = layoutOrderData[0]
+   handleMediaQueryChange(mediaQuery)
+   mediaQuery.addEventListener('change',handleMediaQueryChange)
  })
+ onUnmounted(() => {
+   mediaQuery.addEventListener('change',handleMediaQueryChange)
+})
 </script>
 
 <template>
-  <div v-if="sectionsComputedData.length" class="@container preview-container w-full">
-  <div class="bg-gray-300 rounded-md min-h-full p-4 lg:p-8 flex justify-center overflow-y-auto">
-    <div class="resume-container w-full md:w-[1000px] min-h-[800px] bg-white shadow-lg p-2 md:p-5">
-     <suspense>
-       <template #default>
-        <asyncThemes :data="data">
-          <template #main-content>
-            <asyncThemesSection v-for="item in sectionsComputedData"
-             :key="item.name"
-             v-bind="item"></asyncThemesSection>
-          </template>
-        </asyncThemes>
-       </template>
-       <template #fallback>
-         <skeleton-loading :rows="20" min-height="400px"></skeleton-loading>
-       </template>
-     </suspense>
+  <div v-if="sectionsComputedData.length" class="preview-container w-full">
+    <div class="bg-none md:bg-gray-300 rounded-md h-dvh md:h-auto p-1 md:p-6 lg:p-8 flex justify-center md:overflow-y-auto md:overflow-x-hidden"> 
+      <div class="w-full flex justify-center h-dvh md:h-auto">
+        <div 
+          ref="resumeRef"
+          :class="[
+            'resume-container border-1 rounded-md md:border-none bg-white shadow-lg p-4 md:p-5 origin-top',
+            isMobile ? 'min-w-[850px] min-h-fit' : 'w-full max-w-[210mm]'
+          ]"
+          :style="{ transform: isMobile ? `scale(${scaleRatio})` : 'none' }">
+          <suspense>
+            <template #default>
+              <asyncThemes :data="data">
+                <template #main-content>
+                  <asyncThemesSection 
+                    v-for="item in sectionsComputedData"
+                    :key="item.name"
+                    v-bind="item"
+                  />
+                </template>
+              </asyncThemes>
+            </template>
+            <template #fallback>
+              <skeleton-loading :rows="isMobile ? 30 : 20" min-height="500px"></skeleton-loading>
+            </template>
+          </suspense>
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 </template>

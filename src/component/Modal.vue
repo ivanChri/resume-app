@@ -65,4 +65,3 @@ defineExpose({ open, close })
   border-radius: 10px;
 }
 </style>
-relative flex flex-col bg-white w-full h-full sm:h-auto sm:max-h-[90vh] sm:w-[100%] sm:max-w-4xl sm:rounded-2xl shadow-2xl overflow-hidden
